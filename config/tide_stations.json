@@ -1,0 +1,230 @@
+{
+  "_meta": {
+    "version": 1,
+    "source": "Japan Meteorological Agency (JMA) tide table",
+    "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/",
+    "method": "One BOAT RACE venue is mapped to one JMA tide-table point. Freshwater venues are intentionally disabled. Proxy mappings are marked and must not be treated as equally reliable.",
+    "notes": [
+      "The mapping is configuration, not business logic. Keep it outside the scraper so a future correction does not require code changes.",
+      "Only a station with a directly usable JMA tide table should be fetched.",
+      "When enabled=false or station_code is null, the tide field must be omitted from race JSON.",
+      "For BOAT RACE venue 24 (Omura), a sufficiently local JMA tide-table point could not be verified from the current JMA 2026 station list; a proxy is recorded but disabled."
+    ]
+  },
+  "01": {
+    "stadium": "桐生",
+    "water_type": "freshwater",
+    "enabled": false,
+    "station_code": null,
+    "station_name": null,
+    "confidence": "high",
+    "reason": "Freshwater venue; tidal data should not be applied."
+  },
+  "02": {
+    "stadium": "戸田",
+    "water_type": "freshwater",
+    "enabled": false,
+    "station_code": null,
+    "station_name": null,
+    "confidence": "high",
+    "reason": "Freshwater venue; tidal data should not be applied."
+  },
+  "03": {
+    "stadium": "江戸川",
+    "water_type": "tidal_river",
+    "enabled": true,
+    "station_code": "TK",
+    "station_name": "東京",
+    "confidence": "medium",
+    "reason": "Tokyo Bay / lower-Tokyo tidal environment; Tokyo is the nearest verified JMA tide-table point used as a proxy."
+  },
+  "04": {
+    "stadium": "平和島",
+    "water_type": "seawater",
+    "enabled": true,
+    "station_code": "TK",
+    "station_name": "東京",
+    "confidence": "high",
+    "reason": "Tokyo Bay venue; Tokyo is a nearby JMA tide-table point."
+  },
+  "05": {
+    "stadium": "多摩川",
+    "water_type": "freshwater",
+    "enabled": false,
+    "station_code": null,
+    "station_name": null,
+    "confidence": "high",
+    "reason": "Freshwater venue; tidal data should not be applied."
+  },
+  "06": {
+    "stadium": "浜名湖",
+    "water_type": "brackish",
+    "enabled": true,
+    "station_code": "MI",
+    "station_name": "舞阪",
+    "confidence": "high",
+    "reason": "Hamana Lake is connected to the sea; Maisaka is the nearby JMA tide-table point."
+  },
+  "07": {
+    "stadium": "蒲郡",
+    "water_type": "seawater",
+    "enabled": true,
+    "station_code": "G5",
+    "station_name": "形原",
+    "confidence": "high",
+    "reason": "JMA's Katahara tide-table point is in Gamagori City itself."
+  },
+  "08": {
+    "stadium": "常滑",
+    "water_type": "seawater",
+    "enabled": true,
+    "station_code": "ZD",
+    "station_name": "鬼崎",
+    "confidence": "high",
+    "reason": "JMA's Onizaki tide-table point is in the Tokoname/Ise Bay area and is geographically local."
+  },
+  "09": {
+    "stadium": "津",
+    "water_type": "seawater",
+    "enabled": true,
+    "station_code": "G3",
+    "station_name": "四日市港",
+    "confidence": "medium",
+    "reason": "No directly named Tsu JMA tide-table point was verified in the current 2026 list; Yokkaichi Port is used as an Ise Bay proxy."
+  },
+  "10": {
+    "stadium": "三国",
+    "water_type": "seawater",
+    "enabled": true,
+    "station_code": "ZG",
+    "station_name": "三国",
+    "confidence": "high",
+    "reason": "Exact JMA tide-table point named Mikuni in Sakai, Fukui."
+  },
+  "11": {
+    "stadium": "びわこ",
+    "water_type": "freshwater",
+    "enabled": false,
+    "station_code": null,
+    "station_name": null,
+    "confidence": "high",
+    "reason": "Lake Biwa is freshwater; tidal data should not be applied."
+  },
+  "12": {
+    "stadium": "住之江",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "OS",
+    "station_name": "大阪",
+    "confidence": "high",
+    "reason": "Osaka Bay tidal environment; Osaka is a local JMA tide-table point."
+  },
+  "13": {
+    "stadium": "尼崎",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "AM",
+    "station_name": "尼崎",
+    "confidence": "high",
+    "reason": "Exact JMA tide-table point named Amagasaki."
+  },
+  "14": {
+    "stadium": "鳴門",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "KM",
+    "station_name": "小松島",
+    "confidence": "medium",
+    "reason": "Tokushima side of the Naruto/Kii Channel tidal system; Komatsushima is the verified nearby JMA tide-table point used as a proxy."
+  },
+  "15": {
+    "stadium": "丸亀",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "TX",
+    "station_name": "多度津",
+    "confidence": "high",
+    "reason": "Tadotsu is a nearby JMA tide-table point in western Kagawa."
+  },
+  "16": {
+    "stadium": "児島",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "MM",
+    "station_name": "水島",
+    "confidence": "high",
+    "reason": "Mizushima is a JMA tide-table point in Kurashiki City, close to Kojima."
+  },
+  "17": {
+    "stadium": "宮島",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "Q8",
+    "station_name": "広島",
+    "confidence": "medium",
+    "reason": "Hiroshima Bay tidal environment; Hiroshima is a verified nearby JMA tide-table point."
+  },
+  "18": {
+    "stadium": "徳山",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "QA",
+    "station_name": "徳山",
+    "confidence": "high",
+    "reason": "Exact JMA tide-table point named Tokuyama."
+  },
+  "19": {
+    "stadium": "下関",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "CF",
+    "station_name": "長府",
+    "confidence": "high",
+    "reason": "The venue is in the Chofu area of Shimonoseki; Chofu is a local JMA tide-table point."
+  },
+  "20": {
+    "stadium": "若松",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "N1",
+    "station_name": "日明",
+    "confidence": "medium",
+    "reason": "Kitakyushu/Dokai Bay tidal environment; Hiagari is a verified local JMA tide-table point."
+  },
+  "21": {
+    "stadium": "芦屋",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "N1",
+    "station_name": "日明",
+    "confidence": "medium",
+    "reason": "No sufficiently local JMA point was verified for Ashiya; Hiagari is used as a North-Kyushu proxy."
+  },
+  "22": {
+    "stadium": "福岡",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "QF",
+    "station_name": "博多",
+    "confidence": "high",
+    "reason": "Exact local JMA tide-table point in Fukuoka City."
+  },
+  "23": {
+    "stadium": "唐津",
+    "water_type": "tidal",
+    "enabled": true,
+    "station_code": "KA",
+    "station_name": "唐津",
+    "confidence": "high",
+    "reason": "Exact JMA tide-table point named Karatsu."
+  },
+  "24": {
+    "stadium": "大村",
+    "water_type": "tidal",
+    "enabled": false,
+    "station_code": "NS",
+    "station_name": "長崎",
+    "confidence": "low",
+    "reason": "Disabled by default because a sufficiently local JMA tide-table point for Omura Bay was not verified from the current 2026 JMA station list. Keep the candidate mapping for later validation, but do not feed it into prediction logic yet."
+  }
+}
