@@ -202,7 +202,7 @@
             gap: 8px;
         }
         .evaluation-row > span {
-            width: 42px;
+            width: 46px;
             font-weight: 700;
             color: var(--text-muted);
             flex-shrink: 0;
@@ -278,6 +278,10 @@
             display: none;
         }
         .result-box h2 { font-size: 1.05rem; color: var(--primary-color); margin-top: 0; }
+        .result-box table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+        .result-box th, .result-box td { padding: 5px 6px; border-bottom: 1px solid #d6e6f2; text-align: left; }
+        .result-box th { color: var(--text-muted); font-weight: 600; }
+        .combo-line { font-family: -apple-system, monospace; font-size: 0.9rem; padding: 2px 0; }
     </style>
 </head>
 <body>
@@ -365,6 +369,14 @@
 <script>
     let currentRaceData = null;
 
+    // 評価項目の定義（キー・表示ラベル・初期値）
+    const EVAL_ITEMS = [
+        { key: 'st',  label: 'St',  defaultVal: 3 },
+        { key: 'm2',  label: '2M',  defaultVal: 3 },
+        { key: 'm1a', label: '1M①', defaultVal: 3 },
+        { key: 'm1b', label: '1M②', defaultVal: 3 }
+    ];
+
     // 選手名の余分な空白（全角スペース含む）を1つに正規化
     function cleanName(name) {
         return (name || '').replace(/\s+/g, ' ').trim();
@@ -424,28 +436,25 @@
             const displayName = cleanName(racer.name);
             const card = document.createElement('div');
             card.className = `card boat-card boat-${racer.no}`;
+
+            const evalRowsHtml = EVAL_ITEMS.map(item => `
+                <div class="evaluation-row">
+                    <span>${item.label}</span>
+                    <div class="segmented">${radioGroup(item.key, racer.no, item.defaultVal)}</div>
+                </div>
+            `).join('');
+
             card.innerHTML = `
                 <div class="boat-title">
                     <span class="boat-badge">${racer.no}</span>
                     <span class="boat-name">${displayName}</span>
                     <span class="class-chip">${racer.class}</span>
                 </div>
-                <div class="evaluation-row">
-                    <span>出足</span>
-                    <div class="segmented">${radioGroup('deashi', racer.no, 3)}</div>
-                </div>
-                <div class="evaluation-row">
-                    <span>伸足</span>
-                    <div class="segmented">${radioGroup('nobi', racer.no, 2)}</div>
-                </div>
-                <div class="evaluation-row">
-                    <span>回足</span>
-                    <div class="segmented">${radioGroup('mawari', racer.no, 4)}</div>
-                </div>
+                ${evalRowsHtml}
                 <label class="hinao-check">
                     <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
                 </label>
-                <input type="text" class="memo-input" placeholder="例: 伸びるけど差されそう、カドから一気など" id="memo_${racer.no}">
+                <input type="text" class="memo-input" placeholder="例: 出足良し、伸びるけど差されそう、カドから一気など" id="memo_${racer.no}">
             `;
             container.appendChild(card);
         });
@@ -459,30 +468,133 @@
         resultArea.style.display = 'block';
     }
 
-    function generatePrediction() {
-        const stadiumSelect = document.getElementById('stadium');
-        const stadiumName = stadiumSelect.options[stadiumSelect.selectedIndex].text;
-        const raceNo = document.getElementById('race-no').value;
-        const selectedHinao = document.querySelector('input[name="hinao_target"]:checked');
-        const hinaoNo = selectedHinao ? selectedHinao.value : null;
+    // 各艇の評価値（St・2M・1M①・1M②）を読み取り、合計スコアを算出
+    function collectBoatScores(raceInfo) {
+        return raceInfo.racers.map(racer => {
+            const scores = {};
+            let total = 0;
+            EVAL_ITEMS.forEach(item => {
+                const checked = document.querySelector(`input[name="${item.key}_${racer.no}"]:checked`);
+                const val = checked ? parseInt(checked.value, 10) : item.defaultVal;
+                scores[item.key] = val;
+                total += val;
+            });
+            const memoEl = document.getElementById(`memo_${racer.no}`);
+            return {
+                no: racer.no,
+                name: cleanName(racer.name),
+                cls: racer.class,
+                scores,
+                total,
+                memo: memoEl ? memoEl.value.trim() : ''
+            };
+        });
+    }
 
-        document.getElementById('result-title').innerText = "🧠 展開シナリオ ＆ 推奨買い目";
-        let summaryText = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
+    // 展開シナリオの文章を生成
+    function buildScenarioText(ranked, axis, hinaoNo, boats) {
+        let text = `総合評価が最も高いのは <strong>${axis.no}号艇 ${axis.name}</strong>（合計${axis.total}点）。`;
 
-        if (hinaoNo) {
-            const memo = document.getElementById(`memo_${hinaoNo}`).value;
-            summaryText += `<p style="color: #c1121f; font-weight: bold;">🎯 穴狙い注目艇：${hinaoNo}号艇</p>`;
-            summaryText += `<p><strong>あなたのメモ：</strong> ${memo ? memo : '（メモなし）'}</p>`;
+        if (axis.no === 1) {
+            text += `St・回り足の評価が高ければ、そのままイン逃げが濃厚な展開です。`;
         } else {
-            summaryText += `<p>※穴狙い軸の指定なし（標準バランスで構築）</p>`;
+            const first = ranked[0];
+            text += `${first.no}号艇のまくり・差しが決まるかどうかがレースの焦点になります。`;
         }
 
-        summaryText += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
-        summaryText += `<p><strong>💡 展開シナリオ・推奨買い目：</strong><br>`;
-        summaryText += `選択されたレース場のデータと、あなたのラジオボタン評価・メモを反映した買い目をここに構築します。</p>`;
+        // 各艇のメモがあれば一言ずつ反映
+        const memoLines = boats.filter(b => b.memo).map(b => `${b.no}号艇：${b.memo}`);
+        if (memoLines.length) {
+            text += `<br><span style="color:#6b7280; font-size:0.85rem;">${memoLines.join(' ／ ')}</span>`;
+        }
 
+        if (hinaoNo) {
+            const hinaoBoat = boats.find(b => b.no === hinaoNo);
+            if (hinaoNo === axis.no) {
+                text += `<br>穴狙いに指定した${hinaoNo}号艇は評価でも本命級のため、素直に軸として狙いやすいレースです。`;
+            } else {
+                text += `<br>穴狙いに指定した <strong>${hinaoNo}号艇 ${hinaoBoat.name}</strong>（合計${hinaoBoat.total}点）が一撃決めればヒモ荒れの引き金になりそうです。`;
+            }
+        }
+        return text;
+    }
+
+    // 3連単の買い目（本線・穴狙い）を生成
+    function buildBuyCombos(ranked, axis, hinaoNo) {
+        const top3 = ranked.slice(0, 3);
+        const honmei = [];
+        top3.forEach(second => {
+            if (second.no === axis.no) return;
+            top3.forEach(third => {
+                if (third.no === axis.no || third.no === second.no) return;
+                honmei.push(`${axis.no} → ${second.no} → ${third.no}`);
+            });
+        });
+
+        const ana = [];
+        if (hinaoNo && hinaoNo !== axis.no) {
+            const others = ranked.filter(b => b.no !== axis.no && b.no !== hinaoNo).slice(0, 2);
+            others.forEach(o => {
+                ana.push(`${axis.no} → ${hinaoNo} → ${o.no}`);
+                ana.push(`${hinaoNo} → ${axis.no} → ${o.no}`);
+            });
+        }
+
+        return { honmei, ana };
+    }
+
+    // 採点一覧の表を生成
+    function buildScoreTable(ranked) {
+        let html = '<table><tr><th>艇</th><th>St</th><th>2M</th><th>1M①</th><th>1M②</th><th>合計</th></tr>';
+        ranked.forEach(b => {
+            html += `<tr><td>${b.no} ${b.name}（${b.cls}）</td><td>${b.scores.st}</td><td>${b.scores.m2}</td><td>${b.scores.m1a}</td><td>${b.scores.m1b}</td><td><strong>${b.total}</strong></td></tr>`;
+        });
+        html += '</table>';
+        return html;
+    }
+
+    function generatePrediction() {
+        if (!currentRaceData || !currentRaceData.races) {
+            showNotice('⚠️ レースデータが読み込まれていません。先に「この条件でレースデータを読み込む」を押してください。', true);
+            return;
+        }
+
+        const stadiumSelect = document.getElementById('stadium');
+        const stadiumName = stadiumSelect.options[stadiumSelect.selectedIndex].text;
+        const raceNo = parseInt(document.getElementById('race-no').value);
+        const raceInfo = currentRaceData.races.find(r => r.race_no === raceNo) || currentRaceData.races[0];
+
+        const selectedHinao = document.querySelector('input[name="hinao_target"]:checked');
+        const hinaoNo = selectedHinao ? parseInt(selectedHinao.value, 10) : null;
+
+        const boats = collectBoatScores(raceInfo);
+        // 合計点の高い順（同点はイン艇優先）に並べ替え
+        const ranked = [...boats].sort((a, b) => b.total - a.total || a.no - b.no);
+        const axis = ranked[0];
+
+        const scenarioText = buildScenarioText(ranked, axis, hinaoNo, boats);
+        const { honmei, ana } = buildBuyCombos(ranked, axis, hinaoNo);
+        const scoreTableHtml = buildScoreTable(ranked);
+
+        let html = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
+        html += `<p>${scenarioText}</p>`;
+        html += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
+
+        html += `<p><strong>💡 推奨買い目（3連単）</strong></p>`;
+        html += `<p style="color:var(--primary-color); font-weight:600; margin-bottom:4px;">本線</p>`;
+        html += honmei.map(c => `<div class="combo-line">${c}</div>`).join('');
+
+        if (ana.length) {
+            html += `<p style="color:var(--danger-color); font-weight:600; margin:10px 0 4px;">穴狙い</p>`;
+            html += ana.map(c => `<div class="combo-line">${c}</div>`).join('');
+        }
+
+        html += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
+        html += `<p><strong>採点一覧</strong></p>${scoreTableHtml}`;
+
+        document.getElementById('result-title').innerText = "🧠 展開シナリオ ＆ 推奨買い目";
         const resultArea = document.getElementById('result-area');
-        resultArea.querySelector('#result-content').innerHTML = summaryText;
+        resultArea.querySelector('#result-content').innerHTML = html;
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
