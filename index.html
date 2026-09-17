@@ -39,7 +39,6 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        /* レイアウト崩れ防止：各項目を縦並びベース、十分な隙間を確保 */
         .race-header-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -160,7 +159,7 @@
             border: 1px solid #b8e0ed;
             border-radius: 8px;
             padding: 15px;
-5            margin-top: 20px;
+            margin-top: 20px;
             display: none;
         }
         .result-box h2 {
@@ -225,7 +224,7 @@
             </div>
             <div class="form-group">
                 <label>レース番号</label>
-                <select id="race-no">
+                <select id="race-no" onchange="renderBoats()">
                     <script>
                         for(let i=1; i<=12; i++) {
                             document.write(`<option value="${i}" ${i===3?'selected':''}>第${i}R</option>`);
@@ -234,7 +233,6 @@
                 </select>
             </div>
         </div>
-        <!-- 変更を反映させるための実行ボタン -->
         <button class="btn-action" onclick="loadRaceData()">🔄 この条件でレースデータを読み込む</button>
     </div>
 
@@ -245,7 +243,7 @@
 
     <!-- 結果表示エリア -->
     <div class="result-box" id="result-area">
-        <h2>🧠 展開シナリオ ＆ 推奨買い目</h2>
+        <h2 id="result-title">🧠 展開シナリオ ＆ 推奨買い目</h2>
         <div id="result-content"></div>
     </div>
 </div>
@@ -253,7 +251,7 @@
 <script>
     let currentRaceData = null;
 
-    // 初期化：本日の日付をセットして自動読み込み
+    // 初期化：本日の日付をセットしてデータ読み込みを実行
     document.getElementById('race-date').valueAsDate = new Date();
     loadRaceData();
 
@@ -263,22 +261,31 @@
         const stadiumVal = document.getElementById('stadium').value;
         const jsonUrl = `data/${dateVal}_${stadiumVal}.json`;
 
+        console.log("読み込み試行:", jsonUrl);
+
         try {
             const response = await fetch(jsonUrl);
             if (!response.ok) {
-                throw new Error('データが見つかりません');
+                throw new Error(`HTTPエラー: ${response.status} (${jsonUrl} が見つかりません)`);
             }
             currentRaceData = await response.json();
             renderBoats();
+            
+            // 成功メッセージを一時表示
+            showNotice(`データを正常に読み込みました (${dateVal} 場コード:${stadiumVal})`);
         } catch (error) {
-            console.warn("JSONの読み込みに失敗しました:", error);
-            // データが無い場合のフォールバック
+            console.error("JSONの読み込みに失敗しました:", error);
+            
+            // エラー内容を画面に分かりやすく表示
+            showNotice(`⚠️ データの取得に失敗しました: ${error.message}。<br>GitHub Actionsでデータが生成されているか、日付・場コードを確認してください。`, true);
+
+            // フォールバック（空の枠組み）
             currentRaceData = {
                 races: Array.from({length: 12}, (_, i) => ({
                     race_no: i + 1,
                     racers: Array.from({length: 6}, (_, j) => ({
                         no: j + 1,
-                        name: `選手${j+1}号艇 (データ待機中)`,
+                        name: `選手${j+1}号艇 (データ未取得)`,
                         class: "A1"
                     }))
                 }))
@@ -292,6 +299,8 @@
         const raceNo = parseInt(document.getElementById('race-no').value);
         const container = document.getElementById('boats-container');
         container.innerHTML = '';
+
+        if (!currentRaceData || !currentRaceData.races) return;
 
         const raceInfo = currentRaceData.races.find(r => r.race_no === raceNo) || currentRaceData.races[0];
 
@@ -315,7 +324,7 @@
                 <div class="evaluation-row">
                     <span>回足</span>
                     <div class="radio-group">
-                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':`'}> ${v}</label>`).join('')}
+                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
                     </div>
                 </div>
                 <label class="hinao-check">
@@ -327,6 +336,14 @@
         });
     }
 
+    function showNotice(htmlMessage, isError = false) {
+        const resultArea = document.getElementById('result-area');
+        const title = document.getElementById('result-title');
+        title.innerText = isError ? "⚠️ 読み込みエラー通知" : "📢 システム通知";
+        resultArea.querySelector('#result-content').innerHTML = htmlMessage;
+        resultArea.style.display = 'block';
+    }
+
     function generatePrediction() {
         const stadiumSelect = document.getElementById('stadium');
         const stadiumName = stadiumSelect.options[stadiumSelect.selectedIndex].text;
@@ -334,6 +351,7 @@
         const selectedHinao = document.querySelector('input[name="hinao_target"]:checked');
         const hinaoNo = selectedHinao ? selectedHinao.value : null;
 
+        document.getElementById('result-title').innerText = "🧠 展開シナリオ ＆ 推奨買い目";
         let summaryText = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
         
         if (hinaoNo) {
