@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ボートレース 24場対応 展開予想＆俺の採点システム</title>
+    <style>
+        :root {
+            --primary-color: #005f73;
+            --secondary-color: #0a9396;
+            --accent-color: #ee9b00;
+            --danger-color: #ae2012;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .race-header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        @media (max-width: 600px) {
+            .race-header-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        select, input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background: #fff;
+        }
+        .boat-card {
+            border-left: 5px solid #ccc;
+            margin-bottom: 12px;
+        }
+        .boat-1 { border-left-color: #333333; }
+        .boat-2 { border-left-color: #d90429; }
+        .boat-3 { border-left-color: #ffb703; }
+        .boat-4 { border-left-color: #0077b6; }
+        .boat-5 { border-left-color: #2b2d42; }
+        .boat-6 { border-left-color: #38b000; }
+
+        .boat-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .evaluation-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+        .evaluation-row span {
+            width: 50px;
+            font-weight: bold;
+        }
+        .radio-group {
+            display: flex;
+            gap: 12px;
+        }
+        .radio-group label {
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .memo-input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        .hinao-check {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--danger-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-submit:hover {
+            background: #d48800;
+        }
+        .result-box {
+            background: #e8f4f8;
+            border: 1px solid #b8e0ed;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+        .result-box h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚤 ボートレース 24場対応 俺の採点 ＆ 展開予想</h1>
+
+    <!-- レース選択（全国24場） -->
+    <div class="card">
+        <div class="race-header-grid">
+            <div class="form-group">
+                <label>開催日</label>
+                <input type="date" id="race-date">
+            </div>
+            <div class="form-group">
+                <label>レース場 (全24場)</label>
+                <select id="stadium">
+                    <optgroup label="関東地区">
+                        <option value="桐生">01 桐生</option>
+                        <option value="戸田">02 戸田</option>
+                        <option value="江戸川">03 江戸川</option>
+                        <option value="平和島">04 平和島</option>
+                        <option value="多摩川" selected>05 多摩川</option>
+                    </optgroup>
+                    <optgroup label="東海地区">
+                        <option value="浜名湖">06 浜名湖</option>
+                        <option value="蒲郡">07 蒲郡</option>
+                        <option value="常滑">08 常滑</option>
+                        <option value="津">09 津</option>
+                    </optgroup>
+                    <optgroup label="近畿地区">
+                        <option value="三国">10 三国</option>
+                        <option value="琵琶湖">11 びわこ</option>
+                        <option value="住之江">12 住之江</option>
+                        <option value="尼崎">13 尼崎</option>
+                    </optgroup>
+                    <optgroup label="四国地区">
+                        <option value="鳴門">14 鳴門</option>
+                        <option value="丸亀">15 丸亀</option>
+                    </optgroup>
+                    <optgroup label="中国地区">
+                        <option value="児島">16 児島</option>
+                        <option value="宮島">17 宮島</option>
+                        <option value="徳山">18 徳山</option>
+                        <option value="下関">19 下関</option>
+                    </optgroup>
+                    <optgroup label="九州地区">
+                        <option value="若松">20 若松</option>
+                        <option value="芦屋">21 芦屋</option>
+                        <option value="福岡">22 福岡</option>
+                        <option value="唐津">23 唐津</option>
+                        <option value="大村">24 大村</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>レース番号</label>
+                <select id="race-no">
+                    <script>
+                        for(let i=1; i<=12; i++) {
+                            document.write(`<option value="${i}" ${i===3?'selected':''}>第${i}R</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 採点パネル (1〜6号艇) -->
+    <div id="boats-container"></div>
+
+    <button class="btn-submit" onclick="generatePrediction()">🤖 AIに展開予想と買い目を作らせる</button>
+
+    <!-- 結果表示エリア -->
+    <div class="result-box" id="result-area">
+        <h2>🧠 展開シナリオ ＆ 推奨買い目</h2>
+        <div id="result-content"></div>
+    </div>
+</div>
+
+<script>
+    // サンプル選手データ（リアルタイム連動時はここに自動取得データが入ります）
+    const sampleRacers = [
+        { no: 1, name: "1号艇 選手A", class: "A1" },
+        { no: 2, name: "2号艇 選手B", class: "A1" },
+        { no: 3, name: "3号艇 選手C", class: "A1" },
+        { no: 4, name: "4号艇 選手D", class: "A1" },
+        { no: 5, name: "5号艇 選手E", class: "A1" },
+        { no: 6, name: "6号艇 選手F", class: "A1" }
+    ];
+
+    const container = document.getElementById('boats-container');
+    sampleRacers.forEach(racer => {
+        const card = document.createElement('div');
+        card.className = `card boat-card boat-${racer.no}`;
+        card.innerHTML = `
+            <div class="boat-title">${racer.no}号艇：${racer.name} （${racer.class}）</div>
+            <div class="evaluation-row">
+                <span>出足</span>
+                <div class="radio-group">
+                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="deashi_${racer.no}" value="${v}" ${v===3?'checked':''}> ${v}</label>`).join('')}
+                </div>
+            </div>
+            <div class="evaluation-row">
+                <span>伸足</span>
+                <div class="radio-group">
+                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="nobi_${racer.no}" value="${v}" ${v===2?'checked':''}> ${v}</label>`).join('')}
+                </div>
+            </div>
+            <div class="evaluation-row">
+                <span>回足</span>
+                <div class="radio-group">
+                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
+                </div>
+            </div>
+            <label class="hinao-check">
+                <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
+            </label>
+            <input type="text" class="memo-input" placeholder="例: 伸びるけど差されそう、カドから一気など" id="memo_${racer.no}">
+        `;
+        container.appendChild(card);
+    });
+
+    document.getElementById('race-date').valueAsDate = new Date();
+
+    function generatePrediction() {
+        const stadium = document.getElementById('stadium').value;
+        const raceNo = document.getElementById('race-no').value;
+        const selectedHinao = document.querySelector('input[name="hinao_target"]:checked');
+        const hinaoNo = selectedHinao ? selectedHinao.value : null;
+
+        let summaryText = `<p><strong>【選択レース】</strong> ${stadium} 第${raceNo}R</p>`;
+        
+        if (hinaoNo) {
+            const memo = document.getElementById(`memo_${hinaoNo}`).value;
+            summaryText += `<p style="color: #ae2012; font-weight: bold;">🎯 穴狙い注目艇：${hinaoNo}号艇</p>`;
+            summaryText += `<p><strong>あなたのメモ：</strong> ${memo ? memo : '（メモなし）'}</p>`;
+        } else {
+            summaryText += `<p>※穴狙い軸の指定なし（標準バランスで構築）</p>`;
+        }
+
+        summaryText += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
+        summaryText += `<p><strong>💡 展開シナリオ・推奨買い目：</strong><br>`;
+        summaryText += `選択された${stadium}のコース特性と、あなたのラジオボタン評価・メモを反映した買い目をここに構築します。</p>`;
+
+        const resultArea = document.getElementById('result-area');
+        resultArea.querySelector('#result-content').innerHTML = summaryText;
+        resultArea.style.display = 'block';
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
