@@ -46,15 +46,17 @@ def fetch_race_data(jcd, r_idx, today):
             status = response.status
             html = response.read().decode('utf-8')
 
-        # ページは取得できたが中身が想定と違う（ブロックページ等）場合の検知用
         if 'racersearch' not in html:
             print(f"⚠️ jcd={jcd} rno={r_idx}: status={status} だが選手データらしき内容が見当たりません（HTML長={len(html)}）")
 
         soup = BeautifulSoup(html, 'html.parser')
-        name_links = soup.select('a[href*="racersearch/profile?toban="]')
+
+        raw_links = soup.select('a[href*="racersearch/profile?toban="]')
+        # 写真だけについているリンク（テキストが空）は除外し、名前リンクだけを残す
+        name_links = [l for l in raw_links if l.get_text(strip=True)]
 
         if len(name_links) < 6:
-            print(f"⚠️ jcd={jcd} rno={r_idx}: 選手リンクが{len(name_links)}件しか見つかりません")
+            print(f"⚠️ jcd={jcd} rno={r_idx}: 選手名リンクが{len(name_links)}件しか見つかりません")
 
         for boat_no in range(1, 7):
             racer_name = f"選手{boat_no}号艇"
