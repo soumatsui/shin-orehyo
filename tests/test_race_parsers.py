@@ -25,6 +25,25 @@ class RaceParserTest(unittest.TestCase):
         self.assertEqual(result['finish_order'], [4, 1, 6, 2, 5, 3])
         self.assertEqual(result['winning_technique'], 'まくり')
         self.assertEqual(result['payouts']['3連単'], {'combination': '4-1-6', 'amount': 1230})
+        self.assertEqual(result['payouts']['3連複'], {'combination': '4=1=6', 'amount': 1100})
+        self.assertEqual(result['payouts']['2連単'], {'combination': '4-1', 'amount': 980})
+        self.assertEqual(result['payouts']['2連複'], {'combination': '1=4', 'amount': 870})
+        self.assertEqual(result['payouts']['拡連複'], [
+            {'combination': '1=4', 'amount': 1020},
+            {'combination': '4=6', 'amount': 2340},
+        ])
+        self.assertEqual(result['payouts']['単勝'], {'combination': '4', 'amount': 130})
+        self.assertEqual(result['payouts']['複勝'], [
+            {'combination': '4', 'amount': 100},
+            {'combination': '1', 'amount': 1230},
+        ])
+
+    def test_payout_amount_accepts_official_currency_variants(self):
+        self.assertEqual(scraper.parse_payout_amount('1230円'), 1230)
+        self.assertEqual(scraper.parse_payout_amount('1,230円'), 1230)
+        self.assertEqual(scraper.parse_payout_amount('¥1,230'), 1230)
+        self.assertEqual(scraper.parse_payout_amount('￥１，２３０円'), 1230)
+        self.assertIsNone(scraper.parse_payout_amount('返還'))
 
 
 if __name__ == '__main__':
