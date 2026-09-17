@@ -1,37 +1,134 @@
-name: Daily Boat Data Scraper
+name: Daily Boat Race Data Scrape
+
+# ============================================================================
+# "シン・俺表" data pipeline
+# ----------------------------------------------------------------------------
+# Purpose:
+#   1. Fetch BOAT RACE race-card / pre-race information.
+#   2. Fetch JMA tide information (cached once per stadium/day).
+#   3. Save generated JSON files under data/.
+#   4. Commit and push changed data back to this repository.
+#
+# Important:
+#   - schedule cron is UTC. 15:00 UTC = 00:00 JST on the following day.
+#   - workflow_dispatch is intentionally enabled so the scraper can be tested
+#     manually before relying on the schedule.
+#   - The workflow writes only generated data; source code is not modified.
+# ============================================================================
 
 on:
+  workflow_dispatch:
+
+  # 00:00 JST every day = 15:00 UTC on the previous day.
   schedule:
-    # 毎日 日本時間 0:00 (UTC 15:00) に自動実行
     - cron: '0 15 * * *'
-  workflow_dispatch: # 手動でも実行できるようにする
+
+permissions:
+  contents: write
+
+# Prevent two scraper runs from updating data/ at the same time.
+concurrency:
+  group: boat-race-data-scrape
+  cancel-in-progress: false
 
 jobs:
   scrape:
+    name: Fetch race data
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    
-    steps:
-      - name: リポジトリのチェックアウト
-        uses: actions/checkout@v4
 
-      - name: Pythonのセットアップ
+    steps:
+      # ----------------------------------------------------------------------
+      # 1. Checkout repository
+      # ----------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+
+      # ----------------------------------------------------------------------
+      # 2. Python environment
+      # ----------------------------------------------------------------------
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: 依存ライブラリのインストール
+      # ----------------------------------------------------------------------
+      # 3. Python dependencies
+      # ----------------------------------------------------------------------
+      # Current scraper uses BeautifulSoup4. urllib/json/etc. are stdlib.
+      # If requirements.txt is added later, prefer installing from that file.
+      # ----------------------------------------------------------------------
+      - name: Install dependencies
+        shell: bash
         run: |
-          pip install beautifulsoup4 requests
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install beautifulsoup4
 
-      - name: データ取得スクリプトの実行
+      # ----------------------------------------------------------------------
+      # 4. Basic file checks
+      # ----------------------------------------------------------------------
+      - name: Validate scraper files
+        shell: bash
         run: |
-          python fetch_boat_data.py
+          set -euo pipefail
 
-      - name: 変更されたデータを自動コミット ＆ プッシュ
+          test -f fetch_boat_data_enhanced_with_tide.py             || { echo "::error::fetch_boat_data_enhanced_with_tide.py not found"; exit 1; }
+
+          test -f config/tide_stations.json             || { echo "::error::config/tide_stations.json not found"; exit 1; }
+
+          python -m py_compile fetch_boat_data_enhanced_with_tide.py
+
+      # ----------------------------------------------------------------------
+      # 5. Run scraper
+      # ----------------------------------------------------------------------
+      - name: Run boat race scraper
+        shell: bash
         run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
+          set -euo pipefail
+          python fetch_boat_data_enhanced_with_tide.py
+
+      # ----------------------------------------------------------------------
+      # 6. Show generated files for debugging
+      # ----------------------------------------------------------------------
+      - name: Inspect generated data
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "=== Generated JSON files ==="
+          find data -maxdepth 2 -type f -name '*.json' -print | sort || true
+
+          echo
+          echo "=== Git status ==="
+          git status --short
+
+      # ----------------------------------------------------------------------
+      # 7. Commit and push generated data
+      # ----------------------------------------------------------------------
+      # Only data/ is committed. This includes:
+      #   - daily race JSON
+      #   - data/tide/ JMA tide cache
+      #
+      # If no data changed, no empty commit is created.
+      # ----------------------------------------------------------------------
+      - name: Commit generated data
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add data/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update boat race data for today" && git push)
+
+          if git diff --cached --quiet; then
+            echo "No generated data changes. Nothing to commit."
+            exit 0
+          fi
+
+          git commit -m "Update boat race data $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
