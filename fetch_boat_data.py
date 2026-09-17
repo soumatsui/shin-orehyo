@@ -37,14 +37,24 @@ def fetch_race_data(jcd, r_idx, today):
     url = f"https://www.boatrace.jp/owpc/pc/race/racelist?rno={r_idx}&jcd={jcd}&hd={today}"
     racers = []
     try:
-        req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
-        with urllib.request.urlopen(req, timeout=8) as response:
+        req = urllib.request.Request(url, headers={
+            'User-Agent': USER_AGENT,
+            'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
+            'Referer': 'https://www.boatrace.jp/owpc/pc/race/index',
+        })
+        with urllib.request.urlopen(req, timeout=10) as response:
+            status = response.status
             html = response.read().decode('utf-8')
 
-        soup = BeautifulSoup(html, 'html.parser')
+        # ページは取得できたが中身が想定と違う（ブロックページ等）場合の検知用
+        if 'racersearch' not in html:
+            print(f"⚠️ jcd={jcd} rno={r_idx}: status={status} だが選手データらしき内容が見当たりません（HTML長={len(html)}）")
 
-        # 選手名リンクは href に "racersearch/profile?toban=" を含む（1号艇〜6号艇の順で並んでいる）
+        soup = BeautifulSoup(html, 'html.parser')
         name_links = soup.select('a[href*="racersearch/profile?toban="]')
+
+        if len(name_links) < 6:
+            print(f"⚠️ jcd={jcd} rno={r_idx}: 選手リンクが{len(name_links)}件しか見つかりません")
 
         for boat_no in range(1, 7):
             racer_name = f"選手{boat_no}号艇"
@@ -63,15 +73,16 @@ def fetch_race_data(jcd, r_idx, today):
                             if cls in text_all:
                                 racer_class = cls
                                 break
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"⚠️ jcd={jcd} rno={r_idx} boat={boat_no}: パース中に例外: {e}")
 
             racers.append({
                 "no": boat_no,
                 "name": racer_name,
                 "class": racer_class
             })
-    except Exception:
+    except Exception as e:
+        print(f"❌ jcd={jcd} rno={r_idx}: リクエスト自体が失敗しました: {type(e).__name__}: {e}")
         for boat_no in range(1, 7):
             racers.append({
                 "no": boat_no,
@@ -82,9 +93,7 @@ def fetch_race_data(jcd, r_idx, today):
     return {
         "race_no": r_idx,
         "racers": racers
-    }
-
-def process_stadium(jcd, today):
+    }def process_stadium(jcd, today):
     """1場分(全12レース)を並列取得"""
     with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(fetch_race_data, jcd, r_idx, today) for r_idx in range(1, 13)]
