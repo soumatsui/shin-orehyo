@@ -16,20 +16,20 @@ def get_active_stadiums(today):
         with urllib.request.urlopen(req, timeout=10) as response:
             html = response.read().decode('utf-8')
         soup = BeautifulSoup(html, 'html.parser')
-        
+
         jcd_list = set()
         for a in soup.find_all('a', href=True):
             match = re.search(r'jcd=(\d{2})', a['href'])
             if match:
                 jcd_list.add(match.group(1))
-        
+
         if jcd_list:
             sorted_jcds = sorted(list(jcd_list))
             print(f"本日開催の場 ({len(sorted_jcds)}場): {sorted_jcds}")
             return sorted_jcds
     except Exception as e:
         print(f"開催場の取得に失敗したため、全場を対象にします: {e}")
-    
+
     return [f"{i:02d}" for i in range(1, 25)]
 
 def fetch_race_data(jcd, r_idx, today):
@@ -40,30 +40,35 @@ def fetch_race_data(jcd, r_idx, today):
         req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
         with urllib.request.urlopen(req, timeout=8) as response:
             html = response.read().decode('utf-8')
-        
+
         soup = BeautifulSoup(html, 'html.parser')
-        
+
+        # 選手名リンクは href に "racersearch/profile?toban=" を含む（1号艇〜6号艇の順で並んでいる）
+        name_links = soup.select('a[href*="racersearch/profile?toban="]')
+
         for boat_no in range(1, 7):
             racer_name = f"選手{boat_no}号艇"
             racer_class = "A1"
             try:
-                rows = soup.select('tr.is-fs12')
-                if len(rows) >= boat_no:
-                    row = rows[boat_no - 1]
-                    name_tag = row.select_one('a[href*="racerbin"]')
-                    if name_tag:
-                        racer_name = name_tag.text.strip()
-                    text_all = row.text
-                    for cls in ['A1', 'A2', 'B1', 'B2']:
-                        if cls in text_all:
-                            racer_class = cls
-                            break
+                if len(name_links) >= boat_no:
+                    link = name_links[boat_no - 1]
+                    text = link.get_text(strip=True)
+                    if text:
+                        racer_name = text
+
+                    row = link.find_parent('tr')
+                    if row:
+                        text_all = row.get_text()
+                        for cls in ['A1', 'A2', 'B1', 'B2']:
+                            if cls in text_all:
+                                racer_class = cls
+                                break
             except Exception:
                 pass
 
             racers.append({
                 "no": boat_no,
-                "name": racer_name if racer_name else f"選手{boat_no}号艇",
+                "name": racer_name,
                 "class": racer_class
             })
     except Exception:
@@ -84,7 +89,7 @@ def process_stadium(jcd, today):
     with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(fetch_race_data, jcd, r_idx, today) for r_idx in range(1, 13)]
         races_data = [f.result() for f in futures]
-    
+
     races_data.sort(key=lambda x: x["race_no"])
 
     daily_stadium_data = {
@@ -97,7 +102,7 @@ def process_stadium(jcd, today):
     file_path = f"data/{today}_{jcd}.json"
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(daily_stadium_data, f, ensure_ascii=False, indent=4)
-    
+
     print(f"✅ 場コード {jcd} の処理が完了")
 
 def fetch_daily_data():
@@ -105,16 +110,13 @@ def fetch_daily_data():
     print(f"[{today}] 高速データ自動取得を開始します...")
     os.makedirs('data', exist_ok=True)
 
-    # 1. 本日開催中の場だけを絞り込む
     active_stadiums = get_active_stadiums(today)
 
-    # 2. 開催中の場を並列で同時取得
     with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(process_stadium, jcd, today) for jcd in active_stadiums]
         for future in futures:
             future.result()
 
-    # 3. 非開催の場もアプリでエラーが出ないよう空枠JSONを即時生成
     all_stadiums = [f"{i:02d}" for i in range(1, 25)]
     for jcd in all_stadiums:
         file_path = f"data/{today}_{jcd}.json"
@@ -123,7 +125,7 @@ def fetch_daily_data():
                 "race_no": r_idx,
                 "racers": [{"no": b, "name": f"選手{b}号艇 (非開催)", "class": "A1"} for b in range(1, 7)]
             } for r_idx in range(1, 13)]
-            
+
             daily_stadium_data = {
                 "date": today,
                 "stadium_code": jcd,
