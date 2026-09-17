@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ボートレース 24場対応 展開予想＆俺の採点システム</title>
+    <title>ボートレース 24場対応 俺の採点 ＆ 展開予想</title>
     <style>
         :root {
             --primary-color: #005f73;
@@ -154,57 +154,57 @@
 <div class="container">
     <h1>🚤 ボートレース 24場対応 俺の採点 ＆ 展開予想</h1>
 
-    <!-- レース選択（全国24場） -->
+    <!-- レース選択 -->
     <div class="card">
         <div class="race-header-grid">
             <div class="form-group">
                 <label>開催日</label>
-                <input type="date" id="race-date">
+                <input type="date" id="race-date" onchange="loadRaceData()">
             </div>
             <div class="form-group">
                 <label>レース場 (全24場)</label>
-                <select id="stadium">
+                <select id="stadium" onchange="loadRaceData()">
                     <optgroup label="関東地区">
-                        <option value="桐生">01 桐生</option>
-                        <option value="戸田">02 戸田</option>
-                        <option value="江戸川">03 江戸川</option>
-                        <option value="平和島">04 平和島</option>
-                        <option value="多摩川" selected>05 多摩川</option>
+                        <option value="01">01 桐生</option>
+                        <option value="02">02 戸田</option>
+                        <option value="03">03 江戸川</option>
+                        <option value="04">04 平和島</option>
+                        <option value="05" selected>05 多摩川</option>
                     </optgroup>
                     <optgroup label="東海地区">
-                        <option value="浜名湖">06 浜名湖</option>
-                        <option value="蒲郡">07 蒲郡</option>
-                        <option value="常滑">08 常滑</option>
-                        <option value="津">09 津</option>
+                        <option value="06">06 浜名湖</option>
+                        <option value="07">07 蒲郡</option>
+                        <option value="08">08 常滑</option>
+                        <option value="09">09 津</option>
                     </optgroup>
                     <optgroup label="近畿地区">
-                        <option value="三国">10 三国</option>
-                        <option value="琵琶湖">11 びわこ</option>
-                        <option value="住之江">12 住之江</option>
-                        <option value="尼崎">13 尼崎</option>
+                        <option value="10">10 三国</option>
+                        <option value="11">11 びわこ</option>
+                        <option value="12">12 住之江</option>
+                        <option value="13">13 尼崎</option>
                     </optgroup>
                     <optgroup label="四国地区">
-                        <option value="鳴門">14 鳴門</option>
-                        <option value="丸亀">15 丸亀</option>
+                        <option value="14">14 鳴門</option>
+                        <option value="15">15 丸亀</option>
                     </optgroup>
                     <optgroup label="中国地区">
-                        <option value="児島">16 児島</option>
-                        <option value="宮島">17 宮島</option>
-                        <option value="徳山">18 徳山</option>
-                        <option value="下関">19 下関</option>
+                        <option value="16">16 児島</option>
+                        <option value="17">17 宮島</option>
+                        <option value="18">18 徳山</option>
+                        <option value="19">19 下関</option>
                     </optgroup>
                     <optgroup label="九州地区">
-                        <option value="若松">20 若松</option>
-                        <option value="芦屋">21 芦屋</option>
-                        <option value="福岡">22 福岡</option>
-                        <option value="唐津">23 唐津</option>
-                        <option value="大村">24 大村</option>
+                        <option value="20">20 若松</option>
+                        <option value="21">21 芦屋</option>
+                        <option value="22">22 福岡</option>
+                        <option value="23">23 唐津</option>
+                        <option value="24">24 大村</option>
                     </optgroup>
                 </select>
             </div>
             <div class="form-group">
                 <label>レース番号</label>
-                <select id="race-no">
+                <select id="race-no" onchange="renderBoats()">
                     <script>
                         for(let i=1; i<=12; i++) {
                             document.write(`<option value="${i}" ${i===3?'selected':''}>第${i}R</option>`);
@@ -228,57 +228,90 @@
 </div>
 
 <script>
-    // サンプル選手データ（リアルタイム連動時はここに自動取得データが入ります）
-    const sampleRacers = [
-        { no: 1, name: "1号艇 選手A", class: "A1" },
-        { no: 2, name: "2号艇 選手B", class: "A1" },
-        { no: 3, name: "3号艇 選手C", class: "A1" },
-        { no: 4, name: "4号艇 選手D", class: "A1" },
-        { no: 5, name: "5号艇 選手E", class: "A1" },
-        { no: 6, name: "6号艇 選手F", class: "A1" }
-    ];
+    let currentRaceData = null;
 
-    const container = document.getElementById('boats-container');
-    sampleRacers.forEach(racer => {
-        const card = document.createElement('div');
-        card.className = `card boat-card boat-${racer.no}`;
-        card.innerHTML = `
-            <div class="boat-title">${racer.no}号艇：${racer.name} （${racer.class}）</div>
-            <div class="evaluation-row">
-                <span>出足</span>
-                <div class="radio-group">
-                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="deashi_${racer.no}" value="${v}" ${v===3?'checked':''}> ${v}</label>`).join('')}
-                </div>
-            </div>
-            <div class="evaluation-row">
-                <span>伸足</span>
-                <div class="radio-group">
-                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="nobi_${racer.no}" value="${v}" ${v===2?'checked':''}> ${v}</label>`).join('')}
-                </div>
-            </div>
-            <div class="evaluation-row">
-                <span>回足</span>
-                <div class="radio-group">
-                    ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
-                </div>
-            </div>
-            <label class="hinao-check">
-                <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
-            </label>
-            <input type="text" class="memo-input" placeholder="例: 伸びるけど差されそう、カドから一気など" id="memo_${racer.no}">
-        `;
-        container.appendChild(card);
-    });
-
+    // 初期化
     document.getElementById('race-date').valueAsDate = new Date();
+    loadRaceData();
+
+    // GitHub上のJSONデータを取得する関数
+    async function loadRaceData() {
+        const dateVal = document.getElementById('race-date').value.replace(/-/g, '');
+        const stadiumVal = document.getElementById('stadium').value;
+        const jsonUrl = `data/${dateVal}_${stadiumVal}.json`;
+
+        try {
+            const response = await fetch(jsonUrl);
+            if (!response.ok) {
+                throw new Error('データが見つかりません');
+            }
+            currentRaceData = await response.json();
+            renderBoats();
+        } catch (error) {
+            console.warn("JSONの読み込みに失敗しました（フォールバック表示を使います）:", error);
+            // データがまだ無い場合のダミーデータ
+            currentRaceData = {
+                races: Array.from({length: 12}, (_, i) => ({
+                    race_no: i + 1,
+                    racers: Array.from({length: 6}, (_, j) => ({
+                        no: j + 1,
+                        name: `選手${j+1}号艇 (データ待機中)`,
+                        class: "A1"
+                    }))
+                }))
+            };
+            renderBoats();
+        }
+    }
+
+    // パネルの描画関数
+    function renderBoats() {
+        const raceNo = parseInt(document.getElementById('race-no').value);
+        const container = document.getElementById('boats-container');
+        container.innerHTML = '';
+
+        const raceInfo = currentRaceData.races.find(r => r.race_no === raceNo) || currentRaceData.races[0];
+
+        raceInfo.racers.forEach(racer => {
+            const card = document.createElement('div');
+            card.className = `card boat-card boat-${racer.no}`;
+            card.innerHTML = `
+                <div class="boat-title">${racer.no}号艇：${racer.name} （${racer.class}）</div>
+                <div class="evaluation-row">
+                    <span>出足</span>
+                    <div class="radio-group">
+                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="deashi_${racer.no}" value="${v}" ${v===3?'checked':''}> ${v}</label>`).join('')}
+                    </div>
+                </div>
+                <div class="evaluation-row">
+                    <span>伸足</span>
+                    <div class="radio-group">
+                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="nobi_${racer.no}" value="${v}" ${v===2?'checked':''}> ${v}</label>`).join('')}
+                    </div>
+                </div>
+                <div class="evaluation-row">
+                    <span>回足</span>
+                    <div class="radio-group">
+                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
+                    </div>
+                </div>
+                <label class="hinao-check">
+                    <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
+                </label>
+                <input type="text" class="memo-input" placeholder="例: 伸びるけど差されそう、カドから一気など" id="memo_${racer.no}">
+            `;
+            container.appendChild(card);
+        });
+    }
 
     function generatePrediction() {
-        const stadium = document.getElementById('stadium').value;
+        const stadiumSelect = document.getElementById('stadium');
+        const stadiumName = stadiumSelect.options[stadiumSelect.selectedIndex].text;
         const raceNo = document.getElementById('race-no').value;
         const selectedHinao = document.querySelector('input[name="hinao_target"]:checked');
         const hinaoNo = selectedHinao ? selectedHinao.value : null;
 
-        let summaryText = `<p><strong>【選択レース】</strong> ${stadium} 第${raceNo}R</p>`;
+        let summaryText = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
         
         if (hinaoNo) {
             const memo = document.getElementById(`memo_${hinaoNo}`).value;
@@ -290,7 +323,7 @@
 
         summaryText += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
         summaryText += `<p><strong>💡 展開シナリオ・推奨買い目：</strong><br>`;
-        summaryText += `選択された${stadium}のコース特性と、あなたのラジオボタン評価・メモを反映した買い目をここに構築します。</p>`;
+        summaryText += `選択されたレース場のデータと、あなたのラジオボタン評価・メモを反映した買い目をここに構築します。</p>`;
 
         const resultArea = document.getElementById('result-area');
         resultArea.querySelector('#result-content').innerHTML = summaryText;
