@@ -11,9 +11,10 @@ name: Daily Boat Race Data Scrape
 #
 # Important:
 #   - schedule cron is UTC. 15:00 UTC = 00:00 JST on the following day.
-#   - workflow_dispatch is intentionally enabled so the scraper can be tested
-#     manually before relying on the schedule.
-#   - The workflow writes only generated data; source code is not modified.
+#   - workflow_dispatch is enabled for manual testing.
+#   - Generated files are written under data/ and committed back to the repo.
+#   - pip cache is intentionally NOT used here because the repository does
+#     not currently contain requirements.txt or pyproject.toml.
 # ============================================================================
 
 on:
@@ -26,7 +27,7 @@ on:
 permissions:
   contents: write
 
-# Prevent two scraper runs from updating data/ at the same time.
+# Prevent two scraper runs from updating data/ simultaneously.
 concurrency:
   group: boat-race-data-scrape
   cancel-in-progress: false
@@ -49,15 +50,20 @@ jobs:
       # ----------------------------------------------------------------------
       # 2. Python environment
       # ----------------------------------------------------------------------
+      # No pip cache here. setup-python's pip cache requires a dependency file
+      # such as requirements.txt or pyproject.toml, which this repo does not
+      # currently use.
+      # ----------------------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-    # ----------------------------------------------------------------------
+
+      # ----------------------------------------------------------------------
       # 3. Python dependencies
       # ----------------------------------------------------------------------
-      # Current scraper uses BeautifulSoup4. urllib/json/etc. are stdlib.
-      # If requirements.txt is added later, prefer installing from that file.
+      # BeautifulSoup4 is the only third-party package currently required by
+      # the scraper. urllib/json/re/etc. are Python standard-library modules.
       # ----------------------------------------------------------------------
       - name: Install dependencies
         shell: bash
@@ -79,6 +85,7 @@ jobs:
           test -f config/tide_stations.json             || { echo "::error::config/tide_stations.json not found"; exit 1; }
 
           python -m py_compile fetch_boat_data_enhanced_with_tide.py
+          python -m unittest discover -s tests -p 'test_*.py' -v
 
       # ----------------------------------------------------------------------
       # 5. Run scraper
@@ -107,11 +114,8 @@ jobs:
       # ----------------------------------------------------------------------
       # 7. Commit and push generated data
       # ----------------------------------------------------------------------
-      # Only data/ is committed. This includes:
-      #   - daily race JSON
-      #   - data/tide/ JMA tide cache
-      #
-      # If no data changed, no empty commit is created.
+      # Only data/ is committed.
+      # No empty commit is created when the scraper produces no changes.
       # ----------------------------------------------------------------------
       - name: Commit generated data
         shell: bash
