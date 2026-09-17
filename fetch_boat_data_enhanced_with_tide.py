@@ -347,6 +347,33 @@ def _extract_stat_block(text: str, item: dict):
     return True
 
 
+def _extract_name_from_row(row):
+    """Return the racer's display name text from an already-matched row.
+
+    ROOT CAUSE OF THE MAPPING BUG (2026-09):
+    A racer's profile link (href*="racersearch/profile?toban=...") appears
+    TWICE inside one racer row: once wrapping the racer's photo <img> (text
+    is empty) and once wrapping the racer's name text. Earlier code picked
+    "the first matching link for this toban" without checking whether that
+    link actually had visible text. When the photo link happened to come
+    first in DOM order, item['name'] was set to '' and silently fell back
+    to the '選手N号艇' placeholder -- even though racer_no, class, and all
+    stat fields (which are parsed from the row's full text, not from the
+    link) were already correct. This produced exactly the symptom reported:
+    JSON name is a placeholder while _raw_cells clearly contains the real
+    name for the same racer_no.
+
+    Fix: within the confirmed correct <tr>, explicitly scan every profile
+    link and use the first one whose extracted text is non-empty. Never
+    assume link order.
+    """
+    for link in row.select('a[href*="racersearch/profile?toban="]'):
+        text = clean_text(link.get_text(' ', strip=True))
+        if text:
+            return text
+    return ''
+
+
 def _extract_boat_no_from_row(row):
     """Extract the actual boat number from the first table cell.
 
@@ -445,7 +472,10 @@ def parse_race_card(jcd: str, r_idx: int, today: str):
             cells = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
             item = _default_racer(boat_no)
 
-            item['name'] = clean_text(link.get_text(' ', strip=True)) or item['name']
+            # NOTE: do not use `link` (the specific <a> we happened to
+            # iterate to) for the name -- it may be the photo-only link.
+            # Re-scan the confirmed row for the link that actually has text.
+            item['name'] = _extract_name_from_row(row) or item['name']
             item['racer_no'] = int(toban)
             item['class'] = next(
                 (c for c in ('A1', 'A2', 'B1', 'B2') if re.search(rf'\b{c}\b', text)),
@@ -486,7 +516,10 @@ def parse_race_card(jcd: str, r_idx: int, today: str):
 
             text = clean_text(row.get_text(' ', strip=True))
             item = _default_racer(boat_no)
-            item['name'] = clean_text(link.get_text(' ', strip=True)) or item['name']
+            # Same fix as the first pass: use the text-bearing profile link
+            # in this row, not whichever link `row.select_one(...)` happened
+            # to return first (which can be the photo-only link).
+            item['name'] = _extract_name_from_row(row) or item['name']
             item['racer_no'] = int(m.group(1))
             item['class'] = next(
                 (c for c in ('A1', 'A2', 'B1', 'B2') if re.search(rf'\b{c}\b', text)),
@@ -685,6 +718,105 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
         'updated_at': datetime.now().isoformat(timespec='seconds'),
     }
 
+# ============================================================================
+# VALIDATION / DIAGNOSTICS
+# ----------------------------------------------------------------------------
+# This section never corrects data automatically. Its only job is to make a
+# boat-to-racer mapping bug (or any other extraction gap) immediately visible
+# in the GitHub Actions log, instead of silently shipping bad JSON. Compare
+# against `_raw_cells`, which is the least-processed evidence we have for
+# what the official page actually said for this specific <tr>.
+# ============================================================================
+
+_RAW_IDENTITY_RE = re.compile(
+    r'^(?P<no>\d+)\s*/\s*(?P<cls>[AB][12])\s+(?P<name>.+?)\s+\S+/\S+\s+\d+歳'
+)
+
+
+def _parse_raw_identity(raw_cells):
+    """Pull (racer_no, name) back out of the raw identity cell for cross-check.
+
+    Expected shape of raw_cells[2], e.g.:
+      "5243 / B1 三馬 崇史 広島/広島 26歳/53.5kg"
+    This is validation-only; it must never be used as the primary data path.
+    """
+    if not raw_cells or len(raw_cells) < 3:
+        return None, None
+    m = _RAW_IDENTITY_RE.match(raw_cells[2])
+    if not m:
+        return None, None
+    return int(m.group('no')), clean_text(m.group('name'))
+
+
+def validate_race(jcd: str, race: dict):
+    """Log [VALIDATION ERROR]/[WARNING] diagnostics for one race.
+
+    Checks, per the audit requirements:
+      - racers.length == 6, no == [1..6] with no duplicates
+      - each boat's JSON racer_no/name matches its own _raw_cells identity
+      - per-field extraction success counts (names/racer_no/national/local/
+        motor/boat/exhibition), so a partial-extraction regression is visible
+        even when it doesn't produce an outright placeholder value.
+    """
+    racers = race.get('racers', [])
+    race_no = race.get('race_no')
+
+    nos = [r.get('no') for r in racers]
+    if len(racers) != 6 or sorted(n for n in nos if n is not None) != [1, 2, 3, 4, 5, 6]:
+        print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: 艇番が1〜6で揃っていません -> {nos}')
+
+    counts = {
+        'names': 0,
+        'racer_no': 0,
+        'national': 0,
+        'local': 0,
+        'motor': 0,
+        'boat': 0,
+        'exhibition': 0,
+    }
+
+    for r in racers:
+        boat_no = r.get('no')
+        raw_no, raw_name = _parse_raw_identity(r.get('_raw_cells'))
+
+        if r.get('name') and not str(r['name']).startswith('選手'):
+            counts['names'] += 1
+        if r.get('racer_no') is not None:
+            counts['racer_no'] += 1
+        if (r.get('national') or {}).get('win_rate') is not None:
+            counts['national'] += 1
+        if (r.get('local') or {}).get('win_rate') is not None:
+            counts['local'] += 1
+        if (r.get('motor') or {}).get('no') is not None:
+            counts['motor'] += 1
+        if (r.get('boat') or {}).get('no') is not None:
+            counts['boat'] += 1
+        if (r.get('preview') or {}).get('exhibition_time') is not None:
+            counts['exhibition'] += 1
+
+        if raw_no is not None and r.get('racer_no') is not None and raw_no != r['racer_no']:
+            print(
+                f"[VALIDATION ERROR] jcd={jcd} Race {race_no} Boat {boat_no}: "
+                f"JSON racer_no={r['racer_no']} Raw racer_no={raw_no}"
+            )
+        if raw_name and r.get('name') and raw_name not in r['name'] and r['name'] not in raw_name:
+            print(
+                f"[VALIDATION ERROR] jcd={jcd} Race {race_no} Boat {boat_no}: "
+                f"JSON name='{r['name']}' Raw name='{raw_name}'"
+            )
+
+    print(
+        f"[Race {race_no}] racers: {len(racers)}/6 "
+        f"names: {counts['names']}/6 racer_no: {counts['racer_no']}/6 "
+        f"national: {counts['national']}/6 local: {counts['local']}/6 "
+        f"motor: {counts['motor']}/6 boat: {counts['boat']}/6 "
+        f"exhibition: {counts['exhibition']}/6"
+    )
+    for field, ok in counts.items():
+        if ok < 6:
+            print(f'[WARNING] jcd={jcd} Race {race_no}: {field} が {ok}/6 艇分しか取得できていません')
+
+
 def rank_smaller_is_better(values):
     valid = [(i, v) for i, v in enumerate(values) if isinstance(v, (int, float))]
     valid.sort(key=lambda x: x[1])
@@ -701,29 +833,6 @@ def rank_larger_is_better(values):
     for pos, (i, _) in enumerate(valid, 1):
         rank[i] = pos
     return rank
-
-
-def build_prediction_features(racers):
-    features = {}
-    fields_larger = [
-        ('national_win_rate', lambda r: r['national']['win_rate']),
-        ('local_win_rate', lambda r: r['local']['win_rate']),
-        ('motor_top2_rate', lambda r: r['motor']['top2_rate']),
-        ('boat_top2_rate', lambda r: r['boat']['top2_rate']),
-    ]
-    for field_name, getter in fields_larger:
-        values = [getter(r) for r in racers]
-        ranks = rank_larger_is_better(values)
-        for i, r in enumerate(racers):
-            features.setdefault(str(r['no']), {})[field_name + '_rank'] = ranks[i]
-
-    for source, key in [('before', 'exhibition_time')]:
-        values = [source for _ in racers]
-        _ = values
-        ranks = rank_smaller_is_better([None] * len(racers))
-        _ = (key, ranks)
-
-    return features
 
 
 def merge_race_data(card, before):
@@ -818,6 +927,16 @@ def process_stadium(jcd, today, include_before=True, tide_config=None):
                 races.append({'race_no': rno, 'racers': [], 'error': str(exc)})
 
     races.sort(key=lambda x: x['race_no'])
+
+    # Validate every race before writing it. This never mutates the data;
+    # it only prints [VALIDATION ERROR]/[WARNING] so mapping regressions are
+    # visible in the GitHub Actions log instead of shipping silently.
+    for race in races:
+        try:
+            validate_race(jcd, race)
+        except Exception as exc:
+            print(f'[WARNING] jcd={jcd} Race {race.get("race_no")}: 検証処理自体が失敗しました: {exc}')
+
     payload = {
         'schema_version': 2,
         'date': today,
