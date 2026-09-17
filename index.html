@@ -39,14 +39,15 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
+        /* レイアウト崩れ防止：各項目を縦並びベース、十分な隙間を確保 */
         .race-header-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
-        @media (max-width: 600px) {
+        @media (min-width: 600px) {
             .race-header-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
         .form-group label {
@@ -63,6 +64,7 @@
             border-radius: 4px;
             font-size: 0.9rem;
             background: #fff;
+            box-sizing: border-box;
         }
         .boat-card {
             border-left: 5px solid #ccc;
@@ -117,6 +119,24 @@
             gap: 5px;
             cursor: pointer;
         }
+        .btn-action {
+            display: block;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn-action:hover {
+            background: #004d5b;
+        }
         .btn-submit {
             display: block;
             width: 100%;
@@ -130,6 +150,7 @@
             cursor: pointer;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 15px;
         }
         .btn-submit:hover {
             background: #d48800;
@@ -139,7 +160,7 @@
             border: 1px solid #b8e0ed;
             border-radius: 8px;
             padding: 15px;
-            margin-top: 20px;
+5            margin-top: 20px;
             display: none;
         }
         .result-box h2 {
@@ -154,16 +175,16 @@
 <div class="container">
     <h1>🚤 ボートレース 24場対応 俺の採点 ＆ 展開予想</h1>
 
-    <!-- レース選択 -->
+    <!-- レース選択カード -->
     <div class="card">
         <div class="race-header-grid">
             <div class="form-group">
                 <label>開催日</label>
-                <input type="date" id="race-date" onchange="loadRaceData()">
+                <input type="date" id="race-date">
             </div>
             <div class="form-group">
                 <label>レース場 (全24場)</label>
-                <select id="stadium" onchange="loadRaceData()">
+                <select id="stadium">
                     <optgroup label="関東地区">
                         <option value="01">01 桐生</option>
                         <option value="02">02 戸田</option>
@@ -204,7 +225,7 @@
             </div>
             <div class="form-group">
                 <label>レース番号</label>
-                <select id="race-no" onchange="renderBoats()">
+                <select id="race-no">
                     <script>
                         for(let i=1; i<=12; i++) {
                             document.write(`<option value="${i}" ${i===3?'selected':''}>第${i}R</option>`);
@@ -213,6 +234,8 @@
                 </select>
             </div>
         </div>
+        <!-- 変更を反映させるための実行ボタン -->
+        <button class="btn-action" onclick="loadRaceData()">🔄 この条件でレースデータを読み込む</button>
     </div>
 
     <!-- 採点パネル (1〜6号艇) -->
@@ -230,7 +253,7 @@
 <script>
     let currentRaceData = null;
 
-    // 初期化
+    // 初期化：本日の日付をセットして自動読み込み
     document.getElementById('race-date').valueAsDate = new Date();
     loadRaceData();
 
@@ -248,8 +271,8 @@
             currentRaceData = await response.json();
             renderBoats();
         } catch (error) {
-            console.warn("JSONの読み込みに失敗しました（フォールバック表示を使います）:", error);
-            // データがまだ無い場合のダミーデータ
+            console.warn("JSONの読み込みに失敗しました:", error);
+            // データが無い場合のフォールバック
             currentRaceData = {
                 races: Array.from({length: 12}, (_, i) => ({
                     race_no: i + 1,
@@ -292,7 +315,7 @@
                 <div class="evaluation-row">
                     <span>回足</span>
                     <div class="radio-group">
-                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
+                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':`'}> ${v}</label>`).join('')}
                     </div>
                 </div>
                 <label class="hinao-check">
