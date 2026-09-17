@@ -86,14 +86,32 @@
             margin-bottom: 6px;
             color: var(--text-muted);
         }
-        select, input[type="date"] {
+        /* select と input[type=date] の見た目・高さを完全に統一する */
+        .form-group select,
+        .form-group input[type="date"] {
+            -webkit-appearance: none;
+            appearance: none;
             width: 100%;
-            padding: 10px;
+            height: 46px;
+            box-sizing: border-box;
+            padding: 0 36px 0 12px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.95rem;
-            background: #fff;
+            font-family: inherit;
+            background-color: #fff;
             color: var(--text-color);
+            line-height: 44px;
+        }
+        /* select だけ独自の矢印アイコンを描画（appearance:none で消えるため） */
+        .form-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' stroke='%236b7280' stroke-width='2' fill='none' fill-rule='evenodd'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+        /* iOS Safari の日付ピッカーが縦積みで縮んで見えるのを防ぐ */
+        .form-group input[type="date"]::-webkit-date-and-time-value {
+            text-align: left;
         }
         .btn-action {
             display: block;
