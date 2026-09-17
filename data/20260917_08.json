@@ -1,427 +1,6771 @@
 {
-    "date": "20260917",
-    "stadium_code": "08",
-    "races": [
+  "schema_version": 2,
+  "date": "20260917",
+  "stadium_code": "08",
+  "races": [
+    {
+      "race_no": 1,
+      "racers": [
         {
-            "race_no": 1,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "山川　美由紀",
-                    "class": "A2"
-                },
-                {
-                    "no": 2,
-                    "name": "深見　亜由美",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "赤井　星璃菜",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "大久保　佑香",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "星田　　夢結",
-                    "class": "B2"
-                },
-                {
-                    "no": 6,
-                    "name": "山川　　波乙",
-                    "class": "B1"
-                }
-            ]
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5438,
+          "weight": null,
+          "national": {
+            "win_rate": 1.56,
+            "top2_rate": 0.0,
+            "top3_rate": 1.64
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 5,
+            "top2_rate": 35.56,
+            "top3_rate": 55.65
+          },
+          "boat": {
+            "no": 45,
+            "top2_rate": 24.44,
+            "top3_rate": 44.44
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5438 / B2 星田 夢結 福岡/福岡 21歳/49.6kg",
+            "F0 L0 0.22",
+            "1.56 0.00 1.64",
+            "0.00 0.00 0.00",
+            "5 35.56 55.65",
+            "45 24.44 44.44",
+            "",
+            "3",
+            "9",
+            "4",
+            "",
+            "4",
+            "9",
+            "2",
+            "6",
+            "6",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "8R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5438.0,
+            0.0,
+            1.56,
+            0.0,
+            5.0,
+            45.0,
+            null,
+            3.0,
+            9.0,
+            4.0,
+            null,
+            4.0,
+            9.0,
+            2.0,
+            6.0,
+            6.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            8.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 7.0,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 6
         },
         {
-            "race_no": 2,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "薮内　　瑞希",
-                    "class": "B1"
-                },
-                {
-                    "no": 2,
-                    "name": "矢野　真梨菜",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "宮崎　　安奈",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "井澤　　聖奈",
-                    "class": "B2"
-                },
-                {
-                    "no": 5,
-                    "name": "石村　日奈那",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "志賀　　美優",
-                    "class": "B2"
-                }
-            ]
+          "no": 2,
+          "name": "山川 美由紀",
+          "class": "A2",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.77,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 5
         },
         {
-            "race_no": 3,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "中村　紋夕梨",
-                    "class": "B1"
-                },
-                {
-                    "no": 2,
-                    "name": "大石　　真央",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "羽田　　妃希",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "神里　　琴音",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "佐々木　裕美",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "市川　　瑚幸",
-                    "class": "B2"
-                }
-            ]
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 4897,
+          "weight": null,
+          "national": {
+            "win_rate": 3.71,
+            "top2_rate": 15.38,
+            "top3_rate": 29.49
+          },
+          "local": {
+            "win_rate": 3.22,
+            "top2_rate": 0.0,
+            "top3_rate": 33.33
+          },
+          "motor": {
+            "no": 36,
+            "top2_rate": 30.91,
+            "top3_rate": 51.82
+          },
+          "boat": {
+            "no": 29,
+            "top2_rate": 18.6,
+            "top3_rate": 37.21
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "２",
+            "",
+            "4897 / B1 深見 亜由美 愛知/愛知 34歳/45.0kg",
+            "F0 L0 0.21",
+            "3.71 15.38 29.49",
+            "3.22 0.00 33.33",
+            "36 30.91 51.82",
+            "29 18.60 37.21",
+            "",
+            "3",
+            "11",
+            "5",
+            "",
+            "3",
+            "7",
+            "1",
+            "10",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "7R"
+          ],
+          "_raw_numbers": [
+            2.0,
+            null,
+            4897.0,
+            0.0,
+            3.71,
+            3.22,
+            36.0,
+            29.0,
+            null,
+            3.0,
+            11.0,
+            5.0,
+            null,
+            3.0,
+            7.0,
+            1.0,
+            10.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            7.0
+          ],
+          "preview": {
+            "weight": 49.8,
+            "adjust_weight": null,
+            "exhibition_time": 6.71,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 4
         },
         {
-            "race_no": 4,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "松田　　真実",
-                    "class": "B1"
-                },
-                {
-                    "no": 2,
-                    "name": "坂　　咲友理",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "山口　真喜子",
-                    "class": "A2"
-                },
-                {
-                    "no": 4,
-                    "name": "長嶋　　万記",
-                    "class": "B2"
-                },
-                {
-                    "no": 5,
-                    "name": "南　　　彩寧",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "田中　瀬里奈",
-                    "class": "B2"
-                }
-            ]
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5078,
+          "weight": null,
+          "national": {
+            "win_rate": 4.48,
+            "top2_rate": 23.46,
+            "top3_rate": 41.98
+          },
+          "local": {
+            "win_rate": 5.13,
+            "top2_rate": 37.5,
+            "top3_rate": 50.0
+          },
+          "motor": {
+            "no": 30,
+            "top2_rate": 44.14,
+            "top3_rate": 63.06
+          },
+          "boat": {
+            "no": 67,
+            "top2_rate": 40.43,
+            "top3_rate": 59.57
+          },
+          "avg_st": 0.19,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5078 / B1 山川 波乙 三重/三重 28歳/47.0kg",
+            "F1 L0 0.19",
+            "4.48 23.46 41.98",
+            "5.13 37.50 50.00",
+            "30 44.14 63.06",
+            "67 40.43 59.57",
+            "",
+            "3",
+            "7",
+            "1",
+            "7",
+            "5",
+            "",
+            "5",
+            "10",
+            "2",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5078.0,
+            1.0,
+            4.48,
+            5.13,
+            30.0,
+            67.0,
+            null,
+            3.0,
+            7.0,
+            1.0,
+            7.0,
+            5.0,
+            null,
+            5.0,
+            10.0,
+            2.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.7,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 3
         },
         {
-            "race_no": 5,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "川野　　芽唯",
-                    "class": "A1"
-                },
-                {
-                    "no": 2,
-                    "name": "野田　　彩加",
-                    "class": "A2"
-                },
-                {
-                    "no": 3,
-                    "name": "畑田　　希咲",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "石原　　凪紗",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "沼田　　七華",
-                    "class": "B2"
-                },
-                {
-                    "no": 6,
-                    "name": "小芦　るり華",
-                    "class": "A1"
-                }
-            ]
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 3232,
+          "weight": null,
+          "national": {
+            "win_rate": 5.56,
+            "top2_rate": 33.33,
+            "top3_rate": 48.61
+          },
+          "local": {
+            "win_rate": 4.75,
+            "top2_rate": 0.0,
+            "top3_rate": 25.0
+          },
+          "motor": {
+            "no": 53,
+            "top2_rate": 36.84,
+            "top3_rate": 48.68
+          },
+          "boat": {
+            "no": 65,
+            "top2_rate": 42.86,
+            "top3_rate": 61.9
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "１",
+            "",
+            "3232 / A2 山川 美由紀 香川/香川 59歳/47.0kg",
+            "F0 L0 0.16",
+            "5.56 33.33 48.61",
+            "4.75 0.00 25.00",
+            "53 36.84 48.68",
+            "65 42.86 61.90",
+            "",
+            "5",
+            "10",
+            "5",
+            "12",
+            "6",
+            "10",
+            "4",
+            "",
+            "5",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "9R"
+          ],
+          "_raw_numbers": [
+            1.0,
+            null,
+            3232.0,
+            0.0,
+            5.56,
+            4.75,
+            53.0,
+            65.0,
+            null,
+            5.0,
+            10.0,
+            5.0,
+            12.0,
+            6.0,
+            10.0,
+            4.0,
+            null,
+            5.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            9.0
+          ],
+          "preview": {
+            "weight": 49.6,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 1
         },
         {
-            "race_no": 6,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "竹井　　奈美",
-                    "class": "A1"
-                },
-                {
-                    "no": 2,
-                    "name": "宮崎　　安奈",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "孫崎　　百世",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "内山　　七海",
-                    "class": "A2"
-                },
-                {
-                    "no": 5,
-                    "name": "志賀　　美優",
-                    "class": "B2"
-                },
-                {
-                    "no": 6,
-                    "name": "野田部　宏子",
-                    "class": "B1"
-                }
-            ]
-        },
-        {
-            "race_no": 7,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "深見　亜由美",
-                    "class": "B1"
-                },
-                {
-                    "no": 2,
-                    "name": "神里　　琴音",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "矢野　真梨菜",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "市川　　瑚幸",
-                    "class": "B2"
-                },
-                {
-                    "no": 5,
-                    "name": "大久保　佑香",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "倉持　　莉々",
-                    "class": "A1"
-                }
-            ]
-        },
-        {
-            "race_no": 8,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "井澤　　聖奈",
-                    "class": "B2"
-                },
-                {
-                    "no": 2,
-                    "name": "石村　日奈那",
-                    "class": "B1"
-                },
-                {
-                    "no": 3,
-                    "name": "南　　　彩寧",
-                    "class": "B1"
-                },
-                {
-                    "no": 4,
-                    "name": "佐々木　裕美",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "中村　紋夕梨",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "星田　　夢結",
-                    "class": "B2"
-                }
-            ]
-        },
-        {
-            "race_no": 9,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "羽田　　妃希",
-                    "class": "B1"
-                },
-                {
-                    "no": 2,
-                    "name": "沼田　　七華",
-                    "class": "B2"
-                },
-                {
-                    "no": 3,
-                    "name": "山川　美由紀",
-                    "class": "A2"
-                },
-                {
-                    "no": 4,
-                    "name": "畑田　　希咲",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "赤井　星璃菜",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "山口　真喜子",
-                    "class": "A2"
-                }
-            ]
-        },
-        {
-            "race_no": 10,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "小芦　るり華",
-                    "class": "A1"
-                },
-                {
-                    "no": 2,
-                    "name": "長嶋　　万記",
-                    "class": "B2"
-                },
-                {
-                    "no": 3,
-                    "name": "竹井　　奈美",
-                    "class": "A1"
-                },
-                {
-                    "no": 4,
-                    "name": "松田　　真実",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "孫崎　　百世",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "大石　　真央",
-                    "class": "B1"
-                }
-            ]
-        },
-        {
-            "race_no": 11,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "倉持　　莉々",
-                    "class": "A1"
-                },
-                {
-                    "no": 2,
-                    "name": "川野　　芽唯",
-                    "class": "A1"
-                },
-                {
-                    "no": 3,
-                    "name": "野田　　彩加",
-                    "class": "A2"
-                },
-                {
-                    "no": 4,
-                    "name": "薮内　　瑞希",
-                    "class": "B1"
-                },
-                {
-                    "no": 5,
-                    "name": "坂　　咲友理",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "内山　　七海",
-                    "class": "A2"
-                }
-            ]
-        },
-        {
-            "race_no": 12,
-            "racers": [
-                {
-                    "no": 1,
-                    "name": "遠藤　　エミ",
-                    "class": "A1"
-                },
-                {
-                    "no": 2,
-                    "name": "土屋　　　南",
-                    "class": "A2"
-                },
-                {
-                    "no": 3,
-                    "name": "三浦　　永理",
-                    "class": "A1"
-                },
-                {
-                    "no": 4,
-                    "name": "武井　莉里佳",
-                    "class": "A2"
-                },
-                {
-                    "no": 5,
-                    "name": "小池　　礼乃",
-                    "class": "B1"
-                },
-                {
-                    "no": 6,
-                    "name": "島田　なぎさ",
-                    "class": "B2"
-                }
-            ]
+          "no": 6,
+          "name": "赤井 星璃菜",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 2
         }
-    ],
-    "updated_at": "2026-09-17 05:06:06"
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 2,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5439,
+          "weight": null,
+          "national": {
+            "win_rate": 1.45,
+            "top2_rate": 0.0,
+            "top3_rate": 3.23
+          },
+          "local": {
+            "win_rate": 1.45,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 31,
+            "top2_rate": 39.82,
+            "top3_rate": 53.54
+          },
+          "boat": {
+            "no": 71,
+            "top2_rate": 38.78,
+            "top3_rate": 61.22
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5439 / B2 志賀 美優 愛知/愛知 20歳/49.4kg",
+            "F0 L0 0.21",
+            "1.45 0.00 3.23",
+            "1.45 0.00 0.00",
+            "31 39.82 53.54",
+            "71 38.78 61.22",
+            "",
+            "6",
+            "",
+            "3",
+            "8",
+            "6",
+            "",
+            "4",
+            "8",
+            "2",
+            "8",
+            "",
+            "",
+            "",
+            "",
+            "6R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5439.0,
+            0.0,
+            1.45,
+            1.45,
+            31.0,
+            71.0,
+            null,
+            6.0,
+            null,
+            3.0,
+            8.0,
+            6.0,
+            null,
+            4.0,
+            8.0,
+            2.0,
+            8.0,
+            null,
+            null,
+            null,
+            null,
+            6.0
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.68,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 2,
+          "name": "薮内 瑞希",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 7.0,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5365,
+          "weight": null,
+          "national": {
+            "win_rate": 3.0,
+            "top2_rate": 13.51,
+            "top3_rate": 17.57
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 54,
+            "top2_rate": 30.05,
+            "top3_rate": 47.89
+          },
+          "boat": {
+            "no": 39,
+            "top2_rate": 47.83,
+            "top3_rate": 60.87
+          },
+          "avg_st": 0.19,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5365 / B1 石村 日奈那 東京/東京 25歳/47.0kg",
+            "F1 L0 0.19",
+            "3.00 13.51 17.57",
+            "0.00 0.00 0.00",
+            "54 30.05 47.89",
+            "39 47.83 60.87",
+            "",
+            "1",
+            "9",
+            "8",
+            "",
+            "1",
+            "10",
+            "1",
+            "8",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "8R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5365.0,
+            1.0,
+            3.0,
+            0.0,
+            54.0,
+            39.0,
+            null,
+            1.0,
+            9.0,
+            8.0,
+            null,
+            1.0,
+            10.0,
+            1.0,
+            8.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            8.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [
+              "ギヤ"
+            ],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5182,
+          "weight": null,
+          "national": {
+            "win_rate": 4.07,
+            "top2_rate": 21.74,
+            "top3_rate": 34.78
+          },
+          "local": {
+            "win_rate": 4.22,
+            "top2_rate": 16.67,
+            "top3_rate": 38.89
+          },
+          "motor": {
+            "no": 56,
+            "top2_rate": 29.86,
+            "top3_rate": 49.29
+          },
+          "boat": {
+            "no": 77,
+            "top2_rate": 31.48,
+            "top3_rate": 40.74
+          },
+          "avg_st": 0.14,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "5182 / B1 宮崎 安奈 埼玉/埼玉 28歳/47.0kg",
+            "F0 L0 0.14",
+            "4.07 21.74 34.78",
+            "4.22 16.67 38.89",
+            "56 29.86 49.29",
+            "77 31.48 40.74",
+            "",
+            "5",
+            "9",
+            "3",
+            "7",
+            "7",
+            "11",
+            "5",
+            "",
+            "3",
+            "8",
+            "",
+            "",
+            "",
+            "",
+            "6R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            5182.0,
+            0.0,
+            4.07,
+            4.22,
+            56.0,
+            77.0,
+            null,
+            5.0,
+            9.0,
+            3.0,
+            7.0,
+            7.0,
+            11.0,
+            5.0,
+            null,
+            3.0,
+            8.0,
+            null,
+            null,
+            null,
+            null,
+            6.0
+          ],
+          "preview": {
+            "weight": 45.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.74,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "宮崎 安奈",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 49.4,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 3,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5436,
+          "weight": null,
+          "national": {
+            "win_rate": 1.49,
+            "top2_rate": 0.0,
+            "top3_rate": 2.67
+          },
+          "local": {
+            "win_rate": 1.12,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 59,
+            "top2_rate": 40.79,
+            "top3_rate": 57.89
+          },
+          "boat": {
+            "no": 62,
+            "top2_rate": 23.91,
+            "top3_rate": 41.3
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5436 / B2 市川 瑚幸 東京/神奈川 21歳/46.0kg",
+            "F0 L0 0.22",
+            "1.49 0.00 2.67",
+            "1.12 0.00 0.00",
+            "59 40.79 57.89",
+            "62 23.91 41.30",
+            "",
+            "4",
+            "",
+            "1",
+            "5",
+            "1",
+            "",
+            "3",
+            "10",
+            "4",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "7R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5436.0,
+            0.0,
+            1.49,
+            1.12,
+            59.0,
+            62.0,
+            null,
+            4.0,
+            null,
+            1.0,
+            5.0,
+            1.0,
+            null,
+            3.0,
+            10.0,
+            4.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            7.0
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 7.0,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 2,
+          "name": "中村 紋夕梨",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.74,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5254,
+          "weight": null,
+          "national": {
+            "win_rate": 3.33,
+            "top2_rate": 7.27,
+            "top3_rate": 25.45
+          },
+          "local": {
+            "win_rate": 3.41,
+            "top2_rate": 19.61,
+            "top3_rate": 27.45
+          },
+          "motor": {
+            "no": 35,
+            "top2_rate": 41.99,
+            "top3_rate": 61.04
+          },
+          "boat": {
+            "no": 31,
+            "top2_rate": 13.79,
+            "top3_rate": 34.48
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "5254 / B1 羽田 妃希 愛知/愛知 23歳/47.0kg",
+            "F0 L0 0.22",
+            "3.33 7.27 25.45",
+            "3.41 19.61 27.45",
+            "35 41.99 61.04",
+            "31 13.79 34.48",
+            "",
+            "6",
+            "10",
+            "4",
+            "11",
+            "1",
+            "7",
+            "6",
+            "",
+            "2",
+            "7",
+            "",
+            "",
+            "",
+            "",
+            "9R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            5254.0,
+            0.0,
+            3.33,
+            3.41,
+            35.0,
+            31.0,
+            null,
+            6.0,
+            10.0,
+            4.0,
+            11.0,
+            1.0,
+            7.0,
+            6.0,
+            null,
+            2.0,
+            7.0,
+            null,
+            null,
+            null,
+            null,
+            9.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4045,
+          "weight": null,
+          "national": {
+            "win_rate": 4.8,
+            "top2_rate": 32.56,
+            "top3_rate": 44.19
+          },
+          "local": {
+            "win_rate": 5.31,
+            "top2_rate": 25.0,
+            "top3_rate": 50.0
+          },
+          "motor": {
+            "no": 50,
+            "top2_rate": 33.48,
+            "top3_rate": 49.55
+          },
+          "boat": {
+            "no": 41,
+            "top2_rate": 22.22,
+            "top3_rate": 42.22
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "4045 / B1 佐々木 裕美 山口/山口 46歳/47.0kg",
+            "F0 L0 0.17",
+            "4.80 32.56 44.19",
+            "5.31 25.00 50.00",
+            "50 33.48 49.55",
+            "41 22.22 42.22",
+            "",
+            "4",
+            "8",
+            "3",
+            "",
+            "3",
+            "12",
+            "2",
+            "9",
+            "1",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "8R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            4045.0,
+            0.0,
+            4.8,
+            5.31,
+            50.0,
+            41.0,
+            null,
+            4.0,
+            8.0,
+            3.0,
+            null,
+            3.0,
+            12.0,
+            2.0,
+            9.0,
+            1.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            8.0
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 7.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": 5203,
+          "weight": null,
+          "national": {
+            "win_rate": 5.2,
+            "top2_rate": 27.85,
+            "top3_rate": 51.9
+          },
+          "local": {
+            "win_rate": 5.0,
+            "top2_rate": 23.08,
+            "top3_rate": 50.0
+          },
+          "motor": {
+            "no": 40,
+            "top2_rate": 33.33,
+            "top3_rate": 49.78
+          },
+          "boat": {
+            "no": 11,
+            "top2_rate": 34.78,
+            "top3_rate": 52.17
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5203 / B1 神里 琴音 福岡/沖縄 22歳/44.5kg",
+            "F0 L0 0.16",
+            "5.20 27.85 51.90",
+            "5.00 23.08 50.00",
+            "40 33.33 49.78",
+            "11 34.78 52.17",
+            "",
+            "7",
+            "",
+            "1",
+            "6",
+            "6",
+            "11",
+            "3",
+            "7",
+            "4",
+            "8",
+            "",
+            "",
+            "",
+            "",
+            "7R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5203.0,
+            0.0,
+            5.2,
+            5.0,
+            40.0,
+            11.0,
+            null,
+            7.0,
+            null,
+            1.0,
+            6.0,
+            6.0,
+            11.0,
+            3.0,
+            7.0,
+            4.0,
+            8.0,
+            null,
+            null,
+            null,
+            null,
+            7.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "羽田 妃希",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 4,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5357,
+          "weight": null,
+          "national": {
+            "win_rate": 1.63,
+            "top2_rate": 0.0,
+            "top3_rate": 2.63
+          },
+          "local": {
+            "win_rate": 1.37,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 10,
+            "top2_rate": 43.98,
+            "top3_rate": 58.09
+          },
+          "boat": {
+            "no": 24,
+            "top2_rate": 36.96,
+            "top3_rate": 50.0
+          },
+          "avg_st": 0.19,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5357 / B2 田中 瀬里奈 埼玉/北海道 21歳/53.6kg",
+            "F1 L0 0.19",
+            "1.63 0.00 2.63",
+            "1.37 0.00 0.00",
+            "10 43.98 58.09",
+            "24 36.96 50.00",
+            "",
+            "2",
+            "10",
+            "7",
+            "",
+            "8",
+            "",
+            "5",
+            "",
+            "6",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5357.0,
+            1.0,
+            1.63,
+            1.37,
+            10.0,
+            24.0,
+            null,
+            2.0,
+            10.0,
+            7.0,
+            null,
+            8.0,
+            null,
+            5.0,
+            null,
+            6.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.69,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 5,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 2,
+          "name": "松田 真実",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 35.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.7,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5297,
+          "weight": null,
+          "national": {
+            "win_rate": 3.89,
+            "top2_rate": 18.68,
+            "top3_rate": 30.77
+          },
+          "local": {
+            "win_rate": 1.25,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 37,
+            "top2_rate": 32.88,
+            "top3_rate": 49.32
+          },
+          "boat": {
+            "no": 17,
+            "top2_rate": 25.64,
+            "top3_rate": 43.59
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5297 / B1 南 彩寧 兵庫/兵庫 24歳/47.6kg",
+            "F0 L0 0.22",
+            "3.89 18.68 30.77",
+            "1.25 0.00 0.00",
+            "37 32.88 49.32",
+            "17 25.64 43.59",
+            "",
+            "4",
+            "",
+            "2",
+            "11",
+            "3",
+            "9",
+            "4",
+            "10",
+            "4",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "8R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5297.0,
+            0.0,
+            3.89,
+            1.25,
+            37.0,
+            17.0,
+            null,
+            4.0,
+            null,
+            2.0,
+            11.0,
+            3.0,
+            9.0,
+            4.0,
+            10.0,
+            4.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            8.0
+          ],
+          "preview": {
+            "weight": 47.4,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 5,
+          "motor_top2_rate_rank": 5,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5272,
+          "weight": null,
+          "national": {
+            "win_rate": 4.98,
+            "top2_rate": 30.0,
+            "top3_rate": 45.56
+          },
+          "local": {
+            "win_rate": 2.71,
+            "top2_rate": 11.29,
+            "top3_rate": 19.35
+          },
+          "motor": {
+            "no": 51,
+            "top2_rate": 35.93,
+            "top3_rate": 52.38
+          },
+          "boat": {
+            "no": 23,
+            "top2_rate": 48.78,
+            "top3_rate": 68.29
+          },
+          "avg_st": 0.19,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "１",
+            "",
+            "5272 / B1 松田 真実 愛知/愛知 25歳/47.0kg",
+            "F0 L0 0.19",
+            "4.98 30.00 45.56",
+            "2.71 11.29 19.35",
+            "51 35.93 52.38",
+            "23 48.78 68.29",
+            "",
+            "4",
+            "11",
+            "4",
+            "8",
+            "9",
+            "",
+            "3",
+            "11",
+            "5",
+            "10",
+            "",
+            "",
+            "",
+            "",
+            "10R"
+          ],
+          "_raw_numbers": [
+            1.0,
+            null,
+            5272.0,
+            0.0,
+            4.98,
+            2.71,
+            51.0,
+            23.0,
+            null,
+            4.0,
+            11.0,
+            4.0,
+            8.0,
+            9.0,
+            null,
+            3.0,
+            11.0,
+            5.0,
+            10.0,
+            null,
+            null,
+            null,
+            null,
+            10.0
+          ],
+          "preview": {
+            "weight": 49.1,
+            "adjust_weight": null,
+            "exhibition_time": 6.77,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 5129,
+          "weight": null,
+          "national": {
+            "win_rate": 5.95,
+            "top2_rate": 41.23,
+            "top3_rate": 58.77
+          },
+          "local": {
+            "win_rate": 6.48,
+            "top2_rate": 52.0,
+            "top3_rate": 60.0
+          },
+          "motor": {
+            "no": 13,
+            "top2_rate": 34.1,
+            "top3_rate": 49.77
+          },
+          "boat": {
+            "no": 40,
+            "top2_rate": 36.17,
+            "top3_rate": 55.32
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "5129 / A2 山口 真喜子 長崎/長崎 29歳/47.4kg",
+            "F0 L0 0.17",
+            "5.95 41.23 58.77",
+            "6.48 52.00 60.00",
+            "13 34.10 49.77",
+            "40 36.17 55.32",
+            "",
+            "5",
+            "",
+            "1",
+            "9",
+            "4",
+            "12",
+            "5",
+            "11",
+            "1",
+            "7",
+            "",
+            "",
+            "",
+            "",
+            "9R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            5129.0,
+            0.0,
+            5.95,
+            6.48,
+            13.0,
+            40.0,
+            null,
+            5.0,
+            null,
+            1.0,
+            9.0,
+            4.0,
+            12.0,
+            5.0,
+            11.0,
+            1.0,
+            7.0,
+            null,
+            null,
+            null,
+            null,
+            9.0
+          ],
+          "preview": {
+            "weight": 47.6,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "B2",
+          "racer_no": 4190,
+          "weight": null,
+          "national": {
+            "win_rate": 6.66,
+            "top2_rate": 45.45,
+            "top3_rate": 70.45
+          },
+          "local": {
+            "win_rate": 6.5,
+            "top2_rate": 45.0,
+            "top3_rate": 65.0
+          },
+          "motor": {
+            "no": 29,
+            "top2_rate": 34.45,
+            "top3_rate": 58.82
+          },
+          "boat": {
+            "no": 63,
+            "top2_rate": 35.29,
+            "top3_rate": 52.94
+          },
+          "avg_st": 0.16,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "4190 / B2 長嶋 万記 静岡/静岡 45歳/49.1kg",
+            "F1 L0 0.16",
+            "6.66 45.45 70.45",
+            "6.50 45.00 65.00",
+            "29 34.45 58.82",
+            "63 35.29 52.94",
+            "",
+            "12",
+            "",
+            "4",
+            "9",
+            "5",
+            "12",
+            "7",
+            "12",
+            "5",
+            "11",
+            "",
+            "",
+            "",
+            "",
+            "10R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            4190.0,
+            1.0,
+            6.66,
+            6.5,
+            29.0,
+            63.0,
+            null,
+            12.0,
+            null,
+            4.0,
+            9.0,
+            5.0,
+            12.0,
+            7.0,
+            12.0,
+            5.0,
+            11.0,
+            null,
+            null,
+            null,
+            null,
+            10.0
+          ],
+          "preview": {
+            "weight": 36.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 5,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.67,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 2,
+          "name": "選手2号艇",
+          "class": "B2",
+          "racer_no": 5251,
+          "weight": null,
+          "national": {
+            "win_rate": 2.53,
+            "top2_rate": 2.78,
+            "top3_rate": 13.89
+          },
+          "local": {
+            "win_rate": 1.56,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 14,
+            "top2_rate": 46.88,
+            "top3_rate": 62.95
+          },
+          "boat": {
+            "no": 61,
+            "top2_rate": 15.22,
+            "top3_rate": 34.78
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5251 / B2 沼田 七華 福井/石川 24歳/49.8kg",
+            "F0 L0 0.17",
+            "2.53 2.78 13.89",
+            "1.56 0.00 0.00",
+            "14 46.88 62.95",
+            "61 15.22 34.78",
+            "",
+            "1",
+            "5",
+            "6",
+            "",
+            "2",
+            "7",
+            "4",
+            "11",
+            "1",
+            "6",
+            "",
+            "",
+            "",
+            "",
+            "9R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5251.0,
+            0.0,
+            2.53,
+            1.56,
+            14.0,
+            61.0,
+            null,
+            1.0,
+            5.0,
+            6.0,
+            null,
+            2.0,
+            7.0,
+            4.0,
+            11.0,
+            1.0,
+            6.0,
+            null,
+            null,
+            null,
+            null,
+            9.0
+          ],
+          "preview": {
+            "weight": 50.6,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 5,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5324,
+          "weight": null,
+          "national": {
+            "win_rate": 3.09,
+            "top2_rate": 4.41,
+            "top3_rate": 16.18
+          },
+          "local": {
+            "win_rate": 1.12,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 52,
+            "top2_rate": 34.4,
+            "top3_rate": 51.38
+          },
+          "boat": {
+            "no": 35,
+            "top2_rate": 37.5,
+            "top3_rate": 47.92
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "5324 / B1 畑田 希咲 兵庫/兵庫 23歳/48.5kg",
+            "F0 L0 0.21",
+            "3.09 4.41 16.18",
+            "1.12 0.00 0.00",
+            "52 34.40 51.38",
+            "35 37.50 47.92",
+            "",
+            "3",
+            "",
+            "2",
+            "8",
+            "4",
+            "",
+            "1",
+            "7",
+            "1",
+            "8",
+            "",
+            "",
+            "",
+            "",
+            "9R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            5324.0,
+            0.0,
+            3.09,
+            1.12,
+            52.0,
+            35.0,
+            null,
+            3.0,
+            null,
+            2.0,
+            8.0,
+            4.0,
+            null,
+            1.0,
+            7.0,
+            1.0,
+            8.0,
+            null,
+            null,
+            null,
+            null,
+            9.0
+          ],
+          "preview": {
+            "weight": 48.5,
+            "adjust_weight": null,
+            "exhibition_time": 7.0,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 5,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5230,
+          "weight": null,
+          "national": {
+            "win_rate": 4.77,
+            "top2_rate": 31.53,
+            "top3_rate": 43.24
+          },
+          "local": {
+            "win_rate": 4.02,
+            "top2_rate": 26.67,
+            "top3_rate": 35.56
+          },
+          "motor": {
+            "no": 47,
+            "top2_rate": 34.93,
+            "top3_rate": 54.15
+          },
+          "boat": {
+            "no": 50,
+            "top2_rate": 34.78,
+            "top3_rate": 43.48
+          },
+          "avg_st": 0.2,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5230 / B1 石原 凪紗 愛知/岐阜 23歳/45.0kg",
+            "F0 L0 0.20",
+            "4.77 31.53 43.24",
+            "4.02 26.67 35.56",
+            "47 34.93 54.15",
+            "50 34.78 43.48",
+            "",
+            "2",
+            "8",
+            "6",
+            "11",
+            "1",
+            "8",
+            "8",
+            "",
+            "8",
+            "12",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5230.0,
+            0.0,
+            4.77,
+            4.02,
+            47.0,
+            50.0,
+            null,
+            2.0,
+            8.0,
+            6.0,
+            11.0,
+            1.0,
+            8.0,
+            8.0,
+            null,
+            8.0,
+            12.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.7,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 5146,
+          "weight": null,
+          "national": {
+            "win_rate": 5.11,
+            "top2_rate": 32.53,
+            "top3_rate": 51.81
+          },
+          "local": {
+            "win_rate": 4.92,
+            "top2_rate": 16.67,
+            "top3_rate": 37.5
+          },
+          "motor": {
+            "no": 17,
+            "top2_rate": 30.39,
+            "top3_rate": 46.57
+          },
+          "boat": {
+            "no": 73,
+            "top2_rate": 46.94,
+            "top3_rate": 67.35
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "２",
+            "",
+            "5146 / A2 野田 彩加 山口/山口 23歳/50.6kg",
+            "F0 L0 0.16",
+            "5.11 32.53 51.81",
+            "4.92 16.67 37.50",
+            "17 30.39 46.57",
+            "73 46.94 67.35",
+            "",
+            "2",
+            "7",
+            "4",
+            "12",
+            "1",
+            "9",
+            "7",
+            "",
+            "6",
+            "12",
+            "",
+            "",
+            "",
+            "",
+            "11R"
+          ],
+          "_raw_numbers": [
+            2.0,
+            null,
+            5146.0,
+            0.0,
+            5.11,
+            4.92,
+            17.0,
+            73.0,
+            null,
+            2.0,
+            7.0,
+            4.0,
+            12.0,
+            1.0,
+            9.0,
+            7.0,
+            null,
+            6.0,
+            12.0,
+            null,
+            null,
+            null,
+            null,
+            11.0
+          ],
+          "preview": {
+            "weight": 49.8,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 5,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A1",
+          "racer_no": 4938,
+          "weight": null,
+          "national": {
+            "win_rate": 6.55,
+            "top2_rate": 47.62,
+            "top3_rate": 67.46
+          },
+          "local": {
+            "win_rate": 5.5,
+            "top2_rate": 25.0,
+            "top3_rate": 56.25
+          },
+          "motor": {
+            "no": 8,
+            "top2_rate": 33.62,
+            "top3_rate": 50.21
+          },
+          "boat": {
+            "no": 14,
+            "top2_rate": 42.86,
+            "top3_rate": 66.67
+          },
+          "avg_st": 0.14,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "4938 / A1 小芦 るり華 佐賀/佐賀 29歳/47.0kg",
+            "F0 L0 0.14",
+            "6.55 47.62 67.46",
+            "5.50 25.00 56.25",
+            "8 33.62 50.21",
+            "14 42.86 66.67",
+            "",
+            "8",
+            "12",
+            "5",
+            "10",
+            "12",
+            "",
+            "3",
+            "9",
+            "2",
+            "10",
+            "",
+            "",
+            "",
+            "",
+            "10R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            4938.0,
+            0.0,
+            6.55,
+            5.5,
+            8.0,
+            14.0,
+            null,
+            8.0,
+            12.0,
+            5.0,
+            10.0,
+            12.0,
+            null,
+            3.0,
+            9.0,
+            2.0,
+            10.0,
+            null,
+            null,
+            null,
+            null,
+            10.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 6,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5439,
+          "weight": null,
+          "national": {
+            "win_rate": 1.45,
+            "top2_rate": 0.0,
+            "top3_rate": 3.23
+          },
+          "local": {
+            "win_rate": 1.45,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 31,
+            "top2_rate": 39.82,
+            "top3_rate": 53.54
+          },
+          "boat": {
+            "no": 71,
+            "top2_rate": 38.78,
+            "top3_rate": 61.22
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5439 / B2 志賀 美優 愛知/愛知 20歳/49.4kg",
+            "F0 L0 0.21",
+            "1.45 0.00 3.23",
+            "1.45 0.00 0.00",
+            "31 39.82 53.54",
+            "71 38.78 61.22",
+            "",
+            "6",
+            "",
+            "3",
+            "8",
+            "6",
+            "",
+            "4",
+            "8",
+            "2",
+            "8",
+            "2",
+            "",
+            "",
+            "",
+            "2R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5439.0,
+            0.0,
+            1.45,
+            1.45,
+            31.0,
+            71.0,
+            null,
+            6.0,
+            null,
+            3.0,
+            8.0,
+            6.0,
+            null,
+            4.0,
+            8.0,
+            2.0,
+            8.0,
+            2.0,
+            null,
+            null,
+            null,
+            2.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.79,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 2,
+          "name": "竹井 奈美",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.75,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 4765,
+          "weight": null,
+          "national": {
+            "win_rate": 3.87,
+            "top2_rate": 15.49,
+            "top3_rate": 30.99
+          },
+          "local": {
+            "win_rate": 3.75,
+            "top2_rate": 12.5,
+            "top3_rate": 25.0
+          },
+          "motor": {
+            "no": 42,
+            "top2_rate": 38.6,
+            "top3_rate": 54.82
+          },
+          "boat": {
+            "no": 16,
+            "top2_rate": 29.79,
+            "top3_rate": 46.81
+          },
+          "avg_st": 0.13,
+          "f_count": 2,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "4765 / B1 野田部 宏子 福岡/福岡 36歳/51.0kg",
+            "F2 L0 0.13",
+            "3.87 15.49 30.99",
+            "3.75 12.50 25.00",
+            "42 38.60 54.82",
+            "16 29.79 46.81",
+            "",
+            "5",
+            "11",
+            "7",
+            "",
+            "7",
+            "",
+            "9",
+            "",
+            "1",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            4765.0,
+            2.0,
+            3.87,
+            3.75,
+            42.0,
+            16.0,
+            null,
+            5.0,
+            11.0,
+            7.0,
+            null,
+            7.0,
+            null,
+            9.0,
+            null,
+            1.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.69,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4941,
+          "weight": null,
+          "national": {
+            "win_rate": 4.57,
+            "top2_rate": 27.16,
+            "top3_rate": 38.27
+          },
+          "local": {
+            "win_rate": 4.71,
+            "top2_rate": 29.41,
+            "top3_rate": 47.06
+          },
+          "motor": {
+            "no": 12,
+            "top2_rate": 41.33,
+            "top3_rate": 60.0
+          },
+          "boat": {
+            "no": 51,
+            "top2_rate": 22.22,
+            "top3_rate": 33.33
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "4941 / B1 孫崎 百世 滋賀/北海道 37歳/46.0kg",
+            "F0 L0 0.21",
+            "4.57 27.16 38.27",
+            "4.71 29.41 47.06",
+            "12 41.33 60.00",
+            "51 22.22 33.33",
+            "",
+            "4",
+            "10",
+            "1",
+            "10",
+            "3",
+            "11",
+            "8",
+            "",
+            "4",
+            "10",
+            "",
+            "",
+            "",
+            "",
+            "10R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            4941.0,
+            0.0,
+            4.57,
+            4.71,
+            12.0,
+            51.0,
+            null,
+            4.0,
+            10.0,
+            1.0,
+            10.0,
+            3.0,
+            11.0,
+            8.0,
+            null,
+            4.0,
+            10.0,
+            null,
+            null,
+            null,
+            null,
+            10.0
+          ],
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 49.4,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A2",
+          "racer_no": 5155,
+          "weight": null,
+          "national": {
+            "win_rate": 6.16,
+            "top2_rate": 42.86,
+            "top3_rate": 62.5
+          },
+          "local": {
+            "win_rate": 3.33,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 60,
+            "top2_rate": 33.19,
+            "top3_rate": 50.43
+          },
+          "boat": {
+            "no": 12,
+            "top2_rate": 12.77,
+            "top3_rate": 36.17
+          },
+          "avg_st": 0.15,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5155 / A2 内山 七海 福岡/福岡 29歳/45.0kg",
+            "F0 L0 0.15",
+            "6.16 42.86 62.50",
+            "3.33 0.00 0.00",
+            "60 33.19 50.43",
+            "12 12.77 36.17",
+            "",
+            "6",
+            "12",
+            "2",
+            "6",
+            "5",
+            "",
+            "1",
+            "11",
+            "5",
+            "9",
+            "",
+            "",
+            "",
+            "",
+            "11R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5155.0,
+            0.0,
+            6.16,
+            3.33,
+            60.0,
+            12.0,
+            null,
+            6.0,
+            12.0,
+            2.0,
+            6.0,
+            5.0,
+            null,
+            1.0,
+            11.0,
+            5.0,
+            9.0,
+            null,
+            null,
+            null,
+            null,
+            11.0
+          ],
+          "preview": {
+            "weight": 51.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 7,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5436,
+          "weight": null,
+          "national": {
+            "win_rate": 1.49,
+            "top2_rate": 0.0,
+            "top3_rate": 2.67
+          },
+          "local": {
+            "win_rate": 1.12,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 59,
+            "top2_rate": 40.79,
+            "top3_rate": 57.89
+          },
+          "boat": {
+            "no": 62,
+            "top2_rate": 23.91,
+            "top3_rate": 41.3
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5436 / B2 市川 瑚幸 東京/神奈川 21歳/46.0kg",
+            "F0 L0 0.22",
+            "1.49 0.00 2.67",
+            "1.12 0.00 0.00",
+            "59 40.79 57.89",
+            "62 23.91 41.30",
+            "",
+            "4",
+            "",
+            "1",
+            "5",
+            "1",
+            "",
+            "3",
+            "10",
+            "4",
+            "9",
+            "3",
+            "",
+            "",
+            "",
+            "3R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5436.0,
+            0.0,
+            1.49,
+            1.12,
+            59.0,
+            62.0,
+            null,
+            4.0,
+            null,
+            1.0,
+            5.0,
+            1.0,
+            null,
+            3.0,
+            10.0,
+            4.0,
+            9.0,
+            3.0,
+            null,
+            null,
+            null,
+            3.0
+          ],
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 5,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 2,
+          "name": "深見 亜由美",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 4479,
+          "weight": null,
+          "national": {
+            "win_rate": 3.72,
+            "top2_rate": 14.71,
+            "top3_rate": 23.53
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 9,
+            "top2_rate": 40.43,
+            "top3_rate": 56.52
+          },
+          "boat": {
+            "no": 55,
+            "top2_rate": 38.78,
+            "top3_rate": 57.14
+          },
+          "avg_st": 0.19,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "4479 / B1 矢野 真梨菜 山口/福岡 38歳/47.0kg",
+            "F0 L0 0.19",
+            "3.72 14.71 23.53",
+            "0.00 0.00 0.00",
+            "9 40.43 56.52",
+            "55 38.78 57.14",
+            "",
+            "1",
+            "10",
+            "6",
+            "",
+            "1",
+            "6",
+            "2",
+            "12",
+            "1",
+            "7",
+            "2",
+            "",
+            "",
+            "",
+            "2R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            4479.0,
+            0.0,
+            3.72,
+            0.0,
+            9.0,
+            55.0,
+            null,
+            1.0,
+            10.0,
+            6.0,
+            null,
+            1.0,
+            6.0,
+            2.0,
+            12.0,
+            1.0,
+            7.0,
+            2.0,
+            null,
+            null,
+            null,
+            2.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 2
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5194,
+          "weight": null,
+          "national": {
+            "win_rate": 4.54,
+            "top2_rate": 27.63,
+            "top3_rate": 39.47
+          },
+          "local": {
+            "win_rate": 3.25,
+            "top2_rate": 7.14,
+            "top3_rate": 21.43
+          },
+          "motor": {
+            "no": 1,
+            "top2_rate": 36.16,
+            "top3_rate": 54.91
+          },
+          "boat": {
+            "no": 44,
+            "top2_rate": 53.06,
+            "top3_rate": 65.31
+          },
+          "avg_st": 0.18,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5194 / B1 大久保 佑香 埼玉/埼玉 25歳/44.5kg",
+            "F1 L0 0.18",
+            "4.54 27.63 39.47",
+            "3.25 7.14 21.43",
+            "1 36.16 54.91",
+            "44 53.06 65.31",
+            "",
+            "2",
+            "9",
+            "2",
+            "9",
+            "2",
+            "11",
+            "6",
+            "",
+            "2",
+            "6",
+            "1",
+            "",
+            "",
+            "",
+            "1R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5194.0,
+            1.0,
+            4.54,
+            3.25,
+            1.0,
+            44.0,
+            null,
+            2.0,
+            9.0,
+            2.0,
+            9.0,
+            2.0,
+            11.0,
+            6.0,
+            null,
+            2.0,
+            6.0,
+            1.0,
+            null,
+            null,
+            null,
+            1.0
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 8.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": 5203,
+          "weight": null,
+          "national": {
+            "win_rate": 5.2,
+            "top2_rate": 27.85,
+            "top3_rate": 51.9
+          },
+          "local": {
+            "win_rate": 5.0,
+            "top2_rate": 23.08,
+            "top3_rate": 50.0
+          },
+          "motor": {
+            "no": 40,
+            "top2_rate": 33.33,
+            "top3_rate": 49.78
+          },
+          "boat": {
+            "no": 43,
+            "top2_rate": 31.67,
+            "top3_rate": 45.0
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "２",
+            "",
+            "5203 / B1 神里 琴音 福岡/沖縄 22歳/44.5kg",
+            "F0 L0 0.16",
+            "5.20 27.85 51.90",
+            "5.00 23.08 50.00",
+            "40 33.33 49.78",
+            "43 31.67 45.00",
+            "",
+            "7",
+            "",
+            "1",
+            "6",
+            "6",
+            "11",
+            "3",
+            "7",
+            "4",
+            "8",
+            "3",
+            "",
+            "",
+            "",
+            "3R"
+          ],
+          "_raw_numbers": [
+            2.0,
+            null,
+            5203.0,
+            0.0,
+            5.2,
+            5.0,
+            40.0,
+            43.0,
+            null,
+            7.0,
+            null,
+            1.0,
+            6.0,
+            6.0,
+            11.0,
+            3.0,
+            7.0,
+            4.0,
+            8.0,
+            3.0,
+            null,
+            null,
+            null,
+            3.0
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A1",
+          "racer_no": 4825,
+          "weight": null,
+          "national": {
+            "win_rate": 7.16,
+            "top2_rate": 56.1,
+            "top3_rate": 74.8
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 55,
+            "top2_rate": 28.44,
+            "top3_rate": 46.45
+          },
+          "boat": {
+            "no": 54,
+            "top2_rate": 17.39,
+            "top3_rate": 41.3
+          },
+          "avg_st": 0.14,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "4825 / A1 倉持 莉々 東京/茨城 32歳/46.5kg",
+            "F0 L0 0.14",
+            "7.16 56.10 74.80",
+            "0.00 0.00 0.00",
+            "55 28.44 46.45",
+            "54 17.39 41.30",
+            "",
+            "12",
+            "",
+            "6",
+            "10",
+            "3",
+            "8",
+            "8",
+            "12",
+            "5",
+            "12",
+            "",
+            "",
+            "",
+            "",
+            "11R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            4825.0,
+            0.0,
+            7.16,
+            0.0,
+            55.0,
+            54.0,
+            null,
+            12.0,
+            null,
+            6.0,
+            10.0,
+            3.0,
+            8.0,
+            8.0,
+            12.0,
+            5.0,
+            12.0,
+            null,
+            null,
+            null,
+            null,
+            11.0
+          ],
+          "preview": {
+            "weight": 46.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 5,
+          "motor_top2_rate_rank": 5,
+          "exhibition_time_rank": 4
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 8,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B2",
+          "racer_no": 5438,
+          "weight": null,
+          "national": {
+            "win_rate": 1.56,
+            "top2_rate": 0.0,
+            "top3_rate": 1.64
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 5,
+            "top2_rate": 35.56,
+            "top3_rate": 55.65
+          },
+          "boat": {
+            "no": 45,
+            "top2_rate": 24.44,
+            "top3_rate": 44.44
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5438 / B2 星田 夢結 福岡/福岡 21歳/49.6kg",
+            "F0 L0 0.22",
+            "1.56 0.00 1.64",
+            "0.00 0.00 0.00",
+            "5 35.56 55.65",
+            "45 24.44 44.44",
+            "",
+            "3",
+            "9",
+            "4",
+            "",
+            "4",
+            "9",
+            "2",
+            "6",
+            "6",
+            "",
+            "1",
+            "",
+            "",
+            "",
+            "1R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5438.0,
+            0.0,
+            1.56,
+            0.0,
+            5.0,
+            45.0,
+            null,
+            3.0,
+            9.0,
+            4.0,
+            null,
+            4.0,
+            9.0,
+            2.0,
+            6.0,
+            6.0,
+            null,
+            1.0,
+            null,
+            null,
+            null,
+            1.0
+          ],
+          "preview": {
+            "weight": 45.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 2,
+          "name": "井澤 聖奈",
+          "class": "B2",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 35.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.68,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5346,
+          "weight": null,
+          "national": {
+            "win_rate": 3.13,
+            "top2_rate": 6.94,
+            "top3_rate": 18.06
+          },
+          "local": {
+            "win_rate": 1.44,
+            "top2_rate": 0.0,
+            "top3_rate": 3.85
+          },
+          "motor": {
+            "no": 7,
+            "top2_rate": 36.96,
+            "top3_rate": 53.48
+          },
+          "boat": {
+            "no": 28,
+            "top2_rate": 31.11,
+            "top3_rate": 48.89
+          },
+          "avg_st": 0.22,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5346 / B1 中村 紋夕梨 愛知/愛知 23歳/46.0kg",
+            "F0 L0 0.22",
+            "3.13 6.94 18.06",
+            "1.44 0.00 3.85",
+            "7 36.96 53.48",
+            "28 31.11 48.89",
+            "",
+            "7",
+            "",
+            "3",
+            "10",
+            "2",
+            "9",
+            "4",
+            "9",
+            "3",
+            "",
+            "3",
+            "",
+            "",
+            "",
+            "3R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5346.0,
+            0.0,
+            3.13,
+            1.44,
+            7.0,
+            28.0,
+            null,
+            7.0,
+            null,
+            3.0,
+            10.0,
+            2.0,
+            9.0,
+            4.0,
+            9.0,
+            3.0,
+            null,
+            3.0,
+            null,
+            null,
+            null,
+            3.0
+          ],
+          "preview": {
+            "weight": 47.6,
+            "adjust_weight": null,
+            "exhibition_time": 6.75,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4045,
+          "weight": null,
+          "national": {
+            "win_rate": 4.8,
+            "top2_rate": 32.56,
+            "top3_rate": 44.19
+          },
+          "local": {
+            "win_rate": 5.31,
+            "top2_rate": 25.0,
+            "top3_rate": 50.0
+          },
+          "motor": {
+            "no": 50,
+            "top2_rate": 33.48,
+            "top3_rate": 49.55
+          },
+          "boat": {
+            "no": 41,
+            "top2_rate": 22.22,
+            "top3_rate": 42.22
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "4045 / B1 佐々木 裕美 山口/山口 46歳/47.0kg",
+            "F0 L0 0.17",
+            "4.80 32.56 44.19",
+            "5.31 25.00 50.00",
+            "50 33.48 49.55",
+            "41 22.22 42.22",
+            "",
+            "4",
+            "8",
+            "3",
+            "",
+            "3",
+            "12",
+            "2",
+            "9",
+            "1",
+            "9",
+            "3",
+            "",
+            "",
+            "",
+            "3R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            4045.0,
+            0.0,
+            4.8,
+            5.31,
+            50.0,
+            41.0,
+            null,
+            4.0,
+            8.0,
+            3.0,
+            null,
+            3.0,
+            12.0,
+            2.0,
+            9.0,
+            1.0,
+            9.0,
+            3.0,
+            null,
+            null,
+            null,
+            3.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 2
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "南 彩寧",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 49.6,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 3
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 9,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "B1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 2,
+          "name": "選手2号艇",
+          "class": "B2",
+          "racer_no": 5251,
+          "weight": null,
+          "national": {
+            "win_rate": 2.53,
+            "top2_rate": 2.78,
+            "top3_rate": 13.89
+          },
+          "local": {
+            "win_rate": 1.56,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 14,
+            "top2_rate": 46.88,
+            "top3_rate": 62.95
+          },
+          "boat": {
+            "no": 61,
+            "top2_rate": 15.22,
+            "top3_rate": 34.78
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "２",
+            "",
+            "5251 / B2 沼田 七華 福井/石川 24歳/49.8kg",
+            "F0 L0 0.17",
+            "2.53 2.78 13.89",
+            "1.56 0.00 0.00",
+            "14 46.88 62.95",
+            "61 15.22 34.78",
+            "",
+            "1",
+            "5",
+            "6",
+            "",
+            "2",
+            "7",
+            "4",
+            "11",
+            "1",
+            "6",
+            "5",
+            "",
+            "",
+            "",
+            "5R"
+          ],
+          "_raw_numbers": [
+            2.0,
+            null,
+            5251.0,
+            0.0,
+            2.53,
+            1.56,
+            14.0,
+            61.0,
+            null,
+            1.0,
+            5.0,
+            6.0,
+            null,
+            2.0,
+            7.0,
+            4.0,
+            11.0,
+            1.0,
+            6.0,
+            5.0,
+            null,
+            null,
+            null,
+            5.0
+          ],
+          "preview": {
+            "weight": 49.8,
+            "adjust_weight": null,
+            "exhibition_time": 6.71,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 5324,
+          "weight": null,
+          "national": {
+            "win_rate": 3.09,
+            "top2_rate": 4.41,
+            "top3_rate": 16.18
+          },
+          "local": {
+            "win_rate": 1.12,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 52,
+            "top2_rate": 34.4,
+            "top3_rate": 51.38
+          },
+          "boat": {
+            "no": 35,
+            "top2_rate": 37.5,
+            "top3_rate": 47.92
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5324 / B1 畑田 希咲 兵庫/兵庫 23歳/48.5kg",
+            "F0 L0 0.21",
+            "3.09 4.41 16.18",
+            "1.12 0.00 0.00",
+            "52 34.40 51.38",
+            "35 37.50 47.92",
+            "",
+            "3",
+            "",
+            "2",
+            "8",
+            "4",
+            "",
+            "1",
+            "7",
+            "1",
+            "8",
+            "5",
+            "",
+            "",
+            "",
+            "5R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5324.0,
+            0.0,
+            3.09,
+            1.12,
+            52.0,
+            35.0,
+            null,
+            3.0,
+            null,
+            2.0,
+            8.0,
+            4.0,
+            null,
+            1.0,
+            7.0,
+            1.0,
+            8.0,
+            5.0,
+            null,
+            null,
+            null,
+            5.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.75,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 5052,
+          "weight": null,
+          "national": {
+            "win_rate": 4.34,
+            "top2_rate": 24.0,
+            "top3_rate": 36.0
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 3,
+            "top2_rate": 45.06,
+            "top3_rate": 61.8
+          },
+          "boat": {
+            "no": 33,
+            "top2_rate": 22.86,
+            "top3_rate": 40.0
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "5052 / B1 赤井 星璃菜 大阪/大阪 31歳/49.8kg",
+            "F0 L0 0.16",
+            "4.34 24.00 36.00",
+            "0.00 0.00 0.00",
+            "3 45.06 61.80",
+            "33 22.86 40.00",
+            "",
+            "2",
+            "6",
+            "1",
+            "11",
+            "4",
+            "10",
+            "7",
+            "",
+            "7",
+            "",
+            "1",
+            "",
+            "",
+            "",
+            "1R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            5052.0,
+            0.0,
+            4.34,
+            0.0,
+            3.0,
+            33.0,
+            null,
+            2.0,
+            6.0,
+            1.0,
+            11.0,
+            4.0,
+            10.0,
+            7.0,
+            null,
+            7.0,
+            null,
+            1.0,
+            null,
+            null,
+            null,
+            1.0
+          ],
+          "preview": {
+            "weight": 48.5,
+            "adjust_weight": null,
+            "exhibition_time": 8.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 5129,
+          "weight": null,
+          "national": {
+            "win_rate": 5.95,
+            "top2_rate": 41.23,
+            "top3_rate": 58.77
+          },
+          "local": {
+            "win_rate": 6.48,
+            "top2_rate": 52.0,
+            "top3_rate": 60.0
+          },
+          "motor": {
+            "no": 13,
+            "top2_rate": 34.1,
+            "top3_rate": 49.77
+          },
+          "boat": {
+            "no": 40,
+            "top2_rate": 36.17,
+            "top3_rate": 55.32
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5129 / A2 山口 真喜子 長崎/長崎 29歳/47.4kg",
+            "F0 L0 0.17",
+            "5.95 41.23 58.77",
+            "6.48 52.00 60.00",
+            "13 34.10 49.77",
+            "40 36.17 55.32",
+            "",
+            "5",
+            "",
+            "1",
+            "9",
+            "4",
+            "12",
+            "5",
+            "11",
+            "1",
+            "7",
+            "4",
+            "",
+            "",
+            "",
+            "4R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5129.0,
+            0.0,
+            5.95,
+            6.48,
+            13.0,
+            40.0,
+            null,
+            5.0,
+            null,
+            1.0,
+            9.0,
+            4.0,
+            12.0,
+            5.0,
+            11.0,
+            1.0,
+            7.0,
+            4.0,
+            null,
+            null,
+            null,
+            4.0
+          ],
+          "preview": {
+            "weight": 49.8,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "山川 美由紀",
+          "class": "A2",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.4,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 10,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 2,
+          "name": "小芦 るり華",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 36.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.74,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B2",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.76,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4941,
+          "weight": null,
+          "national": {
+            "win_rate": 4.57,
+            "top2_rate": 27.16,
+            "top3_rate": 38.27
+          },
+          "local": {
+            "win_rate": 4.71,
+            "top2_rate": 29.41,
+            "top3_rate": 47.06
+          },
+          "motor": {
+            "no": 12,
+            "top2_rate": 41.33,
+            "top3_rate": 60.0
+          },
+          "boat": {
+            "no": 51,
+            "top2_rate": 22.22,
+            "top3_rate": 33.33
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "4941 / B1 孫崎 百世 滋賀/北海道 37歳/46.0kg",
+            "F0 L0 0.21",
+            "4.57 27.16 38.27",
+            "4.71 29.41 47.06",
+            "12 41.33 60.00",
+            "51 22.22 33.33",
+            "",
+            "4",
+            "10",
+            "1",
+            "10",
+            "3",
+            "11",
+            "8",
+            "",
+            "4",
+            "10",
+            "6",
+            "",
+            "",
+            "",
+            "6R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            4941.0,
+            0.0,
+            4.57,
+            4.71,
+            12.0,
+            51.0,
+            null,
+            4.0,
+            10.0,
+            1.0,
+            10.0,
+            3.0,
+            11.0,
+            8.0,
+            null,
+            4.0,
+            10.0,
+            6.0,
+            null,
+            null,
+            null,
+            6.0
+          ],
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "B1",
+          "racer_no": 5079,
+          "weight": null,
+          "national": {
+            "win_rate": 5.07,
+            "top2_rate": 29.27,
+            "top3_rate": 51.22
+          },
+          "local": {
+            "win_rate": 4.03,
+            "top2_rate": 25.81,
+            "top3_rate": 32.26
+          },
+          "motor": {
+            "no": 16,
+            "top2_rate": 38.91,
+            "top3_rate": 56.9
+          },
+          "boat": {
+            "no": 20,
+            "top2_rate": 30.61,
+            "top3_rate": 48.98
+          },
+          "avg_st": 0.17,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5079 / B1 大石 真央 静岡/静岡 28歳/44.5kg",
+            "F1 L0 0.17",
+            "5.07 29.27 51.22",
+            "4.03 25.81 32.26",
+            "16 38.91 56.90",
+            "20 30.61 48.98",
+            "",
+            "6",
+            "",
+            "4",
+            "10",
+            "4",
+            "8",
+            "3",
+            "12",
+            "7",
+            "11",
+            "3",
+            "",
+            "",
+            "",
+            "3R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5079.0,
+            1.0,
+            5.07,
+            4.03,
+            16.0,
+            20.0,
+            null,
+            6.0,
+            null,
+            4.0,
+            10.0,
+            4.0,
+            8.0,
+            3.0,
+            12.0,
+            7.0,
+            11.0,
+            3.0,
+            null,
+            null,
+            null,
+            3.0
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A1",
+          "racer_no": 4556,
+          "weight": null,
+          "national": {
+            "win_rate": 6.67,
+            "top2_rate": 52.17,
+            "top3_rate": 67.39
+          },
+          "local": {
+            "win_rate": 5.89,
+            "top2_rate": 44.44,
+            "top3_rate": 55.56
+          },
+          "motor": {
+            "no": 4,
+            "top2_rate": 30.0,
+            "top3_rate": 44.78
+          },
+          "boat": {
+            "no": 57,
+            "top2_rate": 40.0,
+            "top3_rate": 58.0
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "4556 / A1 竹井 奈美 福岡/福岡 37歳/47.0kg",
+            "F0 L0 0.16",
+            "6.67 52.17 67.39",
+            "5.89 44.44 55.56",
+            "4 30.00 44.78",
+            "57 40.00 58.00",
+            "",
+            "6",
+            "11",
+            "8",
+            "12",
+            "10",
+            "",
+            "6",
+            "11",
+            "3",
+            "11",
+            "6",
+            "",
+            "",
+            "",
+            "6R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            4556.0,
+            0.0,
+            6.67,
+            5.89,
+            4.0,
+            57.0,
+            null,
+            6.0,
+            11.0,
+            8.0,
+            12.0,
+            10.0,
+            null,
+            6.0,
+            11.0,
+            3.0,
+            11.0,
+            6.0,
+            null,
+            null,
+            null,
+            6.0
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 11,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 46.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.71,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 2,
+          "name": "倉持 莉々",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.69,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B1",
+          "racer_no": 4534,
+          "weight": null,
+          "national": {
+            "win_rate": 3.93,
+            "top2_rate": 17.24,
+            "top3_rate": 32.76
+          },
+          "local": {
+            "win_rate": 3.65,
+            "top2_rate": 23.53,
+            "top3_rate": 23.53
+          },
+          "motor": {
+            "no": 24,
+            "top2_rate": 32.3,
+            "top3_rate": 48.67
+          },
+          "boat": {
+            "no": 32,
+            "top2_rate": 48.65,
+            "top3_rate": 67.57
+          },
+          "avg_st": 0.21,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "4534 / B1 坂 咲友理 大阪/奈良 36歳/46.0kg",
+            "F0 L0 0.21",
+            "3.93 17.24 32.76",
+            "3.65 23.53 23.53",
+            "24 32.30 48.67",
+            "32 48.65 67.57",
+            "",
+            "1",
+            "8",
+            "8",
+            "",
+            "2",
+            "8",
+            "1",
+            "6",
+            "3",
+            "12",
+            "4",
+            "",
+            "",
+            "",
+            "4R"
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            4534.0,
+            0.0,
+            3.93,
+            3.65,
+            24.0,
+            32.0,
+            null,
+            1.0,
+            8.0,
+            8.0,
+            null,
+            2.0,
+            8.0,
+            1.0,
+            6.0,
+            3.0,
+            12.0,
+            4.0,
+            null,
+            null,
+            null,
+            4.0
+          ],
+          "preview": {
+            "weight": 50.6,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4909,
+          "weight": null,
+          "national": {
+            "win_rate": 4.72,
+            "top2_rate": 32.05,
+            "top3_rate": 43.59
+          },
+          "local": {
+            "win_rate": 5.61,
+            "top2_rate": 32.14,
+            "top3_rate": 53.57
+          },
+          "motor": {
+            "no": 41,
+            "top2_rate": 35.02,
+            "top3_rate": 50.21
+          },
+          "boat": {
+            "no": 53,
+            "top2_rate": 36.96,
+            "top3_rate": 47.83
+          },
+          "avg_st": 0.16,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "4909 / B1 薮内 瑞希 岡山/岡山 30歳/44.5kg",
+            "F1 L0 0.16",
+            "4.72 32.05 43.59",
+            "5.61 32.14 53.57",
+            "41 35.02 50.21",
+            "53 36.96 47.83",
+            "",
+            "2",
+            "11",
+            "3",
+            "9",
+            "5",
+            "",
+            "1",
+            "9",
+            "3",
+            "11",
+            "2",
+            "",
+            "",
+            "",
+            "2R"
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            4909.0,
+            1.0,
+            4.72,
+            5.61,
+            41.0,
+            53.0,
+            null,
+            2.0,
+            11.0,
+            3.0,
+            9.0,
+            5.0,
+            null,
+            1.0,
+            9.0,
+            3.0,
+            11.0,
+            2.0,
+            null,
+            null,
+            null,
+            2.0
+          ],
+          "preview": {
+            "weight": 44.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.72,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 5146,
+          "weight": null,
+          "national": {
+            "win_rate": 5.11,
+            "top2_rate": 32.53,
+            "top3_rate": 51.81
+          },
+          "local": {
+            "win_rate": 4.92,
+            "top2_rate": 16.67,
+            "top3_rate": 37.5
+          },
+          "motor": {
+            "no": 17,
+            "top2_rate": 30.39,
+            "top3_rate": 46.57
+          },
+          "boat": {
+            "no": 73,
+            "top2_rate": 46.94,
+            "top3_rate": 67.35
+          },
+          "avg_st": 0.16,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "３",
+            "",
+            "5146 / A2 野田 彩加 山口/山口 23歳/50.6kg",
+            "F0 L0 0.16",
+            "5.11 32.53 51.81",
+            "4.92 16.67 37.50",
+            "17 30.39 46.57",
+            "73 46.94 67.35",
+            "",
+            "2",
+            "7",
+            "4",
+            "12",
+            "1",
+            "9",
+            "7",
+            "",
+            "6",
+            "12",
+            "5",
+            "",
+            "",
+            "",
+            "5R"
+          ],
+          "_raw_numbers": [
+            3.0,
+            null,
+            5146.0,
+            0.0,
+            5.11,
+            4.92,
+            17.0,
+            73.0,
+            null,
+            2.0,
+            7.0,
+            4.0,
+            12.0,
+            1.0,
+            9.0,
+            7.0,
+            null,
+            6.0,
+            12.0,
+            5.0,
+            null,
+            null,
+            null,
+            5.0
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": -0.5,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A2",
+          "racer_no": 5155,
+          "weight": null,
+          "national": {
+            "win_rate": 6.16,
+            "top2_rate": 42.86,
+            "top3_rate": 62.5
+          },
+          "local": {
+            "win_rate": 3.33,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 60,
+            "top2_rate": 33.19,
+            "top3_rate": 50.43
+          },
+          "boat": {
+            "no": 12,
+            "top2_rate": 12.77,
+            "top3_rate": 36.17
+          },
+          "avg_st": 0.15,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "5155 / A2 内山 七海 福岡/福岡 29歳/45.0kg",
+            "F0 L0 0.15",
+            "6.16 42.86 62.50",
+            "3.33 0.00 0.00",
+            "60 33.19 50.43",
+            "12 12.77 36.17",
+            "",
+            "6",
+            "12",
+            "2",
+            "6",
+            "5",
+            "",
+            "1",
+            "11",
+            "5",
+            "9",
+            "6",
+            "",
+            "",
+            "",
+            "6R"
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            5155.0,
+            0.0,
+            6.16,
+            3.33,
+            60.0,
+            12.0,
+            null,
+            6.0,
+            12.0,
+            2.0,
+            6.0,
+            5.0,
+            null,
+            1.0,
+            11.0,
+            5.0,
+            9.0,
+            6.0,
+            null,
+            null,
+            null,
+            6.0
+          ],
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    },
+    {
+      "race_no": 12,
+      "racers": [
+        {
+          "no": 1,
+          "name": "選手1号艇",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 45.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.75,
+            "tilt": 1.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 6
+        },
+        {
+          "no": 2,
+          "name": "遠藤 エミ",
+          "class": "A1",
+          "racer_no": null,
+          "weight": null,
+          "national": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "local": {
+            "win_rate": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "motor": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "boat": {
+            "no": null,
+            "top2_rate": null,
+            "top3_rate": null
+          },
+          "avg_st": null,
+          "f_count": null,
+          "l_count": null,
+          "preview": {
+            "weight": 47.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": null,
+          "local_win_rate_rank": null,
+          "motor_top2_rate_rank": null,
+          "exhibition_time_rank": 4
+        },
+        {
+          "no": 3,
+          "name": "選手3号艇",
+          "class": "B2",
+          "racer_no": 4726,
+          "weight": null,
+          "national": {
+            "win_rate": 3.6,
+            "top2_rate": 10.0,
+            "top3_rate": 20.0
+          },
+          "local": {
+            "win_rate": 0.0,
+            "top2_rate": 0.0,
+            "top3_rate": 0.0
+          },
+          "motor": {
+            "no": 57,
+            "top2_rate": 33.78,
+            "top3_rate": 53.6
+          },
+          "boat": {
+            "no": 68,
+            "top2_rate": 32.0,
+            "top3_rate": 42.0
+          },
+          "avg_st": 0.14,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "６",
+            "",
+            "4726 / B2 島田 なぎさ 埼玉/埼玉 39歳/45.5kg",
+            "F0 L0 0.14",
+            "3.60 10.00 20.00",
+            "0.00 0.00 0.00",
+            "57 33.78 53.60",
+            "68 32.00 42.00",
+            "",
+            "7",
+            "",
+            "2",
+            "10",
+            "6",
+            "12",
+            "3",
+            "8",
+            "3",
+            "10",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            6.0,
+            null,
+            4726.0,
+            0.0,
+            3.6,
+            0.0,
+            57.0,
+            68.0,
+            null,
+            7.0,
+            null,
+            2.0,
+            10.0,
+            6.0,
+            12.0,
+            3.0,
+            8.0,
+            3.0,
+            10.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 46.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.69,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 4,
+          "local_win_rate_rank": 4,
+          "motor_top2_rate_rank": 3,
+          "exhibition_time_rank": 3
+        },
+        {
+          "no": 4,
+          "name": "選手4号艇",
+          "class": "B1",
+          "racer_no": 4764,
+          "weight": null,
+          "national": {
+            "win_rate": 4.88,
+            "top2_rate": 30.0,
+            "top3_rate": 50.0
+          },
+          "local": {
+            "win_rate": 5.78,
+            "top2_rate": 27.78,
+            "top3_rate": 61.11
+          },
+          "motor": {
+            "no": 39,
+            "top2_rate": 37.79,
+            "top3_rate": 52.53
+          },
+          "boat": {
+            "no": 38,
+            "top2_rate": 29.79,
+            "top3_rate": 46.81
+          },
+          "avg_st": 0.16,
+          "f_count": 1,
+          "l_count": 0,
+          "_raw_cells": [
+            "５",
+            "",
+            "4764 / B1 小池 礼乃 福岡/福岡 36歳/46.5kg",
+            "F1 L0 0.16",
+            "4.88 30.00 50.00",
+            "5.78 27.78 61.11",
+            "39 37.79 52.53",
+            "38 29.79 46.81",
+            "",
+            "3",
+            "8",
+            "3",
+            "",
+            "2",
+            "10",
+            "4",
+            "12",
+            "2",
+            "12",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            5.0,
+            null,
+            4764.0,
+            1.0,
+            4.88,
+            5.78,
+            39.0,
+            38.0,
+            null,
+            3.0,
+            8.0,
+            3.0,
+            null,
+            2.0,
+            10.0,
+            4.0,
+            12.0,
+            2.0,
+            12.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 46.0,
+            "adjust_weight": null,
+            "exhibition_time": 6.73,
+            "tilt": 3.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 3,
+          "local_win_rate_rank": 3,
+          "motor_top2_rate_rank": 1,
+          "exhibition_time_rank": 5
+        },
+        {
+          "no": 5,
+          "name": "選手5号艇",
+          "class": "A2",
+          "racer_no": 5188,
+          "weight": null,
+          "national": {
+            "win_rate": 5.97,
+            "top2_rate": 39.05,
+            "top3_rate": 57.14
+          },
+          "local": {
+            "win_rate": 6.47,
+            "top2_rate": 46.67,
+            "top3_rate": 66.67
+          },
+          "motor": {
+            "no": 58,
+            "top2_rate": 31.22,
+            "top3_rate": 44.34
+          },
+          "boat": {
+            "no": 66,
+            "top2_rate": 21.43,
+            "top3_rate": 35.71
+          },
+          "avg_st": 0.17,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "４",
+            "",
+            "5188 / A2 武井 莉里佳 兵庫/兵庫 25歳/46.0kg",
+            "F0 L0 0.17",
+            "5.97 39.05 57.14",
+            "6.47 46.67 66.67",
+            "58 31.22 44.34",
+            "66 21.43 35.71",
+            "",
+            "1",
+            "11",
+            "12",
+            "",
+            "2",
+            "6",
+            "5",
+            "9",
+            "4",
+            "11",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            4.0,
+            null,
+            5188.0,
+            0.0,
+            5.97,
+            6.47,
+            58.0,
+            66.0,
+            null,
+            1.0,
+            11.0,
+            12.0,
+            null,
+            2.0,
+            6.0,
+            5.0,
+            9.0,
+            4.0,
+            11.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 46.5,
+            "adjust_weight": null,
+            "exhibition_time": 5.0,
+            "tilt": 0.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 2,
+          "local_win_rate_rank": 2,
+          "motor_top2_rate_rank": 4,
+          "exhibition_time_rank": 1
+        },
+        {
+          "no": 6,
+          "name": "選手6号艇",
+          "class": "A2",
+          "racer_no": 4964,
+          "weight": null,
+          "national": {
+            "win_rate": 6.28,
+            "top2_rate": 42.86,
+            "top3_rate": 64.76
+          },
+          "local": {
+            "win_rate": 6.74,
+            "top2_rate": 52.63,
+            "top3_rate": 73.68
+          },
+          "motor": {
+            "no": 21,
+            "top2_rate": 34.21,
+            "top3_rate": 53.95
+          },
+          "boat": {
+            "no": 19,
+            "top2_rate": 36.96,
+            "top3_rate": 47.83
+          },
+          "avg_st": 0.15,
+          "f_count": 0,
+          "l_count": 0,
+          "_raw_cells": [
+            "２",
+            "",
+            "4964 / A2 土屋 南 岡山/岡山 29歳/47.0kg",
+            "F0 L0 0.15",
+            "6.28 42.86 64.76",
+            "6.74 52.63 73.68",
+            "21 34.21 53.95",
+            "19 36.96 47.83",
+            "",
+            "5",
+            "12",
+            "5",
+            "11",
+            "7",
+            "",
+            "2",
+            "10",
+            "7",
+            "11",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "_raw_numbers": [
+            2.0,
+            null,
+            4964.0,
+            0.0,
+            6.28,
+            6.74,
+            21.0,
+            19.0,
+            null,
+            5.0,
+            12.0,
+            5.0,
+            11.0,
+            7.0,
+            null,
+            2.0,
+            10.0,
+            7.0,
+            11.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "preview": {
+            "weight": 45.5,
+            "adjust_weight": null,
+            "exhibition_time": 6.0,
+            "tilt": 2.0,
+            "propeller_changed": false,
+            "parts_exchange": [],
+            "start_exhibition": {
+              "course": null,
+              "st": null
+            },
+            "original_exhibition": {
+              "one_lap": null,
+              "turn": null,
+              "straight": null,
+              "half_lap": null,
+              "source": null
+            }
+          },
+          "national_win_rate_rank": 1,
+          "local_win_rate_rank": 1,
+          "motor_top2_rate_rank": 2,
+          "exhibition_time_rank": 2
+        }
+      ],
+      "tide": {
+        "date": "2026/09/17",
+        "high_tides": [
+          {
+            "time": "9:31",
+            "level_cm": 190.0
+          },
+          {
+            "time": "20:30",
+            "level_cm": 205.0
+          }
+        ],
+        "low_tides": [
+          {
+            "time": "2:49",
+            "level_cm": 61.0
+          },
+          {
+            "time": "14:44",
+            "level_cm": 124.0
+          }
+        ],
+        "source": "JMA",
+        "source_url": "https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=ZD&ye=2026&ys=2026&me=9&ms=9&ds=10&de=24&LV=DL&S_HILO=on",
+        "station_code": "ZD",
+        "retrieved_at": "2026-09-17T08:53:32",
+        "mapping": {
+          "stadium": "常滑",
+          "station_name": "鬼崎",
+          "confidence": "high"
+        }
+      }
+    }
+  ],
+  "updated_at": "2026-09-17T08:54:31",
+  "data_contract": {
+    "stable": "race_card",
+    "realtime": "before_info",
+    "optional": "original_exhibition"
+  }
 }
