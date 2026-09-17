@@ -3,179 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ボートレース 24場対応 俺の採点 ＆ 展開予想</title>
+    <title>シン・俺表</title>
     <style>
         :root {
-            --primary-color: #005f73;
-            --secondary-color: #0a9396;
+            --primary-color: #0a2f4e;
+            --primary-color-light: #14507f;
             --accent-color: #ee9b00;
-            --danger-color: #ae2012;
-            --bg-color: #f4f6f8;
+            --danger-color: #c1121f;
+            --bg-color: #f2f4f7;
             --card-bg: #ffffff;
-            --text-color: #333333;
+            --text-color: #232323;
+            --text-muted: #6b7280;
+            --border-color: #e2e5ea;
+
+            --boat-1: #4a4a4a;
+            --boat-2: #111111;
+            --boat-3: #d90429;
+            --boat-4: #0077b6;
+            --boat-5: #d4a900;
+            --boat-6: #2a9d3f;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 15px;
-            line-height: 1.5;
+            padding: 0 0 40px;
+            line-height: 1.55;
         }
         .container {
-            max-width: 800px;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 14px;
+        }
+        header.app-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
+            color: #fff;
+            padding: 22px 14px 26px;
+            margin-bottom: -14px;
+        }
+        header.app-header .inner {
+            max-width: 720px;
             margin: 0 auto;
         }
         h1 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 0;
             text-align: center;
-            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+        h1 .sub {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 4px;
         }
         .card {
             background: var(--card-bg);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06);
+            border: 1px solid var(--border-color);
+        }
+        .control-card {
+            margin-top: 18px;
         }
         .race-header-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
         }
-        @media (min-width: 600px) {
-            .race-header-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
+        @media (min-width: 560px) {
+            .race-header-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
         .form-group label {
             display: block;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #666;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-muted);
         }
         select, input[type="date"] {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
             background: #fff;
-            box-sizing: border-box;
-        }
-        .boat-card {
-            border-left: 5px solid #ccc;
-            margin-bottom: 12px;
-        }
-        .boat-1 { border-left-color: #333333; }
-        .boat-2 { border-left-color: #d90429; }
-        .boat-3 { border-left-color: #ffb703; }
-        .boat-4 { border-left-color: #0077b6; }
-        .boat-5 { border-left-color: #2b2d42; }
-        .boat-6 { border-left-color: #38b000; }
-
-        .boat-title {
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-        .evaluation-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-        }
-        .evaluation-row span {
-            width: 50px;
-            font-weight: bold;
-        }
-        .radio-group {
-            display: flex;
-            gap: 12px;
-        }
-        .radio-group label {
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        .memo-input {
-            width: 100%;
-            padding: 6px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-        .hinao-check {
-            margin-top: 8px;
-            font-size: 0.85rem;
-            color: var(--danger-color);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
+            color: var(--text-color);
         }
         .btn-action {
             display: block;
             width: 100%;
             background: var(--primary-color);
-            color: white;
+            color: #fff;
             border: none;
-            padding: 10px;
+            padding: 12px;
             font-size: 0.95rem;
-            font-weight: bold;
-            border-radius: 6px;
+            font-weight: 700;
+            border-radius: 10px;
             cursor: pointer;
             text-align: center;
-            margin-top: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 14px;
+            transition: background 0.15s ease;
         }
-        .btn-action:hover {
-            background: #004d5b;
+        .btn-action:hover { background: var(--primary-color-light); }
+
+        /* 艇カード群：PCでは2カラム、スマホでは1カラム */
+        #boats-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        @media (min-width: 720px) {
+            #boats-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        .boat-card {
+            border-top: 5px solid #ccc;
+            padding-top: 14px;
+        }
+        .boat-1 { border-top-color: var(--boat-1); }
+        .boat-2 { border-top-color: var(--boat-2); }
+        .boat-3 { border-top-color: var(--boat-3); }
+        .boat-4 { border-top-color: var(--boat-4); }
+        .boat-5 { border-top-color: var(--boat-5); }
+        .boat-6 { border-top-color: var(--boat-6); }
+
+        .boat-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.02rem;
+            margin-bottom: 12px;
+        }
+        .boat-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .boat-1 .boat-badge { background: var(--boat-1); }
+        .boat-2 .boat-badge { background: var(--boat-2); }
+        .boat-3 .boat-badge { background: var(--boat-3); }
+        .boat-4 .boat-badge { background: var(--boat-4); }
+        .boat-5 .boat-badge { background: var(--boat-5); color: #3a2e00; }
+        .boat-6 .boat-badge { background: var(--boat-6); }
+
+        .boat-name {
+            flex: 1;
+            /* 名前の間の余分な空白を潰しても崩れないように */
+            white-space: normal;
+            word-break: keep-all;
+        }
+        .class-chip {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            background: #eef3f8;
+            border-radius: 6px;
+            padding: 2px 8px;
+            flex-shrink: 0;
+        }
+
+        .evaluation-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            gap: 8px;
+        }
+        .evaluation-row > span {
+            width: 42px;
+            font-weight: 700;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        /* ラジオ群をセグメントボタン化して幅を揃える(ガタガタ対策) */
+        .segmented {
+            display: flex;
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .segmented label {
+            flex: 1;
+            text-align: center;
+            padding: 7px 0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: #fafbfc;
+            border-right: 1px solid var(--border-color);
+            color: var(--text-muted);
+            transition: background 0.15s ease, color 0.15s ease;
+            user-select: none;
+        }
+        .segmented label:last-child { border-right: none; }
+        .segmented input { display: none; }
+        .segmented input:checked + label {
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .hinao-check {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--danger-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .memo-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: 6px;
         }
         .btn-submit {
             display: block;
             width: 100%;
             background: var(--accent-color);
-            color: white;
+            color: #fff;
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
+            font-weight: 700;
+            border-radius: 10px;
             cursor: pointer;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 15px;
+            margin-top: 18px;
         }
-        .btn-submit:hover {
-            background: #d48800;
-        }
+        .btn-submit:hover { background: #d48800; }
+
         .result-box {
-            background: #e8f4f8;
-            border: 1px solid #b8e0ed;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
+            background: #eaf3fb;
+            border: 1px solid #c9e2f2;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 18px;
             display: none;
         }
-        .result-box h2 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
+        .result-box h2 { font-size: 1.05rem; color: var(--primary-color); margin-top: 0; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🚤 ボートレース 24場対応 俺の採点 ＆ 展開予想</h1>
+<header class="app-header">
+    <div class="inner">
+        <h1>🚤 シン・俺表
+            <span class="sub">ボートレース 24場対応 俺の採点 ＆ 展開予想</span>
+        </h1>
+    </div>
+</header>
 
-    <!-- レース選択カード -->
-    <div class="card">
+<div class="container">
+    <div class="card control-card">
         <div class="race-header-grid">
             <div class="form-group">
                 <label>開催日</label>
@@ -236,12 +334,10 @@
         <button class="btn-action" onclick="loadRaceData()">🔄 この条件でレースデータを読み込む</button>
     </div>
 
-    <!-- 採点パネル (1〜6号艇) -->
     <div id="boats-container"></div>
 
     <button class="btn-submit" onclick="generatePrediction()">🤖 AIに展開予想と買い目を作らせる</button>
 
-    <!-- 結果表示エリア -->
     <div class="result-box" id="result-area">
         <h2 id="result-title">🧠 展開シナリオ ＆ 推奨買い目</h2>
         <div id="result-content"></div>
@@ -251,11 +347,14 @@
 <script>
     let currentRaceData = null;
 
-    // 初期化：本日の日付をセットしてデータ読み込みを実行
+    // 選手名の余分な空白（全角スペース含む）を1つに正規化
+    function cleanName(name) {
+        return (name || '').replace(/\s+/g, ' ').trim();
+    }
+
     document.getElementById('race-date').valueAsDate = new Date();
     loadRaceData();
 
-    // GitHub上のJSONデータを取得する関数
     async function loadRaceData() {
         const dateVal = document.getElementById('race-date').value.replace(/-/g, '');
         const stadiumVal = document.getElementById('stadium').value;
@@ -273,7 +372,6 @@
             console.error("JSONの読み込みに失敗しました:", error);
             showNotice(`⚠️ データの取得に失敗しました: ${error.message}。<br>GitHub Actionsでデータが生成されているか確認してください。`, true);
 
-            // フォールバック（ダミー枠組み）
             currentRaceData = {
                 races: Array.from({length: 12}, (_, i) => ({
                     race_no: i + 1,
@@ -288,7 +386,13 @@
         }
     }
 
-    // パネルの描画関数
+    function radioGroup(name, boatNo, selected) {
+        return [1,2,3,4,5].map(v =>
+            `<input type="radio" id="${name}_${boatNo}_${v}" name="${name}_${boatNo}" value="${v}" ${v===selected?'checked':''}>
+             <label for="${name}_${boatNo}_${v}">${v}</label>`
+        ).join('');
+    }
+
     function renderBoats() {
         const raceNo = parseInt(document.getElementById('race-no').value);
         const container = document.getElementById('boats-container');
@@ -299,27 +403,26 @@
         const raceInfo = currentRaceData.races.find(r => r.race_no === raceNo) || currentRaceData.races[0];
 
         raceInfo.racers.forEach(racer => {
+            const displayName = cleanName(racer.name);
             const card = document.createElement('div');
             card.className = `card boat-card boat-${racer.no}`;
             card.innerHTML = `
-                <div class="boat-title">${racer.no}号艇：${racer.name} （${racer.class}）</div>
+                <div class="boat-title">
+                    <span class="boat-badge">${racer.no}</span>
+                    <span class="boat-name">${displayName}</span>
+                    <span class="class-chip">${racer.class}</span>
+                </div>
                 <div class="evaluation-row">
                     <span>出足</span>
-                    <div class="radio-group">
-                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="deashi_${racer.no}" value="${v}" ${v===3?'checked':''}> ${v}</label>`).join('')}
-                    </div>
+                    <div class="segmented">${radioGroup('deashi', racer.no, 3)}</div>
                 </div>
                 <div class="evaluation-row">
                     <span>伸足</span>
-                    <div class="radio-group">
-                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="nobi_${racer.no}" value="${v}" ${v===2?'checked':''}> ${v}</label>`).join('')}
-                    </div>
+                    <div class="segmented">${radioGroup('nobi', racer.no, 2)}</div>
                 </div>
                 <div class="evaluation-row">
                     <span>回足</span>
-                    <div class="radio-group">
-                        ${[1,2,3,4,5].map(v => `<label><input type="radio" name="mawari_${racer.no}" value="${v}" ${v===4?'checked':''}> ${v}</label>`).join('')}
-                    </div>
+                    <div class="segmented">${radioGroup('mawari', racer.no, 4)}</div>
                 </div>
                 <label class="hinao-check">
                     <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
@@ -347,10 +450,10 @@
 
         document.getElementById('result-title').innerText = "🧠 展開シナリオ ＆ 推奨買い目";
         let summaryText = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
-        
+
         if (hinaoNo) {
             const memo = document.getElementById(`memo_${hinaoNo}`).value;
-            summaryText += `<p style="color: #ae2012; font-weight: bold;">🎯 穴狙い注目艇：${hinaoNo}号艇</p>`;
+            summaryText += `<p style="color: #c1121f; font-weight: bold;">🎯 穴狙い注目艇：${hinaoNo}号艇</p>`;
             summaryText += `<p><strong>あなたのメモ：</strong> ${memo ? memo : '（メモなし）'}</p>`;
         } else {
             summaryText += `<p>※穴狙い軸の指定なし（標準バランスで構築）</p>`;
