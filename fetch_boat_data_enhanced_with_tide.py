@@ -270,155 +270,243 @@ def parse_rate_triplet(cell_text: str):
     return [None, None, None]
 
 
-def find_data_rows(soup: BeautifulSoup):
-    # 公式出走表の現行構造を優先し、少し緩めのフォールバックも用意。
-    rows = soup.select('tbody.is-fs12 tr')
-    if not rows:
-        rows = soup.select('tr.is-fs12')
-    return rows
+def _default_racer(boat_no: int):
+    """Create a complete racer object with explicit missing-value fields.
+
+    Missing data is represented by None so downstream code can distinguish
+    "not available" from a real zero. The UI/prediction layer should simply
+    ignore unavailable fields rather than inventing values.
+    """
+    return {
+        'no': boat_no,
+        'name': f'選手{boat_no}号艇',
+        'class': 'A1',
+        'racer_no': None,
+        'weight': None,
+        'national': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
+        'local': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
+        'motor': {'no': None, 'top2_rate': None, 'top3_rate': None},
+        'boat': {'no': None, 'top2_rate': None, 'top3_rate': None},
+        'avg_st': None,
+        'f_count': None,
+        'l_count': None,
+    }
+
+
+def _extract_stat_block(text: str, item: dict):
+    """Parse the stable race-card statistic block from one racer row.
+
+    Official BOAT RACE row order (as exposed in the current racelist HTML):
+      F / L / average ST /
+      national win/2-rate/3-rate /
+      local win/2-rate/3-rate /
+      motor no/2-rate/3-rate /
+      boat no/2-rate/3-rate
+
+    The regex is intentionally anchored to F/L and the following numeric
+    sequence. This avoids accidentally reading unrelated numbers such as
+    recent-race results from the same row.
+    """
+    m = re.search(
+        r'F\s*(?P<f>\d+)\s*'
+        r'L\s*(?P<l>\d+)\s*'
+        r'(?P<avg>\d+\.\d{2})\s+'
+        r'(?P<nw>\d+\.\d{2})\s+(?P<n2>\d+\.\d{2})\s+(?P<n3>\d+\.\d{2})\s+'
+        r'(?P<lw>\d+\.\d{2})\s+(?P<l2>\d+\.\d{2})\s+(?P<l3>\d+\.\d{2})\s+'
+        r'(?P<mno>\d+)\s+(?P<m2>\d+\.\d{2})\s+(?P<m3>\d+\.\d{2})\s+'
+        r'(?P<bno>\d+)\s+(?P<b2>\d+\.\d{2})\s+(?P<b3>\d+\.\d{2})',
+        clean_text(text)
+    )
+    if not m:
+        return False
+
+    g = m.groupdict()
+    item['f_count'] = int(g['f'])
+    item['l_count'] = int(g['l'])
+    item['avg_st'] = float(g['avg'])
+    item['national'] = {
+        'win_rate': float(g['nw']),
+        'top2_rate': float(g['n2']),
+        'top3_rate': float(g['n3']),
+    }
+    item['local'] = {
+        'win_rate': float(g['lw']),
+        'top2_rate': float(g['l2']),
+        'top3_rate': float(g['l3']),
+    }
+    item['motor'] = {
+        'no': int(g['mno']),
+        'top2_rate': float(g['m2']),
+        'top3_rate': float(g['m3']),
+    }
+    item['boat'] = {
+        'no': int(g['bno']),
+        'top2_rate': float(g['b2']),
+        'top3_rate': float(g['b3']),
+    }
+    return True
+
+
+def _extract_boat_no_from_row(row):
+    """Extract the actual boat number from the first table cell.
+
+    Using the first cell is safer than searching the entire row for "1-6",
+    because the row also contains previous-race course/results numbers.
+    """
+    cells = row.find_all('td')
+    if not cells:
+        return None
+    first = clean_text(cells[0].get_text(' ', strip=True))
+    m = re.fullmatch(r'[1-6]', first)
+    if m:
+        return int(m.group())
+    # A small fallback for markup such as "１" / surrounding whitespace.
+    normalized = first.translate(str.maketrans('１２３４５６', '123456'))
+    return int(normalized) if normalized in {'1', '2', '3', '4', '5', '6'} else None
+
+
+def _choose_racer_row(link):
+    """Choose the best parent <tr> for a racer profile link.
+
+    BOAT RACE uses responsive/duplicate markup in places. A link can appear
+    more than once. Prefer the row that contains the full stable statistic
+    block rather than taking the first DOM occurrence blindly.
+    """
+    candidates = []
+    node = link
+    for _ in range(4):
+        node = node.parent if node is not None else None
+        if node is None:
+            break
+        if getattr(node, 'name', None) != 'tr':
+            continue
+        text = clean_text(node.get_text(' ', strip=True))
+        score = 0
+        if re.search(r'F\s*\d+\s*L\s*\d+', text):
+            score += 5
+        if re.search(r'\d+\.\d{2}\s+\d+\.\d{2}\s+\d+\.\d{2}', text):
+            score += 3
+        if len(node.find_all('td')) >= 8:
+            score += 2
+        candidates.append((score, node))
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return candidates[0][1]
 
 
 def parse_race_card(jcd: str, r_idx: int, today: str):
+    """Parse all six racers from the official BOAT RACE racelist.
+
+    IMPORTANT FIX:
+    The previous implementation selected rows by CSS class + any digit 1-6.
+    That was fragile because the official page contains repeated responsive
+    rows and historical-course numbers. It caused some boats (especially 1/2)
+    to become placeholder records while other boats parsed correctly.
+
+    New strategy:
+      1. Find racer profile links (stable unique identifier = racer/toban).
+      2. Choose the best parent <tr> containing the stable stats block.
+      3. Read the boat number from the FIRST cell of that row.
+      4. Parse the complete stat block from that row.
+      5. Deduplicate by racer_no and/or boat_no.
+    """
     soup = BeautifulSoup(
         fetch_html('racelist', {'rno': r_idx, 'jcd': jcd, 'hd': today}),
         'html.parser'
     )
 
+    # Group profile links by racer ID to avoid responsive duplicate markup.
+    links_by_toban = {}
+    for link in soup.select('a[href*="racersearch/profile?toban="]'):
+        href = link.get('href', '')
+        m = re.search(r'toban=(\d+)', href)
+        if not m:
+            continue
+        links_by_toban.setdefault(m.group(1), []).append(link)
+
+    parsed = {}
+    used_tobans = set()
+
+    for toban, links in links_by_toban.items():
+        best_item = None
+
+        for link in links:
+            row = _choose_racer_row(link)
+            if row is None:
+                continue
+
+            boat_no = _extract_boat_no_from_row(row)
+            if boat_no is None or boat_no in parsed:
+                continue
+
+            text = clean_text(row.get_text(' ', strip=True))
+            cells = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
+            item = _default_racer(boat_no)
+
+            item['name'] = clean_text(link.get_text(' ', strip=True)) or item['name']
+            item['racer_no'] = int(toban)
+            item['class'] = next(
+                (c for c in ('A1', 'A2', 'B1', 'B2') if re.search(rf'\b{c}\b', text)),
+                'A1'
+            )
+
+            # Weight is present in the racer identity cell as "xx.xkg".
+            weight_match = re.search(r'(\d+(?:\.\d+)?)kg', text)
+            if weight_match:
+                item['weight'] = float(weight_match.group(1))
+
+            _extract_stat_block(text, item)
+            item['_raw_cells'] = cells
+
+            # Keep a compact audit trail. It helps another AI diagnose a future
+            # markup change without requiring the entire HTML source.
+            item['_source'] = 'boatrace_official_racelist'
+
+            parsed[boat_no] = item
+            used_tobans.add(toban)
+            best_item = item
+            break
+
+    # If responsive markup prevented a direct link->row match, perform a
+    # second pass over every <tr> that contains a racer profile link.
+    if len(parsed) < 6:
+        for row in soup.find_all('tr'):
+            boat_no = _extract_boat_no_from_row(row)
+            if boat_no is None or boat_no in parsed:
+                continue
+            link = row.select_one('a[href*="racersearch/profile?toban="]')
+            if link is None:
+                continue
+            href = link.get('href', '')
+            m = re.search(r'toban=(\d+)', href)
+            if not m or m.group(1) in used_tobans:
+                continue
+
+            text = clean_text(row.get_text(' ', strip=True))
+            item = _default_racer(boat_no)
+            item['name'] = clean_text(link.get_text(' ', strip=True)) or item['name']
+            item['racer_no'] = int(m.group(1))
+            item['class'] = next(
+                (c for c in ('A1', 'A2', 'B1', 'B2') if re.search(rf'\b{c}\b', text)),
+                'A1'
+            )
+            weight_match = re.search(r'(\d+(?:\.\d+)?)kg', text)
+            if weight_match:
+                item['weight'] = float(weight_match.group(1))
+            _extract_stat_block(text, item)
+            item['_raw_cells'] = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
+            item['_source'] = 'boatrace_official_racelist'
+            parsed[boat_no] = item
+            used_tobans.add(m.group(1))
+
     racers = []
-    name_links = soup.select('a[href*="racersearch/profile?toban="]')
-
-    rows = []
-    for row in find_data_rows(soup):
-        text = clean_text(row.get_text(' ', strip=True))
-        if any(c in text for c in ('A1', 'A2', 'B1', 'B2')) and re.search(r'\b[1-6]\b', text):
-            rows.append(row)
-
-    # まず行単位で構造化し、無理なら既存実装に近い名前抽出へフォールバック。
-    parsed_by_boat = {}
-    for row in rows:
-        cells = row.find_all('td')
-        if not cells:
-            continue
-        text = clean_text(row.get_text(' ', strip=True))
-        boat_match = re.match(r'^([1-6])\b', clean_text(cells[0].get_text(' ', strip=True)))
-        if not boat_match:
-            boat_match = re.search(r'\b([1-6])\b', text)
-        if not boat_match:
-            continue
-        boat_no = int(boat_match.group(1))
-
-        link = row.select_one('a[href*="racersearch/profile?toban="]')
-        name = clean_text(link.get_text(' ', strip=True)) if link else ''
-        racer_class = next((c for c in ('A1', 'A2', 'B1', 'B2') if c in text), None)
-
-        # セル位置は公式ページ構造に依存するため、数値の塊も保持しておく。
-        cell_texts = [clean_text(c.get_text(' ', strip=True)) for c in cells]
-        numbers = [safe_float(c) for c in cell_texts]
-
-        item = {
-            'no': boat_no,
-            'name': name or f'選手{boat_no}号艇',
-            'class': racer_class or 'A1',
-            'racer_no': None,
-            'weight': None,
-            'national': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
-            'local': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
-            'motor': {'no': None, 'top2_rate': None, 'top3_rate': None},
-            'boat': {'no': None, 'top2_rate': None, 'top3_rate': None},
-            'avg_st': None,
-            'f_count': None,
-            'l_count': None,
-            '_raw_cells': cell_texts,
-            '_raw_numbers': numbers,
-        }
-
-        # 公式出走表の表示順は F/L -> 平均ST -> 全国3率 -> 当地3率
-        # -> モーター -> ボート、という並びなので、F/Lを起点に
-        # 構造に依存しすぎない形で数値を拾う。
-        stat_match = re.search(
-            r'F(?P<f>\d+)\s*L(?P<l>\d+)\s*'
-            r'(?P<avg>\d+\.\d+)\s+'
-            r'(?P<nw>\d+\.\d+)\s+(?P<n2>\d+\.\d+)\s+(?P<n3>\d+\.\d+)\s+'
-            r'(?P<lw>\d+\.\d+)\s+(?P<l2>\d+\.\d+)\s+(?P<l3>\d+\.\d+)\s+'
-            r'(?P<mno>\d+)\s+(?P<m2>\d+\.\d+)\s+(?P<m3>\d+\.\d+)\s+'
-            r'(?P<bno>\d+)\s+(?P<b2>\d+\.\d+)\s+(?P<b3>\d+\.\d+)',
-            text
-        )
-        if stat_match:
-            g = stat_match.groupdict()
-            item['f_count'] = int(g['f'])
-            item['l_count'] = int(g['l'])
-            item['avg_st'] = float(g['avg'])
-            item['national'] = {
-                'win_rate': float(g['nw']), 'top2_rate': float(g['n2']), 'top3_rate': float(g['n3'])
-            }
-            item['local'] = {
-                'win_rate': float(g['lw']), 'top2_rate': float(g['l2']), 'top3_rate': float(g['l3'])
-            }
-            item['motor'] = {
-                'no': int(g['mno']), 'top2_rate': float(g['m2']), 'top3_rate': float(g['m3'])
-            }
-            item['boat'] = {
-                'no': int(g['bno']), 'top2_rate': float(g['b2']), 'top3_rate': float(g['b3'])
-            }
-
-        # 公式の選手リンク親行から登録番号/級別を補足。
-        if link:
-            m = re.search(r'toban=(\d+)', link.get('href', ''))
-            if m:
-                item['racer_no'] = int(m.group(1))
-
-        # できるだけラベル/見出しを利用して抽出。取得できない値はNone。
-        # 公式のセル並びが変わっても、最低限の名前・級別は失わない。
-        for idx, txt in enumerate(cell_texts):
-            if item['avg_st'] is None and re.fullmatch(r'0\.\d{2}', txt):
-                item['avg_st'] = safe_float(txt)
-            if item['f_count'] is None:
-                mf = re.search(r'F(\d+)', txt)
-                if mf:
-                    item['f_count'] = int(mf.group(1))
-            if item['l_count'] is None:
-                ml = re.search(r'L(\d+)', txt)
-                if ml:
-                    item['l_count'] = int(ml.group(1))
-
-        # 見出しベースの数値列を探索。
-        headers = []
-        for th in soup.select('thead th, tr.is-fs11 th, tr.is-fs12 th'):
-            headers.append(clean_text(th.get_text(' ', strip=True)))
-        header_text = ' '.join(headers)
-        _ = header_text  # 将来のセレクタ調整用
-
-        parsed_by_boat[boat_no] = item
-
-    # 名前リンクを使った従来方式で6艇を必ず埋める。
     for boat_no in range(1, 7):
-        item = parsed_by_boat.get(boat_no)
-        if item is None:
-            racer_name = f'選手{boat_no}号艇'
-            racer_class = 'A1'
-            if len(name_links) >= boat_no:
-                link = name_links[boat_no - 1]
-                racer_name = clean_text(link.get_text(' ', strip=True)) or racer_name
-                row = link.find_parent('tr')
-                if row:
-                    text = clean_text(row.get_text(' ', strip=True))
-                    racer_class = next((c for c in ('A1', 'A2', 'B1', 'B2') if c in text), racer_class)
-            item = {
-                'no': boat_no,
-                'name': racer_name,
-                'class': racer_class,
-                'racer_no': None,
-                'weight': None,
-                'national': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
-                'local': {'win_rate': None, 'top2_rate': None, 'top3_rate': None},
-                'motor': {'no': None, 'top2_rate': None, 'top3_rate': None},
-                'boat': {'no': None, 'top2_rate': None, 'top3_rate': None},
-                'avg_st': None,
-                'f_count': None,
-                'l_count': None,
-            }
-        racers.append(item)
+        racers.append(parsed.get(boat_no, _default_racer(boat_no)))
+
+    parsed_count = sum(1 for r in racers if r.get('racer_no') is not None)
+    print(f'  racelist jcd={jcd} r={r_idx}: parsed {parsed_count}/6 racers')
 
     return {
         'race_no': r_idx,
@@ -426,7 +514,85 @@ def parse_race_card(jcd: str, r_idx: int, today: str):
     }
 
 
+def _extract_beforeinfo_row(row):
+    """Extract stable pre-race fields from one official before-info row.
+
+    Current official column order is:
+      boat | photo | racer | weight | exhibition time | tilt | propeller |
+      parts exchange | previous result ...
+
+    We use cell-local parsing rather than scanning every number in the full
+    row. The old number-scan approach could mistake a previous-race number
+    such as "5R" for an exhibition time; this was visible in the generated
+    JSON as 5.00 for boats 5/6.
+    """
+    cells = row.find_all('td')
+    if not cells:
+        return None
+
+    boat_no = _extract_boat_no_from_row(row)
+    if boat_no is None:
+        return None
+
+    texts = [clean_text(td.get_text(' ', strip=True)) for td in cells]
+    joined = ' '.join(texts)
+
+    data = {
+        'boat_no': boat_no,
+        'weight': None,
+        'adjust_weight': None,
+        'exhibition_time': None,
+        'tilt': None,
+        'propeller_changed': False,
+        'parts_exchange': [],
+    }
+
+    # Weight: use a cell explicitly containing kg.
+    for txt in texts:
+        m = re.search(r'(\d+(?:\.\d+)?)\s*kg', txt)
+        if m:
+            data['weight'] = float(m.group(1))
+            break
+
+    # Exhibition time: find a cell that is exactly x.xx in the official
+    # 6-second range. Restricting to cell-level values prevents picking 5R.
+    for txt in texts:
+        if re.fullmatch(r'\d\.\d{2}', txt):
+            value = float(txt)
+            if 5.0 <= value <= 8.0:
+                data['exhibition_time'] = value
+                break
+
+    # Tilt: official page shows e.g. -0.5, 0.0, 3.0. Use a cell-level
+    # numeric value after exhibition time when possible.
+    exhibition_seen = False
+    for txt in texts:
+        if re.fullmatch(r'\d\.\d{2}', txt) and data['exhibition_time'] is not None:
+            if abs(float(txt) - data['exhibition_time']) < 1e-9:
+                exhibition_seen = True
+                continue
+        if exhibition_seen and re.fullmatch(r'-?\d+(?:\.\d+)?', txt):
+            value = float(txt)
+            if -3.0 <= value <= 3.0:
+                data['tilt'] = value
+                break
+
+    if '新' in joined:
+        data['propeller_changed'] = True
+
+    for part in ('ピストンリング', 'ピストン', '電気', 'キャブ', 'シリンダ', 'シャフト', 'ギヤ', 'キャリボ'):
+        if part in joined and part not in data['parts_exchange']:
+            data['parts_exchange'].append(part)
+
+    return data
+
+
 def parse_beforeinfo(jcd: str, r_idx: int, today: str):
+    """Parse official pre-race information for all six boats.
+
+    The parser deliberately extracts by row/cell semantics instead of a broad
+    regex over the whole page. If a field is unavailable, it remains None.
+    """
     soup = BeautifulSoup(
         fetch_html('beforeinfo', {'rno': r_idx, 'jcd': jcd, 'hd': today}),
         'html.parser'
@@ -449,63 +615,42 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
         },
     } for i in range(1, 7)}
 
-    # 公式直前情報の艇別テーブル。is-fs12 行を広く走査して数値列を取り込む。
-    for row in soup.select('tr'):
-        cells = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
-        if not cells:
+    parsed_boats = 0
+    for row in soup.find_all('tr'):
+        data = _extract_beforeinfo_row(row)
+        if not data:
             continue
-        joined = ' '.join(cells)
-        boat_match = re.search(r'^([1-6])\b', joined)
-        if not boat_match:
-            continue
-        boat_no = int(boat_match.group(1))
-        if boat_no not in boats:
-            continue
+        boat_no = data.pop('boat_no')
+        # Prefer the row with actual exhibition data when duplicate responsive
+        # markup exists; otherwise keep the first valid row.
+        if boats[boat_no]['exhibition_time'] is None or data['exhibition_time'] is not None:
+            boats[boat_no].update(data)
 
-        # 表示上の列: 体重 / 展示タイム / チルト / プロペラ / 部品交換 など。
-        nums = re.findall(r'-?\d+(?:\.\d+)?', joined)
-        # 体重(kg) と展示タイム(6.xx) とチルト(-0.5等)を識別。
-        weight = next((float(x) for x in nums if 35 <= float(x) <= 80), None)
-        exhibit = next((float(x) for x in nums if 5.0 <= float(x) <= 8.0), None)
-        tilt = next((float(x) for x in nums if -3.0 <= float(x) <= 3.0 and abs(float(x) - (weight or 999)) > 0.01), None)
-        if weight is not None:
-            boats[boat_no]['weight'] = weight
-        if exhibit is not None:
-            boats[boat_no]['exhibition_time'] = exhibit
-        if tilt is not None:
-            boats[boat_no]['tilt'] = tilt
+    parsed_boats = sum(1 for i in range(1, 7) if boats[i]['exhibition_time'] is not None)
 
-        lower = joined.lower()
-        if '新' in joined or 'プロペラ' in joined:
-            boats[boat_no]['propeller_changed'] = '新' in joined
-        for part in ('ピストン', 'ピストンリング', '電気', 'キャブ', 'シリンダ', 'シャフト', 'ギヤ', 'キャリボ'):
-            if part in joined and part not in boats[boat_no]['parts_exchange']:
-                boats[boat_no]['parts_exchange'].append(part)
+    # ----------------------------------------------------------------------
+    # Start exhibition
+    # ----------------------------------------------------------------------
+    # The official page exposes "course / ST" as a separate table. We keep the
+    # current boat-index association only when the HTML explicitly provides a
+    # racer/boat identity. We do NOT infer boat=course when the page doesn't
+    # identify the racer, because that would corrupt the historical dataset.
+    start_rows = []
+    marker = soup.find(string=re.compile('スタート展示'))
+    if marker is not None:
+        # Search forward from the marker's nearest table/container.
+        container = marker.parent
+        parent = container.parent if container and container.parent else soup
+        for row in parent.find_all('tr'):
+            texts = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
+            if texts:
+                start_rows.append(texts)
 
-    # スタート展示: 1艇ごとのコース/STを抽出。
-    start_section = soup.find(string=re.compile('スタート展示'))
-    if start_section is not None:
-        parent = start_section.parent
-        scope = parent.parent if parent and parent.parent else soup
-        for row in scope.select('tr'):
-            cells = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
-            if len(cells) < 2:
-                continue
-            joined = ' '.join(cells)
-            nums = re.findall(r'-?(?:\d+\.\d+|\d+)', joined)
-            # 進入は1〜6、STは .xx / F.xx / L.xx など。
-            course = next((int(x) for x in nums if 1 <= int(float(x)) <= 6), None)
-            st_match = re.search(r'([FL])?\s*\.?(\d{1,2})', joined)
-            if course is None or not st_match:
-                continue
-            st = float(f'0.{st_match.group(2).zfill(2)}')
-            if st_match.group(1) == 'F':
-                st = -st
-            if len(boats) >= course:
-                boats[course]['start_exhibition']['course'] = course
-                boats[course]['start_exhibition']['st'] = st
+    # If no explicit identity is exposed, leave start_exhibition empty rather
+    # than assigning ST to the wrong boat. A future parser can use image alt or
+    # a stable racer identifier if the official markup exposes one.
+    _ = start_rows
 
-    # 水面気象情報はページ全体のラベル付近から取得。
     weather = {
         'air_temp': None,
         'wind_speed': None,
@@ -515,15 +660,23 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
         'weather': None,
     }
     page_text = clean_text(soup.get_text(' ', strip=True))
-    for key, pattern in {
+    patterns = {
         'air_temp': r'気温\s*(-?\d+(?:\.\d+)?)',
-        'wind_speed': r'風速\s*(-?\d+(?:\.\d+)?)',
+        'wind_speed': r'風速\s*(-?\d+(?:\.\d+)?)m',
         'water_temp': r'水温\s*(-?\d+(?:\.\d+)?)',
-        'wave_height': r'波高\s*(-?\d+(?:\.\d+)?)',
-    }.items():
+        'wave_height': r'波高\s*(-?\d+(?:\.\d+)?)cm',
+    }
+    for key, pattern in patterns.items():
         m = re.search(pattern, page_text)
         if m:
             weather[key] = float(m.group(1))
+
+    for candidate in ('晴', '曇り', '雨', '雪'):
+        if candidate in page_text:
+            weather['weather'] = candidate
+            break
+
+    print(f'  beforeinfo jcd={jcd} r={r_idx}: exhibition {parsed_boats}/6')
 
     return {
         'boats': list(boats.values()),
@@ -531,7 +684,6 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
         'source': 'boatrace_official_beforeinfo',
         'updated_at': datetime.now().isoformat(timespec='seconds'),
     }
-
 
 def rank_smaller_is_better(values):
     valid = [(i, v) for i, v in enumerate(values) if isinstance(v, (int, float))]
@@ -593,6 +745,14 @@ def merge_race_data(card, before):
                     'one_lap': None, 'turn': None, 'straight': None, 'half_lap': None, 'source': None
                 },
             }
+
+    # Weather is race-level, not racer-level. Only add the object when at least
+    # one field was successfully observed; this follows the project's policy of
+    # omitting unavailable optional data instead of filling it with nulls.
+    if before and before.get('weather'):
+        weather = before['weather']
+        if any(v is not None for v in weather.values()):
+            card['weather'] = weather
 
     # レース内順位はAPI/JSONから直接予想ロジックに使いやすいように保存。
     for field, getter, higher_better in [
