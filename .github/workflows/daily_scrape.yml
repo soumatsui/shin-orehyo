@@ -50,9 +50,9 @@ jobs:
       # 2. Python environment
       # ----------------------------------------------------------------------
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
     # ----------------------------------------------------------------------
       # 3. Python dependencies
       # ----------------------------------------------------------------------
