@@ -224,7 +224,7 @@
             </div>
             <div class="form-group">
                 <label>レース番号</label>
-                <select id="race-no" onchange="renderBoats()">
+                <select id="race-no">
                     <script>
                         for(let i=1; i<=12; i++) {
                             document.write(`<option value="${i}" ${i===3?'selected':''}>第${i}R</option>`);
@@ -261,8 +261,6 @@
         const stadiumVal = document.getElementById('stadium').value;
         const jsonUrl = `data/${dateVal}_${stadiumVal}.json`;
 
-        console.log("読み込み試行:", jsonUrl);
-
         try {
             const response = await fetch(jsonUrl);
             if (!response.ok) {
@@ -270,16 +268,12 @@
             }
             currentRaceData = await response.json();
             renderBoats();
-            
-            // 成功メッセージを一時表示
             showNotice(`データを正常に読み込みました (${dateVal} 場コード:${stadiumVal})`);
         } catch (error) {
             console.error("JSONの読み込みに失敗しました:", error);
-            
-            // エラー内容を画面に分かりやすく表示
-            showNotice(`⚠️ データの取得に失敗しました: ${error.message}。<br>GitHub Actionsでデータが生成されているか、日付・場コードを確認してください。`, true);
+            showNotice(`⚠️ データの取得に失敗しました: ${error.message}。<br>GitHub Actionsでデータが生成されているか確認してください。`, true);
 
-            // フォールバック（空の枠組み）
+            // フォールバック（ダミー枠組み）
             currentRaceData = {
                 races: Array.from({length: 12}, (_, i) => ({
                     race_no: i + 1,
