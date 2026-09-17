@@ -620,6 +620,42 @@ def _extract_beforeinfo_row(row):
     return data
 
 
+_BOAT_IMAGE_RE = re.compile(r'img_boat2_([1-6])\.png')
+
+
+def _parse_start_exhibition(soup):
+    """Return start-exhibition data keyed by *boat number*.
+
+    The official beforeinfo HTML shows the course in
+    ``table1_boatImage1Number`` but the rows are ordered by entry course, not
+    necessarily by boat number.  The only observed boat identity in that
+    block is the image filename ``img_boat2_N.png``.  We intentionally use
+    that filename rather than a row index, so an entry change (e.g. 1-3-2)
+    cannot assign an ST to the wrong racer.  Missing/unrecognised rows remain
+    null; they are never inferred from their position.
+    """
+    parsed = {}
+    raw_rows = []
+    for block in soup.select('.table1_boatImage1'):
+        image = block.select_one('img[src*="img_boat2_"]')
+        number = block.select_one('.table1_boatImage1Number')
+        st_node = block.select_one('.table1_boatImage1Time')
+        if image is None or number is None or st_node is None:
+            continue
+        src = image.get('src', '')
+        boat_match = _BOAT_IMAGE_RE.search(src)
+        course = safe_int(number.get_text(' ', strip=True))
+        st_text = clean_text(st_node.get_text(' ', strip=True))
+        # Official display uses .01, F.01, L.01 etc.  Preserve the numeric
+        # timing for analysis while retaining its compact source row for audit.
+        st_match = re.search(r'(?<!\d)(?:F|L)?\s*\.?([0-9]{1,2})(?!\d)', st_text)
+        st = (float(f'0.{st_match.group(1)}') if st_match else None)
+        raw_rows.append({'image_src': src, 'course_text': clean_text(number.get_text(' ', strip=True)), 'st_text': st_text})
+        if boat_match and course in range(1, 7) and boat_match.group(1) not in parsed:
+            parsed[int(boat_match.group(1))] = {'course': course, 'st': st}
+    return parsed, raw_rows
+
+
 def parse_beforeinfo(jcd: str, r_idx: int, today: str):
     """Parse official pre-race information for all six boats.
 
@@ -632,6 +668,9 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
     )
 
     boats = {i: {
+        # Retain this identity in the preview object so merge_race_data can
+        # join by an explicit key even if a future parser changes list order.
+        'boat_no': i,
         'weight': None,
         'adjust_weight': None,
         'exhibition_time': None,
@@ -661,28 +700,10 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
 
     parsed_boats = sum(1 for i in range(1, 7) if boats[i]['exhibition_time'] is not None)
 
-    # ----------------------------------------------------------------------
-    # Start exhibition
-    # ----------------------------------------------------------------------
-    # The official page exposes "course / ST" as a separate table. We keep the
-    # current boat-index association only when the HTML explicitly provides a
-    # racer/boat identity. We do NOT infer boat=course when the page doesn't
-    # identify the racer, because that would corrupt the historical dataset.
-    start_rows = []
-    marker = soup.find(string=re.compile('スタート展示'))
-    if marker is not None:
-        # Search forward from the marker's nearest table/container.
-        container = marker.parent
-        parent = container.parent if container and container.parent else soup
-        for row in parent.find_all('tr'):
-            texts = [clean_text(td.get_text(' ', strip=True)) for td in row.find_all('td')]
-            if texts:
-                start_rows.append(texts)
-
-    # If no explicit identity is exposed, leave start_exhibition empty rather
-    # than assigning ST to the wrong boat. A future parser can use image alt or
-    # a stable racer identifier if the official markup exposes one.
-    _ = start_rows
+    # Start exhibition is mapped by its explicit image filename, never row order.
+    start_by_boat, start_raw_rows = _parse_start_exhibition(soup)
+    for boat_no, start in start_by_boat.items():
+        boats[boat_no]['start_exhibition'] = start
 
     weather = {
         'air_temp': None,
@@ -716,7 +737,85 @@ def parse_beforeinfo(jcd: str, r_idx: int, today: str):
         'weather': weather,
         'source': 'boatrace_official_beforeinfo',
         'updated_at': datetime.now().isoformat(timespec='seconds'),
+        '_raw_start_exhibition': start_raw_rows,
     }
+
+
+def _parse_payout_table(table):
+    """Parse the official result payout table without relying on table widths."""
+    payouts = {}
+    current_type = None
+    for row in table.select('tr'):
+        cells = row.find_all(['td', 'th'], recursive=False)
+        if len(cells) < 2:
+            continue
+        first = clean_text(cells[0].get_text(' ', strip=True))
+        if first in ('3連単', '2連単', '2連複', '3連複', '拡連複', '単勝', '複勝'):
+            current_type = first
+        if not current_type:
+            continue
+        combo_node = row.select_one('.numberSet1_row')
+        payout_node = row.select_one('.is-payout1')
+        if combo_node is None or payout_node is None:
+            continue
+        combination = clean_text(combo_node.get_text('', strip=True))
+        amount = safe_int(payout_node.get_text(' ', strip=True))
+        if not combination or amount is None:
+            continue
+        record = {'combination': combination, 'amount': amount}
+        if current_type in payouts:
+            payouts[current_type] = payouts[current_type] if isinstance(payouts[current_type], list) else [payouts[current_type]]
+            payouts[current_type].append(record)
+        else:
+            payouts[current_type] = record
+    return payouts
+
+
+def parse_race_result(jcd: str, r_idx: int, today: str):
+    """Parse an official raceresult page; a no-result page is not an error.
+
+    ``着`` is the finish position and ``枠`` is the boat number in the observed
+    HTML.  We extract them from those labelled columns, rather than assuming
+    the result-row order, and make ``finish_order`` the single source of truth.
+    """
+    soup = BeautifulSoup(fetch_html('raceresult', {'rno': r_idx, 'jcd': jcd, 'hd': today}), 'html.parser')
+    finish_order, raw_finish_rows = [], []
+    for table in soup.find_all('table'):
+        headers = [clean_text(x.get_text(' ', strip=True)) for x in table.select('thead th')]
+        if '着' not in headers or '枠' not in headers:
+            continue
+        finish_idx, boat_idx = headers.index('着'), headers.index('枠')
+        for row in table.select('tbody tr'):
+            cells = row.find_all('td', recursive=False)
+            if len(cells) <= max(finish_idx, boat_idx):
+                continue
+            finish = safe_int(cells[finish_idx].get_text(' ', strip=True))
+            boat_no = safe_int(cells[boat_idx].get_text(' ', strip=True))
+            raw_finish_rows.append({'finish_text': clean_text(cells[finish_idx].get_text(' ', strip=True)), 'boat_text': clean_text(cells[boat_idx].get_text(' ', strip=True))})
+            if finish in range(1, 7) and boat_no in range(1, 7):
+                while len(finish_order) < finish:
+                    finish_order.append(None)
+                if finish_order[finish - 1] is None:
+                    finish_order[finish - 1] = boat_no
+
+    if not finish_order:
+        return {'status': 'not_available', '_raw_finish_rows': raw_finish_rows}
+
+    result = {'status': 'available', 'finish_order': finish_order, '_raw_finish_rows': raw_finish_rows}
+    for table in soup.find_all('table'):
+        if clean_text(table.get_text(' ', strip=True)).startswith('決まり手'):
+            value = table.select_one('tbody td')
+            if value and clean_text(value.get_text(' ', strip=True)):
+                result['winning_technique'] = clean_text(value.get_text(' ', strip=True))
+            break
+    payouts = {}
+    for table in soup.find_all('table'):
+        headers = [clean_text(x.get_text(' ', strip=True)) for x in table.select('thead th')]
+        if '勝式' in headers and '組番' in headers and '払戻金' in headers:
+            payouts.update(_parse_payout_table(table))
+    if payouts:
+        result['payouts'] = payouts
+    return result
 
 # ============================================================================
 # VALIDATION / DIAGNOSTICS
@@ -773,6 +872,7 @@ def validate_race(jcd: str, race: dict):
         'motor': 0,
         'boat': 0,
         'exhibition': 0,
+        'start_exhibition': 0,
     }
 
     for r in racers:
@@ -793,6 +893,9 @@ def validate_race(jcd: str, race: dict):
             counts['boat'] += 1
         if (r.get('preview') or {}).get('exhibition_time') is not None:
             counts['exhibition'] += 1
+        start = (r.get('preview') or {}).get('start_exhibition') or {}
+        if start.get('course') is not None and start.get('st') is not None:
+            counts['start_exhibition'] += 1
 
         if raw_no is not None and r.get('racer_no') is not None and raw_no != r['racer_no']:
             print(
@@ -805,12 +908,46 @@ def validate_race(jcd: str, race: dict):
                 f"JSON name='{r['name']}' Raw name='{raw_name}'"
             )
 
+    courses = [(r.get('preview') or {}).get('start_exhibition', {}).get('course') for r in racers]
+    sts = [(r.get('preview') or {}).get('start_exhibition', {}).get('st') for r in racers]
+    known_courses = [c for c in courses if c is not None]
+    if known_courses and (any(c not in range(1, 7) for c in known_courses) or len(set(known_courses)) != len(known_courses)):
+        print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: start_exhibition course が不正/重複 -> {courses}')
+    if known_courses and len(known_courses) == 6 and sorted(known_courses) != [1, 2, 3, 4, 5, 6]:
+        print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: start_exhibition course が1〜6で各1回ではありません -> {courses}')
+    for boat_no, st in zip(nos, sts):
+        if st is not None and not (0 <= st < 1):
+            print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no} Boat {boat_no}: start exhibition STが異常値 -> {st}')
+
+    result = race.get('result', {})
+    finish_order = result.get('finish_order', []) if result.get('status') == 'available' else []
+    if finish_order and (len(finish_order) != 6 or sorted(finish_order) != [1, 2, 3, 4, 5, 6]):
+        print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: finish_order が1〜6艇で揃っていない/重複 -> {finish_order}')
+    if result.get('status') == 'available' and not finish_order:
+        print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: result=available なのに finish_order がありません')
+    # Compare only official outcome-bearing bet types.  Payout data can have
+    # multiple rows (notably 拡連複/複勝), so no artificial one-row assumption.
+    payouts = result.get('payouts', {})
+    expected_combinations = {
+        '3連単': '-'.join(map(str, finish_order[:3])),
+        '2連単': '-'.join(map(str, finish_order[:2])),
+        '3連複': '='.join(map(str, sorted(finish_order[:3]))),
+        '2連複': '='.join(map(str, sorted(finish_order[:2]))),
+    } if len(finish_order) >= 3 else {}
+    for bet_type, expected in expected_combinations.items():
+        record = payouts.get(bet_type)
+        records = record if isinstance(record, list) else [record]
+        for payout in records:
+            if payout and payout.get('combination') != expected:
+                print(f'[VALIDATION ERROR] jcd={jcd} Race {race_no}: {bet_type} 組番={payout.get("combination")} が result={expected} と矛盾')
+
     print(
         f"[Race {race_no}] racers: {len(racers)}/6 "
         f"names: {counts['names']}/6 racer_no: {counts['racer_no']}/6 "
         f"national: {counts['national']}/6 local: {counts['local']}/6 "
         f"motor: {counts['motor']}/6 boat: {counts['boat']}/6 "
-        f"exhibition: {counts['exhibition']}/6"
+        f"exhibition: {counts['exhibition']}/6 start_exhibition: {counts['start_exhibition']}/6 "
+        f"result: {len(finish_order) if finish_order else 0}/6"
     )
     for field, ok in counts.items():
         if ok < 6:
@@ -838,8 +975,20 @@ def rank_larger_is_better(values):
 def merge_race_data(card, before):
     racers = card['racers']
     if before and before.get('boats'):
-        for racer, preview in zip(racers, before['boats']):
-            racer['preview'] = preview
+        # ``beforeinfo`` and the race card are independent documents. Match
+        # their explicit boat numbers, never their incidental list order.
+        previews_by_boat = {
+            preview.get('boat_no'): preview
+            for preview in before['boats']
+            if preview.get('boat_no') in range(1, 7)
+        }
+        for racer in racers:
+            racer['preview'] = previews_by_boat.get(racer.get('no'), {
+                'weight': None, 'adjust_weight': None, 'exhibition_time': None,
+                'tilt': None, 'propeller_changed': False, 'parts_exchange': [],
+                'start_exhibition': {'course': None, 'st': None},
+                'original_exhibition': {'one_lap': None, 'turn': None, 'straight': None, 'half_lap': None, 'source': None},
+            })
     else:
         for racer in racers:
             racer['preview'] = {
@@ -893,7 +1042,7 @@ def fetch_active_stadiums(today):
     return [f'{i:02d}' for i in range(1, 25)]
 
 
-def fetch_one_race(jcd, r_idx, today, include_before=True, tide=None):
+def fetch_one_race(jcd, r_idx, today, include_before=True, include_result=True, tide=None):
     card = parse_race_card(jcd, r_idx, today)
     before = None
     if include_before:
@@ -902,13 +1051,30 @@ def fetch_one_race(jcd, r_idx, today, include_before=True, tide=None):
         except Exception as exc:
             print(f'直前情報取得失敗 jcd={jcd} r={r_idx}: {exc}')
     race = merge_race_data(card, before)
+    # Result retrieval is deliberately independent of before-info: a midnight
+    # run may legitimately have no result yet.  The same race_id can be
+    # re-fetched later and its result field updated in place.
+    if include_result:
+        try:
+            race['result'] = parse_race_result(jcd, r_idx, today)
+        except Exception as exc:
+            print(f'結果取得失敗 jcd={jcd} r={r_idx}: {exc}')
+            race['result'] = {'status': 'fetch_error'}
+    # finish_order remains canonical.  This denormalized field is generated
+    # solely from it for racer-centric analysis; it must never be parsed or
+    # updated independently.
+    if race.get('result', {}).get('status') == 'available':
+        positions = {boat_no: position for position, boat_no in enumerate(race['result'].get('finish_order', []), 1)}
+        for racer in race['racers']:
+            racer['finish_position'] = positions.get(racer.get('no'))
+    race['race_id'] = f'{today}_{jcd}_{r_idx:02d}'
     # Tide is optional. If unavailable, do not create an empty/null field.
     if tide:
         race['tide'] = tide
     return race
 
 
-def process_stadium(jcd, today, include_before=True, tide_config=None):
+def process_stadium(jcd, today, include_before=True, include_result=True, tide_config=None):
     tide_config = tide_config or {}
     # IMPORTANT: fetch JMA tide ONCE per stadium/day, never once per race.
     daily_tide = get_daily_tide(jcd, today, tide_config)
@@ -916,7 +1082,7 @@ def process_stadium(jcd, today, include_before=True, tide_config=None):
     # 公式サイトへの負荷を抑えるため、現行よりやや控えめな並列数。
     with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [
-            executor.submit(fetch_one_race, jcd, rno, today, include_before, daily_tide)
+            executor.submit(fetch_one_race, jcd, rno, today, include_before, include_result, daily_tide)
             for rno in range(1, 13)
         ]
         races = []
@@ -938,7 +1104,7 @@ def process_stadium(jcd, today, include_before=True, tide_config=None):
             print(f'[WARNING] jcd={jcd} Race {race.get("race_no")}: 検証処理自体が失敗しました: {exc}')
 
     payload = {
-        'schema_version': 2,
+        'schema_version': 3,
         'date': today,
         'stadium_code': jcd,
         'races': races,
@@ -966,9 +1132,12 @@ def main():
     # include_before=True の実行は「直前情報更新モード」。
     # 0時の初回取得では False にしてもよい。
     include_before = os.getenv('INCLUDE_BEFORE_INFO', '1') == '1'
+    # Make it easy for scheduled callers to defer result-page traffic, while
+    # retaining the safe ``not_available`` state when a page has no result.
+    include_result = os.getenv('INCLUDE_RACE_RESULT', '1') == '1'
 
     with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = [executor.submit(process_stadium, jcd, today, include_before, tide_config) for jcd in active]
+        futures = [executor.submit(process_stadium, jcd, today, include_before, include_result, tide_config) for jcd in active]
         for future in futures:
             future.result()
 
@@ -978,7 +1147,7 @@ def main():
         if os.path.exists(path):
             continue
         payload = {
-            'schema_version': 2,
+            'schema_version': 3,
             'date': today,
             'stadium_code': jcd,
             'races': [
