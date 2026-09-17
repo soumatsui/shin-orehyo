@@ -93,7 +93,9 @@ def fetch_race_data(jcd, r_idx, today):
     return {
         "race_no": r_idx,
         "racers": racers
-    }def process_stadium(jcd, today):
+    }
+
+def process_stadium(jcd, today):
     """1場分(全12レース)を並列取得"""
     with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(fetch_race_data, jcd, r_idx, today) for r_idx in range(1, 13)]
