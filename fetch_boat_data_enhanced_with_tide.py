@@ -651,9 +651,13 @@ def _parse_start_exhibition(soup):
         # timing for analysis while retaining its compact source row for audit.
         st_match = re.search(r'(?<!\d)(?:F|L)?\s*\.?([0-9]{1,2})(?!\d)', st_text)
         st = (float(f'0.{st_match.group(1)}') if st_match else None)
+        # ``F.01`` is an explicit official flying marker. Preserve it
+        # separately from the numeric ST so M3 can apply its documented
+        # safety penalty without treating every 0.01 as a flying start.
+        flying = bool(re.match(r'^F\s*\.', st_text))
         raw_rows.append({'image_src': src, 'course_text': clean_text(number.get_text(' ', strip=True)), 'st_text': st_text})
         if boat_match and course in range(1, 7) and boat_match.group(1) not in parsed:
-            parsed[int(boat_match.group(1))] = {'course': course, 'st': st}
+            parsed[int(boat_match.group(1))] = {'course': course, 'st': st, 'flying': flying}
     return parsed, raw_rows
 
 
