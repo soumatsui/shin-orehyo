@@ -86,7 +86,6 @@
             margin-bottom: 6px;
             color: var(--text-muted);
         }
-        /* select と input[type=date] の見た目・高さを完全に統一する */
         .form-group select,
         .form-group input[type="date"] {
             -webkit-appearance: none;
@@ -103,13 +102,11 @@
             color: var(--text-color);
             line-height: 44px;
         }
-        /* select だけ独自の矢印アイコンを描画（appearance:none で消えるため） */
         .form-group select {
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'><path d='M1 1l6 6 6-6' stroke='%236b7280' stroke-width='2' fill='none' fill-rule='evenodd'/></svg>");
             background-repeat: no-repeat;
             background-position: right 14px center;
         }
-        /* iOS Safari の日付ピッカーが縦積みで縮んで見えるのを防ぐ */
         .form-group input[type="date"]::-webkit-date-and-time-value {
             text-align: left;
         }
@@ -130,7 +127,6 @@
         }
         .btn-action:hover { background: var(--primary-color-light); }
 
-        /* 艇カード群：PCでは2カラム、スマホでは1カラム */
         #boats-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -180,7 +176,6 @@
 
         .boat-name {
             flex: 1;
-            /* 名前の間の余分な空白を潰しても崩れないように */
             white-space: normal;
             word-break: keep-all;
         }
@@ -202,12 +197,11 @@
             gap: 8px;
         }
         .evaluation-row > span {
-            width: 46px;
+            width: 52px;
             font-weight: 700;
             color: var(--text-muted);
             flex-shrink: 0;
         }
-        /* ラジオ群をセグメントボタン化して幅を揃える(ガタガタ対策) */
         .segmented {
             display: flex;
             flex: 1;
@@ -233,6 +227,48 @@
             background: var(--primary-color);
             color: #fff;
             font-weight: 700;
+        }
+
+        /* オリ展 手入力エリア */
+        .oriten-block {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .oriten-block-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+        .oriten-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .oriten-field {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+        }
+        .oriten-field label {
+            color: var(--text-muted);
+            width: 48px;
+            flex-shrink: 0;
+        }
+        .oriten-field input[type="number"] {
+            width: 100%;
+            height: 32px;
+            padding: 0 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            text-align: right;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .hinao-check {
@@ -278,7 +314,7 @@
             display: none;
         }
         .result-box h2 { font-size: 1.05rem; color: var(--primary-color); margin-top: 0; }
-        .result-box table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+        .result-box table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 8px; }
         .result-box th, .result-box td { padding: 5px 6px; border-bottom: 1px solid #d6e6f2; text-align: left; }
         .result-box th { color: var(--text-muted); font-weight: 600; }
         .combo-line { font-family: -apple-system, monospace; font-size: 0.9rem; padding: 2px 0; }
@@ -371,15 +407,18 @@
 <script>
     let currentRaceData = null;
 
-    // 評価項目の定義（キー・表示ラベル・初期値）
+    // 評価項目の定義（腕・オリ展を追加）
     const EVAL_ITEMS = [
-        { key: 'st',  label: 'St',  defaultVal: 3 },
-        { key: 'm2',  label: '2M',  defaultVal: 3 },
-        { key: 'm1a', label: '1M①', defaultVal: 3 },
-        { key: 'm1b', label: '1M②', defaultVal: 3 }
+        { key: 'ude',    label: '腕',     defaultVal: 3 },
+        { key: 'st',     label: 'St',     defaultVal: 3 },
+        { key: 'm2',     label: '2M',     defaultVal: 3 },
+        { key: 'm1a',    label: '1M①',    defaultVal: 3 },
+        { key: 'm1b',    label: '1M②',    defaultVal: 3 },
+        { key: 'oriten', label: 'オリ展', defaultVal: 3 }
     ];
 
-    // 選手名の余分な空白（全角スペース含む）を1つに正規化
+    const COURSE_BASE_SCORES = { 1: 55, 2: 14, 3: 12, 4: 10, 5: 6, 6: 3 };
+
     function cleanName(name) {
         return (name || '').replace(/\s+/g, ' ').trim();
     }
@@ -446,6 +485,31 @@
                 </div>
             `).join('');
 
+            // オリ展（中継画面タイム）手入力ブロック
+            const oritenBlockHtml = `
+                <div class="oriten-block">
+                    <div class="oriten-block-title">📺 オリジナル展示タイム（手入力）</div>
+                    <div class="oriten-grid">
+                        <div class="oriten-field">
+                            <label>一周</label>
+                            <input type="number" step="0.01" id="one_lap_${racer.no}" placeholder="36.80">
+                        </div>
+                        <div class="oriten-field">
+                            <label>まわり足</label>
+                            <input type="number" step="0.01" id="turn_${racer.no}" placeholder="11.50">
+                        </div>
+                        <div class="oriten-field">
+                            <label>直線</label>
+                            <input type="number" step="0.01" id="straight_${racer.no}" placeholder="6.80">
+                        </div>
+                        <div class="oriten-field">
+                            <label>半周</label>
+                            <input type="number" step="0.01" id="half_lap_${racer.no}" placeholder="18.20">
+                        </div>
+                    </div>
+                </div>
+            `;
+
             card.innerHTML = `
                 <div class="boat-title">
                     <span class="boat-badge">${racer.no}</span>
@@ -453,6 +517,7 @@
                     <span class="class-chip">${racer.class}</span>
                 </div>
                 ${evalRowsHtml}
+                ${oritenBlockHtml}
                 <label class="hinao-check">
                     <input type="radio" name="hinao_target" value="${racer.no}"> 🎯 このレースの穴狙い軸に指定（6艇中1艇のみ）
                 </label>
@@ -471,171 +536,79 @@
         resultArea.style.display = 'block';
     }
 
-    // M3 composite score weights. Machine condition intentionally combines
-    // motor and boat 2連率 inside one 25% component so the established M3
-    // weighting stays at 100% while both official machine indicators matter.
-    const SCORE_WEIGHTS = { course: 0.35, machine: 0.25, local: 0.15, national: 0.10, exhibition: 0.10, start: 0.05 };
-    const COURSE_BASE_SCORES = { 1: 55, 2: 14, 3: 12, 4: 10, 5: 6, 6: 3 };
-
     function finiteNumber(value) {
         const number = Number(value);
         return Number.isFinite(number) ? number : null;
     }
 
-    function clamp(value, min, max) {
-        return Math.min(max, Math.max(min, value));
-    }
-
-    function exhibitionRankPoints(racers) {
-        const timed = racers
-            .map(racer => ({ no: racer.no, time: finiteNumber(racer.preview?.exhibition_time) }))
-            .filter(item => item.time !== null)
-            .sort((a, b) => a.time - b.time || a.no - b.no);
-        const points = new Map();
-        timed.forEach((item, index) => points.set(item.no, Math.max(0, 15 - index * 3)));
-        return points;
-    }
-
-    function startScore(racer) {
-        // 展示STがなければ平均STを使う。欠損値を0秒として推測しない。
-        const exhibition = finiteNumber(racer.preview?.start_exhibition?.st);
-        const average = finiteNumber(racer.avg_st);
-        const st = exhibition ?? average;
-        if (st === null) return { score: null, st: null, source: null };
-        return { score: st < 0.10 ? 10 : st < 0.15 ? 5 : 0, st, source: exhibition !== null ? '展示ST' : '平均ST' };
-    }
-
-    function userFactor(total) {
-        return 1 + ((total - 12) / 8) * 0.1;
-    }
-
-    function makePrimaryReason(components, racer, course) {
-        const labels = {
-            course: `展示${course}コースの基礎値`,
-            machine: 'モーター／ボート2連率',
-            local: '当地勝率',
-            national: '全国勝率',
-            exhibition: '展示タイム順位',
-            start: 'スタート評価'
-        };
-        const ranked = Object.entries(components)
-            .filter(([, value]) => value !== null)
-            .map(([key, value]) => ({ key, value, contribution: value * SCORE_WEIGHTS[key] }))
-            .sort((a, b) => b.contribution - a.contribution);
-        const primary = ranked[0];
-        if (!primary) return '公式データが不足しているため、ユーザー評価を中心に算出';
-        if (primary.key === 'machine') {
-            const motor = finiteNumber(racer.motor?.top2_rate);
-            const boat = finiteNumber(racer.boat?.top2_rate);
-            return `${labels.machine}が高評価（モーター${motor ?? '—'}%／ボート${boat ?? '—'}%）`;
-        }
-        return `${labels[primary.key]}が主な加点要因`;
-    }
-
+    // M3再設計スコア算定（ユーザー主観 65% : 公式データ 35%）
     function collectBoatScores(raceInfo) {
-        const exhibitionPoints = exhibitionRankPoints(raceInfo.racers);
         return raceInfo.racers.map(racer => {
             const scores = {};
-            let total = 0;
+            let userSum = 0;
             EVAL_ITEMS.forEach(item => {
                 const checked = document.querySelector(`input[name="${item.key}_${racer.no}"]:checked`);
                 const val = checked ? parseInt(checked.value, 10) : item.defaultVal;
                 scores[item.key] = val;
-                total += val;
+                userSum += val;
             });
-            const memoEl = document.getElementById(`memo_${racer.no}`);
+
+            // ユーザー主観評価（6項目 × 1〜5pt ＝ 6〜30pt） -> 100点満点スケールに換算 (重量 65%)
+            const userScaled = ((userSum - 6) / 24) * 100;
+
+            // 公式データスコア (重量 35%)
             const course = finiteNumber(racer.preview?.start_exhibition?.course) ?? racer.no;
-            const motorRate = finiteNumber(racer.motor?.top2_rate);
-            const boatRate = finiteNumber(racer.boat?.top2_rate);
-            const machineRates = [motorRate, boatRate].filter(rate => rate !== null);
-            const start = startScore(racer);
-            const components = {
-                course: COURSE_BASE_SCORES[course] ?? null,
-                machine: machineRates.length ? machineRates.reduce((sum, rate) => sum + rate, 0) / machineRates.length : null,
-                local: finiteNumber(racer.local?.win_rate) === null ? null : clamp(finiteNumber(racer.local.win_rate) * 12.5, 0, 100),
-                national: finiteNumber(racer.national?.win_rate) === null ? null : clamp(finiteNumber(racer.national.win_rate) * 12.5, 0, 100),
-                exhibition: exhibitionPoints.has(racer.no) ? exhibitionPoints.get(racer.no) : null,
-                start: start.score
-            };
-            // Reweight only observed components. Missing official fields never
-            // become invented zeroes, while a race with partial data remains usable.
-            const availableKeys = Object.keys(components).filter(key => components[key] !== null);
-            const availableWeight = availableKeys.reduce((sum, key) => sum + SCORE_WEIGHTS[key], 0);
-            const officialScore = availableWeight
-                ? availableKeys.reduce((sum, key) => sum + components[key] * SCORE_WEIGHTS[key], 0) / availableWeight
-                : 0;
+            const courseVal = COURSE_BASE_SCORES[course] ?? 5;
+            const motorVal = finiteNumber(racer.motor?.top2_rate) ?? 30;
+            const localVal = finiteNumber(racer.local?.win_rate) ? finiteNumber(racer.local.win_rate) * 12.5 : 40;
+            const nationalVal = finiteNumber(racer.national?.win_rate) ? finiteNumber(racer.national.win_rate) * 12.5 : 40;
+            const officialScore = (courseVal * 0.4) + (motorVal * 0.3) + (localVal * 0.15) + (nationalVal * 0.15);
+
+            // フライング減点
             const isFlying = racer.flying === true || racer.preview?.start_exhibition?.flying === true;
             const flyingPenalty = isFlying ? 30 : 0;
-            const factor = userFactor(total);
-            const finalScore = Math.max(0, officialScore * factor - flyingPenalty);
+
+            // 最終合成スコア = ユーザー主観 65% + 公式データ 35% - 減点
+            const finalScore = Math.max(0, (userScaled * 0.65 + officialScore * 0.35) - flyingPenalty);
+
+            // オリ展の手入力タイムの取得
+            const oritenTimes = {
+                one_lap: document.getElementById(`one_lap_${racer.no}`)?.value || null,
+                turn: document.getElementById(`turn_${racer.no}`)?.value || null,
+                straight: document.getElementById(`straight_${racer.no}`)?.value || null,
+                half_lap: document.getElementById(`half_lap_${racer.no}`)?.value || null
+            };
+
+            const memoEl = document.getElementById(`memo_${racer.no}`);
+
             return {
                 no: racer.no,
                 name: cleanName(racer.name),
                 cls: racer.class,
                 scores,
-                total,
-                memo: memoEl ? memoEl.value.trim() : '',
-                course,
-                components,
+                userSum,
+                userScaled,
                 officialScore,
-                userFactor: factor,
                 finalScore,
                 flyingPenalty,
-                startSource: start.source,
-                primaryReason: makePrimaryReason(components, racer, course)
+                oritenTimes,
+                memo: memoEl ? memoEl.value.trim() : ''
             };
         });
     }
 
-    function buildConditionText(raceInfo) {
-        // 気象・潮汐はM3仕様に定量重みがないため順位へ恣意的に混ぜず、
-        // 展開判断に必要なレースコンテキストとして必ず表示する。
-        const weather = raceInfo.weather || {};
-        const tide = raceInfo.tide || {};
-        const weatherParts = [
-            weather.weather,
-            finiteNumber(weather.air_temp) !== null ? `気温${weather.air_temp}℃` : null,
-            finiteNumber(weather.wind_speed) !== null ? `風速${weather.wind_speed}m` : null,
-            finiteNumber(weather.water_temp) !== null ? `水温${weather.water_temp}℃` : null,
-            finiteNumber(weather.wave_height) !== null ? `波高${weather.wave_height}cm` : null
-        ].filter(Boolean);
-        const tideParts = [tide.tide_name, tide.mapping?.station_name].filter(Boolean);
-        if (!weatherParts.length && !tideParts.length) return '';
-        const tideText = tideParts.length === 2 ? `${tideParts[0]}（${tideParts[1]}）` : tideParts[0];
-        return `水面条件: ${weatherParts.join('／') || '気象データなし'}${tideText ? ` ｜ 潮汐: ${tideText}` : ''}`;
-    }
-
-    // 展開シナリオの文章を生成
     function buildScenarioText(ranked, axis, hinaoNo, boats) {
-        let text = `総合評価が最も高いのは <strong>${axis.no}号艇 ${axis.name}</strong>（最終${axis.finalScore.toFixed(1)}点）。`;
-        text += `<br><strong>軸の根拠:</strong> ${axis.primaryReason}。`;
-        if (axis.flyingPenalty) text += `<br><strong>注意:</strong> フライング情報により${axis.flyingPenalty}点を減点しています。`;
-
-        if (axis.no === 1) {
-            text += `St・回り足の評価が高ければ、そのままイン逃げが濃厚な展開です。`;
-        } else {
-            const first = ranked[0];
-            text += `${first.no}号艇のまくり・差しが決まるかどうかがレースの焦点になります。`;
+        let text = `ユーザー観点を中心とした総合評価1位は <strong>${axis.no}号艇 ${axis.name}</strong>（最終合成: ${axis.finalScore.toFixed(1)}pt）。`;
+        if (axis.flyingPenalty) {
+            text += `<br><strong>⚠️ 注意:</strong> フライング情報により${axis.flyingPenalty}pt減点されています。`;
         }
-
-        // 各艇のメモがあれば一言ずつ反映
-        const memoLines = boats.filter(b => b.memo).map(b => `${b.no}号艇：${b.memo}`);
-        if (memoLines.length) {
-            text += `<br><span style="color:#6b7280; font-size:0.85rem;">${memoLines.join(' ／ ')}</span>`;
-        }
-
         if (hinaoNo) {
             const hinaoBoat = boats.find(b => b.no === hinaoNo);
-            if (hinaoNo === axis.no) {
-                text += `<br>穴狙いに指定した${hinaoNo}号艇は評価でも本命級のため、素直に軸として狙いやすいレースです。`;
-            } else {
-                text += `<br>穴狙いに指定した <strong>${hinaoNo}号艇 ${hinaoBoat.name}</strong>（最終${hinaoBoat.finalScore.toFixed(1)}点）が一撃決めればヒモ荒れの引き金になりそうです。`;
-            }
+            text += `<br>🎯 穴狙い指定: <strong>${hinaoNo}号艇 ${hinaoBoat.name}</strong>（最終${hinaoBoat.finalScore.toFixed(1)}pt）。`;
         }
         return text;
     }
 
-    // 3連単の買い目（本線・穴狙い）を生成
     function buildBuyCombos(ranked, axis, hinaoNo) {
         const top3 = ranked.slice(0, 3);
         const honmei = [];
@@ -655,15 +628,13 @@
                 ana.push(`${hinaoNo} → ${axis.no} → ${o.no}`);
             });
         }
-
         return { honmei, ana };
     }
 
-    // 採点一覧の表を生成
     function buildScoreTable(ranked) {
-        let html = '<table><tr><th>艇</th><th>St</th><th>2M</th><th>1M①</th><th>1M②</th><th>手動合計</th><th>公式スコア</th><th>補正</th><th>最終合成</th></tr>';
+        let html = '<table><tr><th>艇</th><th>腕</th><th>St</th><th>2M</th><th>1M①</th><th>1M②</th><th>オリ展</th><th>主観計</th><th>公式データ</th><th>最終スコア</th></tr>';
         ranked.forEach(b => {
-            html += `<tr><td>${b.no} ${b.name}（${b.cls}）</td><td>${b.scores.st}</td><td>${b.scores.m2}</td><td>${b.scores.m1a}</td><td>${b.scores.m1b}</td><td>${b.total}</td><td>${b.officialScore.toFixed(1)}</td><td>×${b.userFactor.toFixed(3)}</td><td><strong>${b.finalScore.toFixed(1)}</strong></td></tr>`;
+            html += `<tr><td>${b.no} ${b.name}</td><td>${b.scores.ude}</td><td>${b.scores.st}</td><td>${b.scores.m2}</td><td>${b.scores.m1a}</td><td>${b.scores.m1b}</td><td>${b.scores.oriten}</td><td>${b.userSum}</td><td>${b.officialScore.toFixed(1)}</td><td><strong>${b.finalScore.toFixed(1)}</strong></td></tr>`;
         });
         html += '</table>';
         return `<div class="score-table-wrap">${html}</div>`;
@@ -676,19 +647,17 @@
     }
 
     function savePredictionDraft(raceInfo, boats, hinaoNo) {
-        // M2/Supabase導入前の安全な単一端末フォールバック。保存形式は
-        // user_predictions.predictions にそのまま移せるよう艇番キーを使う。
         const predictions = boats.map(boat => ({
             boat_no: boat.no,
             scores: boat.scores,
+            oriten_times: boat.oritenTimes,
             hinao: boat.no === hinaoNo,
             memo: boat.memo,
-            final_score: Number(boat.finalScore.toFixed(3))
+            final_score: Number(boat.finalScore.toFixed(1))
         }));
         try {
             localStorage.setItem(raceStorageKey(raceInfo), JSON.stringify({ predictions, saved_at: new Date().toISOString() }));
         } catch (error) {
-            // Private browsing/storage restrictions must never block prediction.
             console.warn('予想のローカル保存に失敗しました:', error);
         }
     }
@@ -702,6 +671,12 @@
                     const input = document.querySelector(`input[name="${key}_${prediction.boat_no}"][value="${value}"]`);
                     if (input) input.checked = true;
                 });
+                if (prediction.oriten_times) {
+                    ['one_lap', 'turn', 'straight', 'half_lap'].forEach(tKey => {
+                        const el = document.getElementById(`${tKey}_${prediction.boat_no}`);
+                        if (el && prediction.oriten_times[tKey]) el.value = prediction.oriten_times[tKey];
+                    });
+                }
                 const memo = document.getElementById(`memo_${prediction.boat_no}`);
                 if (memo) memo.value = prediction.memo || '';
                 if (prediction.hinao) {
@@ -712,79 +687,6 @@
         } catch (error) {
             console.warn('保存済み予想の復元に失敗しました:', error);
         }
-    }
-
-    function getCompletedResult(raceInfo) {
-        const result = raceInfo?.result;
-        return result?.status === 'available' && Array.isArray(result.finish_order) && result.finish_order.length === 6
-            ? result
-            : null;
-    }
-
-    function buildDailyResultStats(racePayload) {
-        const playerStats = new Map();
-        const techniqueStats = new Map();
-        (racePayload?.races || []).forEach(race => {
-            const result = getCompletedResult(race);
-            if (!result) return;
-            const positions = new Map(result.finish_order.map((boatNo, index) => [boatNo, index + 1]));
-            const technique = result.winning_technique || '不明';
-            const techniqueRecord = techniqueStats.get(technique) || { races: 0, second: 0, third: 0, top3: 0 };
-            techniqueRecord.races += 1;
-            (race.racers || []).forEach(racer => {
-                const rank = positions.get(racer.no);
-                if (!rank) return;
-                const key = `${racer.racer_no ?? 'unknown'}:${racer.no}`;
-                const record = playerStats.get(key) || {
-                    racerNo: racer.racer_no ?? '—', name: cleanName(racer.name), boatNo: racer.no,
-                    starts: 0, rankTotal: 0, top3: 0
-                };
-                record.starts += 1;
-                record.rankTotal += rank;
-                if (rank <= 3) record.top3 += 1;
-                playerStats.set(key, record);
-                if (rank === 2) techniqueRecord.second += 1;
-                if (rank === 3) techniqueRecord.third += 1;
-                if (rank <= 3) techniqueRecord.top3 += 1;
-            });
-            techniqueStats.set(technique, techniqueRecord);
-        });
-        return { playerStats: [...playerStats.values()], techniqueStats: [...techniqueStats.entries()] };
-    }
-
-    function buildReviewHtml(raceInfo, ranked, hinaoNo) {
-        const result = getCompletedResult(raceInfo);
-        if (!result) {
-            return '<p class="review-note">結果は未確定です。確定後に同じレースデータを読み込むと、穴狙い・上位評価との照合を表示します。</p>';
-        }
-        const positions = new Map(result.finish_order.map((boatNo, index) => [boatNo, index + 1]));
-        const predictedTop3 = ranked.slice(0, 3).map(boat => boat.no);
-        const actualTop3 = result.finish_order.slice(0, 3);
-        const hits = predictedTop3.filter(boatNo => actualTop3.includes(boatNo)).length;
-        const hinaoText = hinaoNo
-            ? `穴狙い ${hinaoNo}号艇は <strong>${positions.get(hinaoNo) ?? '—'}着</strong>でした。`
-            : '穴狙い艇は指定されていません。';
-        const stats = buildDailyResultStats(currentRaceData);
-        const playerRows = stats.playerStats
-            .sort((a, b) => a.rankTotal / a.starts - b.rankTotal / b.starts || b.starts - a.starts)
-            .map(item => `<tr><td>${item.racerNo}</td><td>${item.name}</td><td>${item.boatNo}</td><td>${item.starts}</td><td>${(item.rankTotal / item.starts).toFixed(2)}</td><td>${item.top3}</td></tr>`)
-            .join('');
-        const techniqueRows = stats.techniqueStats
-            .map(([name, item]) => `<tr><td>${name}</td><td>${item.races}</td><td>${item.second}</td><td>${item.third}</td><td>${(item.top3 / (item.races * 6) * 100).toFixed(1)}%</td></tr>`)
-            .join('');
-        let html = `<p>確定着順: <strong>${result.finish_order.join(' → ')}</strong>${result.winning_technique ? `（決まり手: ${result.winning_technique}）` : ''}</p>`;
-        html += `<p>予想上位3艇: ${predictedTop3.join(' → ')} ／ 実着順上位3艇: ${actualTop3.join(' → ')} ／ 3着内一致: <strong>${hits}/3艇</strong></p>`;
-        html += `<p>${hinaoText}</p>`;
-        if (playerRows) {
-            html += '<p><strong>選手 × 艇番 × 着順（読み込み済み当日分）</strong></p>';
-            html += `<div class="score-table-wrap"><table><tr><th>登録番号</th><th>選手</th><th>艇番</th><th>出走数</th><th>平均着順</th><th>3着内</th></tr>${playerRows}</table></div>`;
-        }
-        if (techniqueRows) {
-            html += '<p><strong>決まり手別の残り方（読み込み済み当日分）</strong></p>';
-            html += `<div class="score-table-wrap"><table><tr><th>決まり手</th><th>レース数</th><th>2着</th><th>3着</th><th>3着内率</th></tr>${techniqueRows}</table></div>`;
-        }
-        html += '<p class="review-note">過去全期間の集計とクラウド保存は、M2のSupabase移行後に同じ集計ロジックへDB結果を渡して拡張します。</p>';
-        return html;
     }
 
     function generatePrediction() {
@@ -802,7 +704,6 @@
         const hinaoNo = selectedHinao ? parseInt(selectedHinao.value, 10) : null;
 
         const boats = collectBoatScores(raceInfo);
-        // 公式データの合成スコアが正。手動評価は±10%の補正として反映する。
         const ranked = [...boats].sort((a, b) => b.finalScore - a.finalScore || a.no - b.no);
         const axis = ranked[0];
 
@@ -813,8 +714,6 @@
 
         let html = `<p><strong>【選択レース】</strong> ${stadiumName} 第${raceNo}R</p>`;
         html += `<p>${scenarioText}</p>`;
-        const conditionText = buildConditionText(raceInfo);
-        if (conditionText) html += `<p style="color:#4b5563; font-size:0.85rem;">${conditionText}</p>`;
         html += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
 
         html += `<p><strong>💡 推奨買い目（3連単）</strong></p>`;
@@ -828,8 +727,6 @@
 
         html += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
         html += `<p><strong>採点一覧</strong></p>${scoreTableHtml}`;
-        html += `<hr style="border:0; border-top:1px solid #ccc; margin:10px 0;">`;
-        html += `<p><strong>📈 結果・振り返り</strong></p>${buildReviewHtml(raceInfo, ranked, hinaoNo)}`;
 
         document.getElementById('result-title').innerText = "🧠 展開シナリオ ＆ 推奨買い目";
         const resultArea = document.getElementById('result-area');
