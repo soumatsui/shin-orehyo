@@ -2,6 +2,7 @@ import json
 import os
 import re
 import time
+import unicodedata
 from datetime import datetime, date, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from urllib.request import Request, urlopen
@@ -759,7 +760,7 @@ def _parse_payout_table(table):
         if combo_node is None or payout_node is None:
             continue
         combination = clean_text(combo_node.get_text('', strip=True))
-        amount = safe_int(payout_node.get_text(' ', strip=True))
+        amount = parse_payout_amount(payout_node.get_text(' ', strip=True))
         if not combination or amount is None:
             continue
         record = {'combination': combination, 'amount': amount}
@@ -769,6 +770,25 @@ def _parse_payout_table(table):
         else:
             payouts[current_type] = record
     return payouts
+
+
+def parse_payout_amount(value):
+    """Return a payout as an integer, including amounts with thousands marks.
+
+    Official result HTML currently renders e.g. ``&yen;1,230`` inside
+    ``.is-payout1``.  ``safe_int`` is deliberately unsuitable here because it
+    reads only the first numeric run (``1``). Normalize full-width variants,
+    then accept only a value composed of digits with optional comma grouping
+    and currency/unit decorations.  This handles ``1230円``, ``1,230円`` and
+    ``¥1,230`` without accidentally reading a popularity rank from another
+    table cell.  A non-numeric payout remains None rather than becoming zero.
+    """
+    normalized = unicodedata.normalize('NFKC', clean_text(value))
+    # Currency symbols and the Japanese unit are decoration, not digits.
+    normalized = normalized.replace('¥', '').replace('円', '').strip()
+    if not re.fullmatch(r'\d{1,3}(?:,\d{3})*|\d+', normalized):
+        return None
+    return int(normalized.replace(',', ''))
 
 
 def parse_race_result(jcd: str, r_idx: int, today: str):
