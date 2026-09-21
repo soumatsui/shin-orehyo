@@ -506,11 +506,11 @@
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 24.0,
+        "wind_speed": 4.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 4.0,
         "weather": "曇り"
       },
       "result": {
@@ -1344,7 +1344,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": 1
+          "exhibition_time_rank": 1,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -1426,7 +1427,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": 2
+          "exhibition_time_rank": 2,
+          "finish_position": 2
         },
         {
           "no": 3,
@@ -1508,7 +1510,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": 6
+          "exhibition_time_rank": 6,
+          "finish_position": 3
         },
         {
           "no": 4,
@@ -1590,7 +1593,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": 4
+          "exhibition_time_rank": 4,
+          "finish_position": 6
         },
         {
           "no": 5,
@@ -1672,7 +1676,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": 3
+          "exhibition_time_rank": 3,
+          "finish_position": 5
         },
         {
           "no": 6,
@@ -1754,7 +1759,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": 5
+          "exhibition_time_rank": 5,
+          "finish_position": 4
         }
       ],
       "weather": {
@@ -1766,8 +1772,88 @@
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          2,
+          3,
+          6,
+          5,
+          4
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "4"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-2-3",
+            "amount": 1800
+          },
+          "3連複": {
+            "combination": "1=2=3",
+            "amount": 640
+          },
+          "2連単": {
+            "combination": "1-2",
+            "amount": 920
+          },
+          "2連複": {
+            "combination": "1=2",
+            "amount": 450
+          },
+          "拡連複": [
+            {
+              "combination": "1=2",
+              "amount": 320
+            },
+            {
+              "combination": "1=3",
+              "amount": 160
+            },
+            {
+              "combination": "2=3",
+              "amount": 250
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 270
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 200
+            },
+            {
+              "combination": "2",
+              "amount": 270
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_03",
       "tide": {
@@ -1866,13 +1952,14 @@
             "boat_no": 1,
             "weight": 51.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.72,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.09,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -1885,7 +1972,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -1947,13 +2035,14 @@
             "boat_no": 2,
             "weight": 52.9,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.02,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -1966,7 +2055,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 2
         },
         {
           "no": 3,
@@ -2028,13 +2118,14 @@
             "boat_no": 3,
             "weight": 55.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.87,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.09,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2047,7 +2138,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 6
         },
         {
           "no": 4,
@@ -2109,13 +2201,14 @@
             "boat_no": 4,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.81,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.14,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2128,7 +2221,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 5
         },
         {
           "no": 5,
@@ -2190,13 +2284,14 @@
             "boat_no": 5,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.18,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2209,7 +2304,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 3
         },
         {
           "no": 6,
@@ -2271,13 +2367,14 @@
             "boat_no": 6,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.79,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.27,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2290,11 +2387,12 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 4
         }
       ],
       "weather": {
-        "air_temp": 26.0,
+        "air_temp": 25.0,
         "wind_speed": 5.0,
         "wind_direction": null,
         "water_temp": 28.0,
@@ -2302,8 +2400,88 @@
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          2,
+          5,
+          6,
+          4,
+          3
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "3"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-2-5",
+            "amount": 730
+          },
+          "3連複": {
+            "combination": "1=2=5",
+            "amount": 380
+          },
+          "2連単": {
+            "combination": "1-2",
+            "amount": 430
+          },
+          "2連複": {
+            "combination": "1=2",
+            "amount": 290
+          },
+          "拡連複": [
+            {
+              "combination": "1=2",
+              "amount": 220
+            },
+            {
+              "combination": "1=5",
+              "amount": 170
+            },
+            {
+              "combination": "2=5",
+              "amount": 220
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 210
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 100
+            },
+            {
+              "combination": "2",
+              "amount": 120
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_04",
       "tide": {
@@ -2402,13 +2580,14 @@
             "boat_no": 1,
             "weight": 57.8,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.87,
+            "tilt": -0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.08,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2421,7 +2600,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 6
         },
         {
           "no": 2,
@@ -2483,13 +2663,14 @@
             "boat_no": 2,
             "weight": 54.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.77,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.05,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2502,7 +2683,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 5
         },
         {
           "no": 3,
@@ -2564,13 +2746,14 @@
             "boat_no": 3,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.75,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.13,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2583,7 +2766,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 1
         },
         {
           "no": 4,
@@ -2645,13 +2829,14 @@
             "boat_no": 4,
             "weight": 52.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.95,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.38,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2664,7 +2849,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 3
         },
         {
           "no": 5,
@@ -2726,13 +2912,14 @@
             "boat_no": 5,
             "weight": 52.1,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 1.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.18,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2745,7 +2932,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 4
         },
         {
           "no": 6,
@@ -2807,13 +2995,14 @@
             "boat_no": 6,
             "weight": 53.3,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.79,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.21,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2826,20 +3015,101 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 2
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 4.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 4.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          3,
+          6,
+          4,
+          5,
+          2,
+          1
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "1"
+          }
+        ],
+        "winning_technique": "まくり",
+        "payouts": {
+          "3連単": {
+            "combination": "3-6-4",
+            "amount": 34100
+          },
+          "3連複": {
+            "combination": "3=4=6",
+            "amount": 9260
+          },
+          "2連単": {
+            "combination": "3-6",
+            "amount": 2390
+          },
+          "2連複": {
+            "combination": "3=6",
+            "amount": 2070
+          },
+          "拡連複": [
+            {
+              "combination": "3=6",
+              "amount": 570
+            },
+            {
+              "combination": "3=4",
+              "amount": 1210
+            },
+            {
+              "combination": "4=6",
+              "amount": 2470
+            }
+          ],
+          "単勝": {
+            "combination": "3",
+            "amount": 460
+          },
+          "複勝": [
+            {
+              "combination": "3",
+              "amount": 220
+            },
+            {
+              "combination": "6",
+              "amount": 530
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_05",
       "tide": {
@@ -2938,13 +3208,14 @@
             "boat_no": 1,
             "weight": 52.7,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.83,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.13,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -2957,7 +3228,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -3019,13 +3291,14 @@
             "boat_no": 2,
             "weight": 52.9,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.81,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.11,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3038,7 +3311,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 3
         },
         {
           "no": 3,
@@ -3100,13 +3374,14 @@
             "boat_no": 3,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.7,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.06,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3119,7 +3394,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 2
         },
         {
           "no": 4,
@@ -3181,13 +3457,14 @@
             "boat_no": 4,
             "weight": 53.3,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.84,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.14,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3200,7 +3477,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 4
         },
         {
           "no": 5,
@@ -3262,13 +3540,14 @@
             "boat_no": 5,
             "weight": 52.1,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.22,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3281,7 +3560,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 5
         },
         {
           "no": 6,
@@ -3343,13 +3623,14 @@
             "boat_no": 6,
             "weight": 52.6,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.81,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.31,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3362,11 +3643,12 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 6
         }
       ],
       "weather": {
-        "air_temp": 26.0,
+        "air_temp": 25.0,
         "wind_speed": 5.0,
         "wind_direction": null,
         "water_temp": 28.0,
@@ -3374,8 +3656,88 @@
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          3,
+          2,
+          4,
+          5,
+          6
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "6"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-3-2",
+            "amount": 1180
+          },
+          "3連複": {
+            "combination": "1=2=3",
+            "amount": 410
+          },
+          "2連単": {
+            "combination": "1-3",
+            "amount": 310
+          },
+          "2連複": {
+            "combination": "1=3",
+            "amount": 270
+          },
+          "拡連複": [
+            {
+              "combination": "1=3",
+              "amount": 100
+            },
+            {
+              "combination": "1=2",
+              "amount": 330
+            },
+            {
+              "combination": "2=3",
+              "amount": 410
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 250
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 160
+            },
+            {
+              "combination": "3",
+              "amount": 110
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_06",
       "tide": {
@@ -3474,13 +3836,14 @@
             "boat_no": 1,
             "weight": 51.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.78,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.19,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3493,7 +3856,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -3555,13 +3919,14 @@
             "boat_no": 2,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.78,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.15,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3574,7 +3939,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 5
         },
         {
           "no": 3,
@@ -3623,7 +3989,7 @@
             "",
             "",
             "",
-            "",
+            "3",
             "",
             "",
             "",
@@ -3636,13 +4002,14 @@
             "boat_no": 3,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.23,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3655,7 +4022,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 6
         },
         {
           "no": 4,
@@ -3717,13 +4085,14 @@
             "boat_no": 4,
             "weight": 53.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.93,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.3,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3736,7 +4105,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 2
         },
         {
           "no": 5,
@@ -3785,7 +4155,7 @@
             "9",
             "2",
             "",
-            "",
+            "3",
             "",
             "",
             "",
@@ -3798,13 +4168,14 @@
             "boat_no": 5,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.87,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.15,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3817,7 +4188,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 3
         },
         {
           "no": 6,
@@ -3879,13 +4251,14 @@
             "boat_no": 6,
             "weight": 51.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.87,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.14,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -3898,20 +4271,101 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 4
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 6.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 6.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          4,
+          5,
+          6,
+          2,
+          3
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "3"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-4-5",
+            "amount": 3570
+          },
+          "3連複": {
+            "combination": "1=4=5",
+            "amount": 1210
+          },
+          "2連単": {
+            "combination": "1-4",
+            "amount": 700
+          },
+          "2連複": {
+            "combination": "1=4",
+            "amount": 670
+          },
+          "拡連複": [
+            {
+              "combination": "1=4",
+              "amount": 340
+            },
+            {
+              "combination": "1=5",
+              "amount": 360
+            },
+            {
+              "combination": "4=5",
+              "amount": 1420
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 150
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 120
+            },
+            {
+              "combination": "4",
+              "amount": 260
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_07",
       "tide": {
@@ -3997,7 +4451,7 @@
             "11",
             "7",
             "",
-            "",
+            "4",
             "",
             "",
             "",
@@ -4010,13 +4464,14 @@
             "boat_no": 1,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.78,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.02,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4029,7 +4484,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -4091,13 +4547,14 @@
             "boat_no": 2,
             "weight": 52.2,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.79,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.09,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4110,7 +4567,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 6
         },
         {
           "no": 3,
@@ -4172,13 +4630,14 @@
             "boat_no": 3,
             "weight": 50.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.03,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4191,7 +4650,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 2
         },
         {
           "no": 4,
@@ -4240,7 +4700,7 @@
             "10",
             "5",
             "11",
-            "",
+            "4",
             "",
             "",
             "",
@@ -4253,13 +4713,14 @@
             "boat_no": 4,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.78,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.02,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4272,7 +4733,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 3
         },
         {
           "no": 5,
@@ -4334,13 +4796,14 @@
             "boat_no": 5,
             "weight": 55.4,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.84,
+            "tilt": -0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.4,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4353,7 +4816,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 5
         },
         {
           "no": 6,
@@ -4415,13 +4879,14 @@
             "boat_no": 6,
             "weight": 51.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.74,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.31,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4434,20 +4899,101 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 4
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 7.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 7.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          3,
+          4,
+          6,
+          5,
+          2
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "2"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-3-4",
+            "amount": 800
+          },
+          "3連複": {
+            "combination": "1=3=4",
+            "amount": 330
+          },
+          "2連単": {
+            "combination": "1-3",
+            "amount": 430
+          },
+          "2連複": {
+            "combination": "1=3",
+            "amount": 290
+          },
+          "拡連複": [
+            {
+              "combination": "1=3",
+              "amount": 210
+            },
+            {
+              "combination": "1=4",
+              "amount": 150
+            },
+            {
+              "combination": "3=4",
+              "amount": 240
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 140
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 110
+            },
+            {
+              "combination": "3",
+              "amount": 230
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_08",
       "tide": {
@@ -4533,7 +5079,7 @@
             "12",
             "8",
             "",
-            "",
+            "4",
             "",
             "",
             "",
@@ -4546,13 +5092,14 @@
             "boat_no": 1,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.01,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4565,7 +5112,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 2
         },
         {
           "no": 2,
@@ -4627,13 +5175,14 @@
             "boat_no": 2,
             "weight": 52.9,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.81,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.05,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4646,7 +5195,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 5
         },
         {
           "no": 3,
@@ -4695,7 +5245,7 @@
             "",
             "3",
             "12",
-            "",
+            "3",
             "",
             "",
             "",
@@ -4708,13 +5258,14 @@
             "boat_no": 3,
             "weight": 51.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.83,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.09,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4727,7 +5278,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 6
         },
         {
           "no": 4,
@@ -4776,7 +5328,7 @@
             "8",
             "3",
             "9",
-            "",
+            "5",
             "",
             "",
             "",
@@ -4789,13 +5341,14 @@
             "boat_no": 4,
             "weight": 52.1,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.23,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4808,7 +5361,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 1
         },
         {
           "no": 5,
@@ -4857,7 +5411,7 @@
             "",
             "2",
             "12",
-            "",
+            "5",
             "",
             "",
             "",
@@ -4870,13 +5424,14 @@
             "boat_no": 5,
             "weight": 57.8,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.87,
+            "tilt": -0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.15,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4889,7 +5444,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 4
         },
         {
           "no": 6,
@@ -4938,7 +5494,7 @@
             "",
             "1",
             "7",
-            "",
+            "4",
             "",
             "",
             "",
@@ -4951,13 +5507,14 @@
             "boat_no": 6,
             "weight": 55.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.91,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.06,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -4970,20 +5527,101 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 3
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 7.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 7.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          4,
+          1,
+          6,
+          5,
+          2,
+          3
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "3"
+          }
+        ],
+        "winning_technique": "まくり",
+        "payouts": {
+          "3連単": {
+            "combination": "4-1-6",
+            "amount": 14030
+          },
+          "3連複": {
+            "combination": "1=4=6",
+            "amount": 4100
+          },
+          "2連単": {
+            "combination": "4-1",
+            "amount": 840
+          },
+          "2連複": {
+            "combination": "1=4",
+            "amount": 280
+          },
+          "拡連複": [
+            {
+              "combination": "1=4",
+              "amount": 180
+            },
+            {
+              "combination": "4=6",
+              "amount": 1180
+            },
+            {
+              "combination": "1=6",
+              "amount": 1270
+            }
+          ],
+          "単勝": {
+            "combination": "4",
+            "amount": 240
+          },
+          "複勝": [
+            {
+              "combination": "4",
+              "amount": 120
+            },
+            {
+              "combination": "1",
+              "amount": 100
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_09",
       "tide": {
@@ -5069,7 +5707,7 @@
             "9",
             "4",
             "9",
-            "",
+            "5",
             "",
             "",
             "",
@@ -5082,13 +5720,14 @@
             "boat_no": 1,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.77,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.03,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5101,7 +5740,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -5150,7 +5790,7 @@
             "11",
             "1",
             "9",
-            "",
+            "4",
             "",
             "",
             "",
@@ -5163,13 +5803,14 @@
             "boat_no": 2,
             "weight": 51.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.75,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.02,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5182,7 +5823,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 2
         },
         {
           "no": 3,
@@ -5231,7 +5873,7 @@
             "12",
             "3",
             "9",
-            "",
+            "6",
             "",
             "",
             "",
@@ -5244,13 +5886,14 @@
             "boat_no": 3,
             "weight": 52.7,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.83,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.12,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5263,7 +5906,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 4
         },
         {
           "no": 4,
@@ -5312,7 +5956,7 @@
             "9",
             "8",
             "12",
-            "",
+            "3",
             "",
             "",
             "",
@@ -5325,13 +5969,14 @@
             "boat_no": 4,
             "weight": 54.7,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.85,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.16,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5344,7 +5989,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 6
         },
         {
           "no": 5,
@@ -5393,7 +6039,7 @@
             "8",
             "5",
             "",
-            "",
+            "6",
             "",
             "",
             "",
@@ -5406,13 +6052,14 @@
             "boat_no": 5,
             "weight": 52.9,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.82,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.02,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5425,7 +6072,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 5
         },
         {
           "no": 6,
@@ -5487,13 +6135,14 @@
             "boat_no": 6,
             "weight": 55.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.75,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.07,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5506,20 +6155,101 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 3
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 6.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 6.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          2,
+          6,
+          3,
+          5,
+          4
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "4"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-2-6",
+            "amount": 3620
+          },
+          "3連複": {
+            "combination": "1=2=6",
+            "amount": 1930
+          },
+          "2連単": {
+            "combination": "1-2",
+            "amount": 310
+          },
+          "2連複": {
+            "combination": "1=2",
+            "amount": 310
+          },
+          "拡連複": [
+            {
+              "combination": "1=2",
+              "amount": 170
+            },
+            {
+              "combination": "1=6",
+              "amount": 580
+            },
+            {
+              "combination": "2=6",
+              "amount": 690
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 150
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 110
+            },
+            {
+              "combination": "2",
+              "amount": 180
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_10",
       "tide": {
@@ -5605,7 +6335,7 @@
             "12",
             "5",
             "10",
-            "",
+            "4",
             "",
             "",
             "",
@@ -5618,13 +6348,14 @@
             "boat_no": 1,
             "weight": 52.9,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.01,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5637,7 +6368,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -5686,7 +6418,7 @@
             "9",
             "7",
             "11",
-            "",
+            "6",
             "",
             "",
             "",
@@ -5699,13 +6431,14 @@
             "boat_no": 2,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.75,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.01,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5718,7 +6451,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 2
         },
         {
           "no": 3,
@@ -5767,7 +6501,7 @@
             "12",
             "8",
             "12",
-            "",
+            "6",
             "",
             "",
             "",
@@ -5780,13 +6514,14 @@
             "boat_no": 3,
             "weight": 53.3,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.81,
+            "tilt": -0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.06,
+              "flying": true
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5799,7 +6534,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 5
         },
         {
           "no": 4,
@@ -5848,7 +6584,7 @@
             "8",
             "6",
             "12",
-            "",
+            "7",
             "",
             "",
             "",
@@ -5861,13 +6597,14 @@
             "boat_no": 4,
             "weight": 51.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.84,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.21,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5880,7 +6617,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 3
         },
         {
           "no": 5,
@@ -5929,7 +6667,7 @@
             "",
             "2",
             "8",
-            "",
+            "5",
             "",
             "",
             "",
@@ -5942,13 +6680,14 @@
             "boat_no": 5,
             "weight": 54.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.82,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.15,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -5961,7 +6700,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 4
         },
         {
           "no": 6,
@@ -6023,13 +6763,14 @@
             "boat_no": 6,
             "weight": 57.1,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.84,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.18,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6042,20 +6783,101 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 6
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 4.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 4.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          2,
+          4,
+          5,
+          3,
+          6
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "6"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-2-4",
+            "amount": 1020
+          },
+          "3連複": {
+            "combination": "1=2=4",
+            "amount": 460
+          },
+          "2連単": {
+            "combination": "1-2",
+            "amount": 330
+          },
+          "2連複": {
+            "combination": "1=2",
+            "amount": 200
+          },
+          "拡連複": [
+            {
+              "combination": "1=2",
+              "amount": 150
+            },
+            {
+              "combination": "1=4",
+              "amount": 200
+            },
+            {
+              "combination": "2=4",
+              "amount": 320
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 220
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 100
+            },
+            {
+              "combination": "2",
+              "amount": 230
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_11",
       "tide": {
@@ -6154,13 +6976,14 @@
             "boat_no": 1,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.75,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 1,
+              "st": 0.02,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6173,7 +6996,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 3,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -6235,13 +7059,14 @@
             "boat_no": 2,
             "weight": 51.5,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.71,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 2,
+              "st": 0.26,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6254,7 +7079,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 2,
+          "finish_position": 6
         },
         {
           "no": 3,
@@ -6316,13 +7142,14 @@
             "boat_no": 3,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 3,
+              "st": 0.19,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6335,7 +7162,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 5,
+          "finish_position": 3
         },
         {
           "no": 4,
@@ -6397,13 +7225,14 @@
             "boat_no": 4,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.7,
+            "tilt": 0.5,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 4,
+              "st": 0.23,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6416,7 +7245,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 1,
+          "finish_position": 4
         },
         {
           "no": 5,
@@ -6478,13 +7308,14 @@
             "boat_no": 5,
             "weight": 52.0,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.8,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 5,
+              "st": 0.16,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6497,7 +7328,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 6,
+          "finish_position": 2
         },
         {
           "no": 6,
@@ -6559,13 +7391,14 @@
             "boat_no": 6,
             "weight": 52.2,
             "adjust_weight": null,
-            "exhibition_time": null,
-            "tilt": null,
+            "exhibition_time": 6.77,
+            "tilt": 0.0,
             "propeller_changed": false,
             "parts_exchange": [],
             "start_exhibition": {
-              "course": null,
-              "st": null
+              "course": 6,
+              "st": 0.19,
+              "flying": false
             },
             "original_exhibition": {
               "one_lap": null,
@@ -6578,20 +7411,101 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": null
+          "exhibition_time_rank": 4,
+          "finish_position": 5
         }
       ],
       "weather": {
-        "air_temp": 26.0,
-        "wind_speed": 5.0,
+        "air_temp": 25.0,
+        "wind_speed": 4.0,
         "wind_direction": null,
         "water_temp": 28.0,
-        "wave_height": 5.0,
+        "wave_height": 4.0,
         "weather": "曇り"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          5,
+          3,
+          4,
+          6,
+          2
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "6"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "2"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-5-3",
+            "amount": 7540
+          },
+          "3連複": {
+            "combination": "1=3=5",
+            "amount": 1740
+          },
+          "2連単": {
+            "combination": "1-5",
+            "amount": 2200
+          },
+          "2連複": {
+            "combination": "1=5",
+            "amount": 1470
+          },
+          "拡連複": [
+            {
+              "combination": "1=5",
+              "amount": 370
+            },
+            {
+              "combination": "1=3",
+              "amount": 290
+            },
+            {
+              "combination": "3=5",
+              "amount": 1140
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 140
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 120
+            },
+            {
+              "combination": "5",
+              "amount": 320
+            }
+          ]
+        }
       },
       "race_id": "20260921_15_12",
       "tide": {
@@ -6628,7 +7542,7 @@
       }
     }
   ],
-  "updated_at": "2026-09-21T07:23:41",
+  "updated_at": "2026-09-21T20:01:08",
   "data_contract": {
     "stable": "race_card",
     "realtime": "before_info",

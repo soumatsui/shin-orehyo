@@ -507,10 +507,10 @@
       ],
       "weather": {
         "air_temp": 26.0,
-        "wind_speed": 7.0,
+        "wind_speed": 6.0,
         "wind_direction": null,
         "water_temp": 25.0,
-        "wave_height": 8.0,
+        "wave_height": 6.0,
         "weather": "晴"
       },
       "result": {
@@ -6994,7 +6994,8 @@
           "national_win_rate_rank": 2,
           "local_win_rate_rank": 4,
           "motor_top2_rate_rank": 4,
-          "exhibition_time_rank": 3
+          "exhibition_time_rank": 3,
+          "finish_position": 1
         },
         {
           "no": 2,
@@ -7076,7 +7077,8 @@
           "national_win_rate_rank": 4,
           "local_win_rate_rank": 5,
           "motor_top2_rate_rank": 2,
-          "exhibition_time_rank": 1
+          "exhibition_time_rank": 1,
+          "finish_position": 3
         },
         {
           "no": 3,
@@ -7158,7 +7160,8 @@
           "national_win_rate_rank": 1,
           "local_win_rate_rank": 1,
           "motor_top2_rate_rank": 1,
-          "exhibition_time_rank": 6
+          "exhibition_time_rank": 6,
+          "finish_position": 2
         },
         {
           "no": 4,
@@ -7240,7 +7243,8 @@
           "national_win_rate_rank": 6,
           "local_win_rate_rank": 3,
           "motor_top2_rate_rank": 5,
-          "exhibition_time_rank": 4
+          "exhibition_time_rank": 4,
+          "finish_position": 4
         },
         {
           "no": 5,
@@ -7322,7 +7326,8 @@
           "national_win_rate_rank": 3,
           "local_win_rate_rank": 2,
           "motor_top2_rate_rank": 3,
-          "exhibition_time_rank": 2
+          "exhibition_time_rank": 2,
+          "finish_position": 5
         },
         {
           "no": 6,
@@ -7404,7 +7409,8 @@
           "national_win_rate_rank": 5,
           "local_win_rate_rank": 6,
           "motor_top2_rate_rank": 6,
-          "exhibition_time_rank": 5
+          "exhibition_time_rank": 5,
+          "finish_position": 6
         }
       ],
       "weather": {
@@ -7416,8 +7422,88 @@
         "weather": "晴"
       },
       "result": {
-        "status": "not_available",
-        "_raw_finish_rows": []
+        "status": "available",
+        "finish_order": [
+          1,
+          3,
+          2,
+          4,
+          5,
+          6
+        ],
+        "_raw_finish_rows": [
+          {
+            "finish_text": "１",
+            "boat_text": "1"
+          },
+          {
+            "finish_text": "２",
+            "boat_text": "3"
+          },
+          {
+            "finish_text": "３",
+            "boat_text": "2"
+          },
+          {
+            "finish_text": "４",
+            "boat_text": "4"
+          },
+          {
+            "finish_text": "５",
+            "boat_text": "5"
+          },
+          {
+            "finish_text": "６",
+            "boat_text": "6"
+          }
+        ],
+        "winning_technique": "逃げ",
+        "payouts": {
+          "3連単": {
+            "combination": "1-3-2",
+            "amount": 680
+          },
+          "3連複": {
+            "combination": "1=2=3",
+            "amount": 260
+          },
+          "2連単": {
+            "combination": "1-3",
+            "amount": 270
+          },
+          "2連複": {
+            "combination": "1=3",
+            "amount": 200
+          },
+          "拡連複": [
+            {
+              "combination": "1=3",
+              "amount": 130
+            },
+            {
+              "combination": "1=2",
+              "amount": 120
+            },
+            {
+              "combination": "2=3",
+              "amount": 200
+            }
+          ],
+          "単勝": {
+            "combination": "1",
+            "amount": 120
+          },
+          "複勝": [
+            {
+              "combination": "1",
+              "amount": 100
+            },
+            {
+              "combination": "3",
+              "amount": 180
+            }
+          ]
+        }
       },
       "race_id": "20260921_17_12",
       "tide": {
@@ -7454,7 +7540,7 @@
       }
     }
   ],
-  "updated_at": "2026-09-21T07:23:53",
+  "updated_at": "2026-09-21T20:01:15",
   "data_contract": {
     "stable": "race_card",
     "realtime": "before_info",
